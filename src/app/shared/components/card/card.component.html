@@ -1,0 +1,12 @@
+<article *ngIf="movie; else placeholder">
+    <img src={{movie.poster}} alt="Hello">
+    <div class="content"> 
+        <h3>{{movie.title}}</h3>
+        <p>{{movie.synopsis}}</p>
+        <app-button (onClickRequest)="showMovie()" text="Visa mer"></app-button>
+    </div>
+</article>
+
+<ng-template #placeholder>
+    Loading...
+</ng-template>
