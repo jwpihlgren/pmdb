@@ -36,3 +36,7 @@ p {
     flex-direction: row;
     gap: 0.5rem
 }
+
+abbr {
+    all: unset;
+}
