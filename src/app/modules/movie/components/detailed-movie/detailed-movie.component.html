@@ -1,31 +1,29 @@
-<p>detailed-movie works!</p>
+<ng-container *ngIf="movie$ |async as movie; else placeholder">
+    <div class="subheader">
+        <div class="details">
+            <h1>{{movie.title}}</h1>
+            <div class="data points">
+                <span>{{movie.releaseDate}}</span>
+                <span>1h 41m</span>
+            </div>
+        </div>
+        <div class="misc">
+            <div class="data-item">
+                <caption>Imdb rating</caption>
+                <span>Icon</span>
+                <span>Rating</span>
+                <span>No. of ratees</span>
+            </div>
+            <div class="data-item">
+                <caption>Your rating</caption>
+                <span>Icon</span>
+                <span>Rate</span>
+            </div>
+        </div>
+    </div>
+</ng-container>
 
-<div class="subheader">
-    <div class="details">
-        <h1>Some title</h1>
-        <div class="data points">
-            <span>2021</span>
-            <span>Age rating: 11</span>
-            <span>1h 41m</span>
-        </div>
-    </div>
-    <div class="misc">
-        <div class="data-item">
-            <caption>Imdb rating</caption>
-            <span>Icon</span>
-            <span>Rating</span>
-            <span>No. of ratees</span>
-        </div>
-        <div class="data-item">
-            <caption>Your rating</caption>
-            <span>Icon</span>
-            <span>Rate</span>
-        </div>
-        <div class="data-item">
-            <caption>Popularity</caption>
-            <span>Icon</span>
-            <span>Numbers</span>
-            <span>No. of ratees</span>
-        </div>
-    </div>
-</div>
+<ng-template #placeholder>
+    Loading movie ...
+</ng-template>
+

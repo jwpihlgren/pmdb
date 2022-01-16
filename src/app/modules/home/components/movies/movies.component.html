@@ -1,2 +1,14 @@
-<app-card  *ngFor="let movie of movies" [movie]=movie></app-card>
+<ng-container *ngIf="(movies$ | async) as movies; else placeholder">
+    <app-card *ngFor="let movie of movies" [movie]="movie"></app-card>
+</ng-container>
+
+
+
+<ng-template #placeholder>
+    <app-card></app-card>
+    <app-card></app-card>
+    <app-card></app-card>
+    <app-card></app-card>
+    <app-card></app-card>
+</ng-template>
 

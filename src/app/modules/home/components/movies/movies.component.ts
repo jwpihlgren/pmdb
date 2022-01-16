@@ -1,4 +1,6 @@
+import { TrendingMoviesService } from './../../../../shared/services/trending-movies.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie';
 
 @Component({
@@ -8,47 +10,12 @@ import { Movie } from 'src/app/shared/models/movie';
 })
 export class MoviesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private trendingMoviesService: TrendingMoviesService) { }
+
+  movies$: Observable<Movie[]> = new Observable();
 
   ngOnInit(): void {
+    this.movies$ = this.trendingMoviesService.getTrendingMovies();
+
   }
-
-  movies: Movie[] = [
-    {
-      poster: '../../../../../assets/images/test.jpg',
-      title: 'test',
-      synopsis: 'test test test',
-      id: '1'
-    },
-    {
-      poster: '../../../../../assets/images/test.jpg',
-      title: 'test',
-      synopsis: 'test test test',
-      id: '1'
-    },
-    {
-      poster: '../../../../../assets/images/test.jpg',
-      title: 'test',
-      synopsis: 'test test test',
-      id: '1'
-    },
-    {
-      poster: '../../../../../assets/images/test.jpg',
-      title: 'test',
-      synopsis: 'test test test',
-      id: '1'
-    },
-    {
-      poster: '../../../../../assets/images/test.jpg',
-      title: 'test',
-      synopsis: 'test test test',
-      id: '1'
-    },
-
-  ]
-
-  showMovie() {
-    
-  }
-
 }
