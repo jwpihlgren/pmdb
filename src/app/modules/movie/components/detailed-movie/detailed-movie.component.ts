@@ -16,6 +16,7 @@ export class DetailedMovieComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
+    console.log(id)
     if(id) {this.movie$ = this.movieService.getMovie(+id);}
     
   }
