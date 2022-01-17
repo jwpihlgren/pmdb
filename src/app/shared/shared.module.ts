@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from './components/card/card.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ClampTextPipe } from './pipes/clamp-text.pipe';
+import { MinutesToHoursPipe } from './pipes/minutes-to-hours.pipe';
 
 
 
@@ -10,14 +11,17 @@ import { ClampTextPipe } from './pipes/clamp-text.pipe';
   declarations: [
     CardComponent,
     ButtonComponent,
-    ClampTextPipe
+    ClampTextPipe,
+    MinutesToHoursPipe
   ],
   imports: [
     CommonModule
   ],
   exports: [
     CardComponent,
-    ButtonComponent
+    ButtonComponent,
+    ClampTextPipe,
+    MinutesToHoursPipe
   ]
 })
 export class SharedModule { }

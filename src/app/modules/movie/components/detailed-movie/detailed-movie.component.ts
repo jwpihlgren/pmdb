@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MovieService } from 'src/app/shared/services/movie.service';
 import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-detailed-movie',
   templateUrl: './detailed-movie.component.html',
@@ -16,6 +17,7 @@ export class DetailedMovieComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
+    console.log(id)
     if(id) {this.movie$ = this.movieService.getMovie(+id);}
     
   }
