@@ -6,10 +6,9 @@ export interface DetailedMovie {
         synopsis: string,
         id: number,
         releaseDate:string
-        genreIds: number[]
         popularity: number,
         voteCount: number,
-        video: boolean,
+        videos: any[],
         voteAverage: number
         genres: Genre[],
         runtime: number

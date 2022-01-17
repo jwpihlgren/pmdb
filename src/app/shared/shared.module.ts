@@ -4,6 +4,8 @@ import { CardComponent } from './components/card/card.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ClampTextPipe } from './pipes/clamp-text.pipe';
 import { MinutesToHoursPipe } from './pipes/minutes-to-hours.pipe';
+import { SafePipe } from './pipes/safe-pipe.pipe';
+import { VideoPlayerComponent } from './components/video-player/video-player.component';
 
 
 
@@ -12,7 +14,9 @@ import { MinutesToHoursPipe } from './pipes/minutes-to-hours.pipe';
     CardComponent,
     ButtonComponent,
     ClampTextPipe,
-    MinutesToHoursPipe
+    MinutesToHoursPipe,
+    SafePipe,
+    VideoPlayerComponent
   ],
   imports: [
     CommonModule
@@ -20,8 +24,10 @@ import { MinutesToHoursPipe } from './pipes/minutes-to-hours.pipe';
   exports: [
     CardComponent,
     ButtonComponent,
+    VideoPlayerComponent,
     ClampTextPipe,
-    MinutesToHoursPipe
+    MinutesToHoursPipe,
+    SafePipe
   ]
 })
 export class SharedModule { }

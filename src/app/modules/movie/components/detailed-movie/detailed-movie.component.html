@@ -1,26 +1,38 @@
-<ng-container *ngIf="movie$ |async as movie; else placeholder">
-    <div class="subheader">
-        <div class="details">
+<ng-container class="" *ngIf="movie$ |async as movie; else placeholder">
+    <div class="subheader flex row space-between">
+        <div class="details flex col">
             <h1>{{movie.title}}</h1>
-            <div class="data points">
+            <div class="data-points flex row">
                 <span>{{movie.releaseDate}}</span>
+                <span>&#8226;</span>
                 <span>{{movie.runtime | minutesToHours}}</span>
             </div>
         </div>
-        <div class="misc">
+        <div class="misc flex row">
             <div class="data-item">
-                <caption>Imdb rating</caption>
-                <span>Icon</span>
-                <span>Rating</span>
-                <span>No. of ratees</span>
+                <h6>Average rating</h6>
+                <div>
+                    <i class="fas fa-star fa-lg"></i>
+                    <span>{{movie.voteAverage}} / 10</span>
+                </div>
+                <span>{{movie.voteCount}} voters</span>
             </div>
             <div class="data-item">
-                <caption>Your rating</caption>
-                <span>Icon</span>
-                <span>Rate</span>
+                <h6>Popularty score</h6>
+                <div>
+                    <i class="fas fa-chart-line fa-lg"></i>
+                    <span>{{movie.popularity}}</span>
+                </div>
+        
             </div>
         </div>
     </div>
+
+    <section class="media flex row">
+            <img src="{{movie.poster}}" alt="Movie poster">
+            <app-video-player-component [videoId]=movie.videos[0].key>
+            </app-video-player-component>
+    </section>
 </ng-container>
 
 <ng-template #placeholder>

@@ -20,6 +20,23 @@ export class MovieService {
   getMovie(id: number): Observable<DetailedMovie> {
     return this.http.get<any>(`${this.baseUrl}${id}${this.apikey}${this.appendUrl}`, {headers: this.headers})
       .pipe(
+        map(data => {
+          const movie: DetailedMovie = {
+            poster: `${this.posterBaseUrl}${data.poster_path}`,
+            title: data.title,
+            synopsis: data.overview,
+            id: data.id,
+            releaseDate: data.release_date,
+            popularity: data.popularity,
+            voteCount: data.vote_count,
+            videos: data.videos.results,
+            voteAverage: data.vote_average,
+            genres: data.genres,
+            runtime: data.runtime
+          }
+          console.log(movie)
+          return movie;
+        }),
           catchError(this.errorService.handleError)
       )
   }

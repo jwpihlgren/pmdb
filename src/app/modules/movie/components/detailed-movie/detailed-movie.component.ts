@@ -11,14 +11,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailedMovieComponent implements OnInit {
 
-  constructor(private movieService:MovieService, private route: ActivatedRoute) { }
+  constructor(
+    private movieService:MovieService, 
+    private route: ActivatedRoute,) { }
 
    movie$?: Observable<DetailedMovie>;
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id')
-    console.log(id)
     if(id) {this.movie$ = this.movieService.getMovie(+id);}
-    
   }
 }

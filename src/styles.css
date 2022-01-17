@@ -16,3 +16,22 @@
 body {
     background-color:var(--background);
 }
+
+
+/* Utilility classes */
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.col {
+    flex-direction: column;
+}
+
