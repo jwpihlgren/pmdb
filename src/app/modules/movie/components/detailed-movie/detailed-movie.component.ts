@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MovieService } from 'src/app/shared/services/movie.service';
 import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-detailed-movie',
   templateUrl: './detailed-movie.component.html',

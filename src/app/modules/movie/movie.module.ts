@@ -1,3 +1,5 @@
+import { SharedModule } from './../../shared/shared.module';
+import { AppModule } from './../../app.module';
 import { MovieRoutingModule } from './movie-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,6 +13,7 @@ import { DetailedMovieComponent } from './components/detailed-movie/detailed-mov
   ],
   imports: [
     CommonModule,
+    SharedModule,
     MovieRoutingModule
   ]
 })
