@@ -1,0 +1,7 @@
+:host {
+    display: flex;
+}
+
+iframe {
+    flex-grow: 1;
+}

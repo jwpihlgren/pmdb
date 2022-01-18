@@ -19,7 +19,6 @@ export class CardComponent implements OnInit {
 @Input() movie?:Movie;
 
   showMovie() {
-    console.log('Button clicked');
     this.router.navigateByUrl(`movie/${this.movie?.id}`)
   }
 
