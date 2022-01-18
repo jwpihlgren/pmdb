@@ -51,4 +51,13 @@ app-video-player-component {
     height: auto;
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    padding-inline: 2rem;
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
+}
+
 

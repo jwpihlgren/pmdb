@@ -6,6 +6,9 @@ import { ClampTextPipe } from './pipes/clamp-text.pipe';
 import { MinutesToHoursPipe } from './pipes/minutes-to-hours.pipe';
 import { SafePipe } from './pipes/safe-pipe.pipe';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import { PillComponent } from './components/pill/pill.component';
+import { DataItemComponent } from './components/data-item/data-item.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -16,7 +19,10 @@ import { VideoPlayerComponent } from './components/video-player/video-player.com
     ClampTextPipe,
     MinutesToHoursPipe,
     SafePipe,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    PillComponent,
+    DataItemComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule
@@ -27,7 +33,10 @@ import { VideoPlayerComponent } from './components/video-player/video-player.com
     VideoPlayerComponent,
     ClampTextPipe,
     MinutesToHoursPipe,
-    SafePipe
+    SafePipe,
+    PillComponent,
+    DataItemComponent,
+    ProfileComponent
   ]
 })
 export class SharedModule { }

@@ -9,30 +9,49 @@
             </div>
         </div>
         <div class="misc flex row">
-            <div class="data-item">
-                <h6>Average rating</h6>
-                <div>
-                    <i class="fas fa-star fa-lg"></i>
-                    <span>{{movie.voteAverage}} / 10</span>
-                </div>
-                <span>{{movie.voteCount}} voters</span>
-            </div>
-            <div class="data-item">
-                <h6>Popularty score</h6>
-                <div>
-                    <i class="fas fa-chart-line fa-lg"></i>
-                    <span>{{movie.popularity}}</span>
-                </div>
-        
-            </div>
+
+            <app-data-item>
+                <ng-container caption>Average rating</ng-container>
+                <i icon class="fas fa-star fa-lg"></i>
+                <span text> {{movie.voteAverage}} / 10</span>
+                <span subtext>{{movie.voteCount}} voters</span>
+            </app-data-item>
+
+            <app-data-item>
+                <ng-container caption>opularty score</ng-container>
+                <i icon class="fas fa-chart-line fa-lg"></i>
+                <span text> {{movie.popularity}}</span>
+            </app-data-item>
         </div>
     </div>
-
+    <p>{{movie.synopsis}}</p>
     <section class="media flex row">
             <img src="{{movie.poster}}" alt="Movie poster">
             <app-video-player-component [videoId]=movie.videos[0].key>
             </app-video-player-component>
     </section>
+    <div class="flex row gap-sm" >
+        <app-pill *ngFor="let genre of movie.genres">
+            {{genre.name}}
+        </app-pill>
+    </div>
+
+    <section class="credits">
+        <h2>Credits</h2>
+        <div class="grid">
+            <app-profile *ngFor="let castPerson of movie.credits" [castPerson]=castPerson></app-profile>
+        </div>
+    </section>
+
+
+
+<!--     <h1>The lazy fox jumps over the little hedge</h1>
+    <h2>The lazy fox jumps over the little hedge</h2>
+    <h3>The lazy fox jumps over the little hedge</h3>
+    <h4>The lazy fox jumps over the little hedge</h4>
+    <h5>The lazy fox jumps over the little hedge</h5>
+    <h6>The lazy fox jumps over the little hedge</h6> -->
+
 </ng-container>
 
 <ng-template #placeholder>

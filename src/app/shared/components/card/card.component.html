@@ -1,7 +1,7 @@
 <article *ngIf="movie; else placeholder">
     <img src={{movie.poster}} alt="Hello">
     <div class="content"> 
-        <h3><abbr title="{{movie.title}}">{{movie.title | clampText:35}}</abbr></h3>
+        <h5><abbr title="{{movie.title}}">{{movie.title | clampText:35}}</abbr></h5>
         <div class="details">
             <span>{{movie.voteAverage}}</span>
             <span>&#8226;</span>

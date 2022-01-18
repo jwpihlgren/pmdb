@@ -1,3 +1,4 @@
+import { Cast } from "./cast";
 import { Genre } from "./genre";
 
 export interface DetailedMovie {
@@ -11,5 +12,6 @@ export interface DetailedMovie {
         videos: any[],
         voteAverage: number
         genres: Genre[],
-        runtime: number
+        runtime: number,
+        credits: Cast[],
 }
