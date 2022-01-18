@@ -1,0 +1,10 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+i.fa-chart-line {
+    font-size: 1.5rem;
+
+}

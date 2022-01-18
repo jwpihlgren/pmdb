@@ -20,7 +20,7 @@ img{
     gap: 0.5rem;
 }
 
-h3{
+h5{
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

@@ -1,0 +1,17 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.clip-circle {
+    max-width: 185px;
+    clip-path: circle(40%);
+    overflow: hidden;
+}
+
+.info {
+    min-height: 4rem;
+    max-width: 185px;
+    align-items: center;
+    text-align: center;
+}

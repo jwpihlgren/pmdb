@@ -2,7 +2,7 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: aquamarine;
+    background-color: var(--secondary);
     align-items: center;
 
 }
@@ -14,12 +14,12 @@ nav {
 a {
     all: unset;
     padding: 1rem;
-    background-color: aquamarine;
-    color: black;
+    background-color: var(--secondary);
+    color: var(--text-color);
 }
 
 a:hover {
-    background-color: rgb(36, 175, 129);
+    background-color: var(--background);
     cursor: pointer;
 }
 
