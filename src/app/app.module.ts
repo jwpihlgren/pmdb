@@ -1,3 +1,4 @@
+import { AboutModule } from './modules/about/about.module';
 import { MovieModule } from './modules/movie/movie.module';
 import { HomeModule } from './modules/home/home.module';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     HomeModule,
     MovieModule,
-    HttpClientModule
+    HttpClientModule,
+    AboutModule
 
   ],
   providers: [],
