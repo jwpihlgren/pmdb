@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path: "movie/:id", component: DetailedMovieComponent},
-  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
