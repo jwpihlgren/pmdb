@@ -1,5 +1,5 @@
 <ng-container class="" *ngIf="movie$ |async as movie; else placeholder">
-    <div class="subheader flex row space-between">
+    <section class="subheader flex row space-between">
         <div class="details flex col">
             <h1>{{movie.title}}</h1>
             <div class="data-points flex row">
@@ -9,32 +9,33 @@
             </div>
         </div>
         <div class="misc flex row">
-
             <app-data-item>
                 <ng-container caption>Average rating</ng-container>
                 <i icon class="fas fa-star fa-lg"></i>
                 <span text> {{movie.voteAverage}} / 10</span>
                 <span subtext>{{movie.voteCount}} voters</span>
             </app-data-item>
-
             <app-data-item>
                 <ng-container caption>popularty score</ng-container>
                 <i icon class="fas fa-chart-line fa-lg"></i>
                 <span text> {{movie.popularity}}</span>
             </app-data-item>
         </div>
-    </div>
-    <p>{{movie.synopsis}}</p>
-    <section class="media flex row">
+    </section>
+    <section class="media flex col gap-sm">
+        <p>{{movie.synopsis}}</p>
+        <div class="media flex row">
             <img src="{{movie.poster}}" alt="Movie poster">
             <app-video-player-component [videoId]=movie.videos[0].key>
             </app-video-player-component>
+        </div>
+        <div class="flex row gap-sm" >
+            <app-pill *ngFor="let genre of movie.genres">
+                {{genre.name}}
+            </app-pill>
+        </div>
     </section>
-    <div class="flex row gap-sm" >
-        <app-pill *ngFor="let genre of movie.genres">
-            {{genre.name}}
-        </app-pill>
-    </div>
+
 
     <section class="credits">
         <h2>Credits</h2>

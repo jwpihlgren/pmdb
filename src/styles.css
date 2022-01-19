@@ -18,11 +18,15 @@
     box-sizing: border-box;
 }
 
+html {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 html, body {
     height: 100%;
 }
 
-html, h1, h2, h3, h4, h5, h6, p, span, i {
+html, span, i {
     color: var(--text-color);
     font-family: 'Montserrat', sans-serif;
 }
@@ -56,12 +60,8 @@ h5{
     color: var(--secondary);
 }
 
-
 body {
-/*     background-color:var(--background); */
-
     background: var(--background);
-/*     background-repeat: no-repeat; */
     background-size: cover;
 }
 

@@ -4,13 +4,13 @@ header {
     justify-content: space-between;
     background-color: var(--primary-alt);
     align-items: center;
-
 }
 
 nav {
     display: flex;
     flex-direction: row;
 }
+
 a {
     all: unset;
     padding: 1rem;
