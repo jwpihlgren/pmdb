@@ -1,10 +1,10 @@
 <header>
-  <a href="/home" [routerLink]="['home']" routerLinkActive="active-link">
+  <a [routerLink]="['home']" routerLinkActive="active-link">
     Trending Movies
   </a>
   <nav>
-    <a href="/home" [routerLink]="['home']" routerLinkActive="active-link" >Home</a>
-    <a href="/about" [routerLink]="['about']" routerLinkActive="active-link" >About</a>
+    <a [routerLink]="['home']" routerLinkActive="active-link" >Home</a>
+    <a [routerLink]="['about']" routerLinkActive="active-link" >About</a>
   </nav>
 </header>
 <router-outlet></router-outlet>

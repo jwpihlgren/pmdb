@@ -1,5 +1,5 @@
 <article *ngIf="movie; else placeholder">
-    <a href="movie/{{movie.id}}">
+    <a [routerLink]="['/movie', movie.id]">
         <img src={{movie.poster}} alt="Hello">
     </a>
     <div class="content"> 
