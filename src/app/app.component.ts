@@ -1,3 +1,4 @@
+import { LocalStorageService } from './shared/services/local-storage.service';
 import { Component } from '@angular/core';
 
 @Component({
