@@ -16,7 +16,7 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-@Input() movie?:Movie;
+  @Input() movie?:Movie;
 
   showMovie() {
     this.router.navigateByUrl(`movie/${this.movie?.id}`)
