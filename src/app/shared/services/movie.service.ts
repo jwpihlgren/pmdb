@@ -25,9 +25,10 @@ export class MovieService {
   headers = new HttpHeaders({'Content-Type': 'application/json'});
     
   getMovie(id: number): Observable<DetailedMovie> {
-    const storedMovies = this.localStorageService.get("movie");
-    if(storedMovies) {
-      return of(storedMovies)
+    const storedMovie = this.localStorageService.get(`${id}`);
+    if(storedMovie) {
+      console.log("I had stuff stored!")
+      return of(storedMovie)
     }
 
     return this.http.get<any>(`${this.baseUrl}${id}${this.apikey}${this.appendUrl}`, {headers: this.headers})
@@ -56,7 +57,7 @@ export class MovieService {
             })
           }
           console.log("I fetched stuf from the API")
-          this.localStorageService.set("movie", movie, this.EIGHT_HOURS_IN_MS)
+          this.localStorageService.set(`${id}`, movie, this.EIGHT_HOURS_IN_MS)
           return movie;
         }),
           catchError(this.errorService.handleError)
