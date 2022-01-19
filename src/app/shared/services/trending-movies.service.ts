@@ -4,19 +4,18 @@ import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, throwError } from 'rxjs';  
 import { Movie } from '../models/movie';
 import { LocalStorageService } from './local-storage.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrendingMoviesService {
-
   constructor(
     private http: HttpClient, 
     private errorService:ErrorService,
     private localStorageService: LocalStorageService) { }
 
   EIGHT_HOURS_IN_MS = 1000 * 60 * 60 * 8;   
-  url = 'https://api.themoviedb.org/3/trending/movie/week?api_key=a7c72915d9ca22d06835063429d58c63';
   posterBaseUrl = 'https://image.tmdb.org/t/p/w500/'
   headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -28,8 +27,7 @@ export class TrendingMoviesService {
       return of(storedMovies)
     }
     else {
-
-    return this.http.get<any[]>(this.url, {headers: this.headers})
+    return this.http.get<any[]>(`${environment.TMDB_BASE_URL}/trending/movie/week?api_key=${environment.TMDB_API_KEY}`, {headers: this.headers})
       .pipe(
         map((response: any) => {
           const movies: Movie[] = [];

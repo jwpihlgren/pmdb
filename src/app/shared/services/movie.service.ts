@@ -19,11 +19,13 @@ export class MovieService {
     private errorService: ErrorService, 
     private localStorageService: LocalStorageService) { }
 
-  EIGHT_HOURS_IN_MS = 1000 * 60 * 60 * 8;   
+  EIGHT_HOURS_IN_MS = 1000 * 60 * 60 * 8;
+  MEDIA_TYPE = "movie/"   
   appendUrl = '&append_to_response=videos,credits';
   posterBaseUrl = 'https://image.tmdb.org/t/p/w500/'
   profileBaseUrl = 'https://image.tmdb.org/t/p/w185/'
   headers = new HttpHeaders({'Content-Type': 'application/json'});
+
     
   getMovie(id: number): Observable<DetailedMovie> {
     const storedMovie = this.localStorageService.get(`${id}`);
@@ -32,7 +34,7 @@ export class MovieService {
       return of(storedMovie)
     }
 
-    return this.http.get<any>(`${environment.TMDB_BASE_URL}${id}${environment.TMDB_API_KEY}${this.appendUrl}`, {headers: this.headers})
+    return this.http.get<any>(`${environment.TMDB_BASE_URL}${this.MEDIA_TYPE}${id}?api_key=${environment.TMDB_API_KEY}${this.appendUrl}`, {headers: this.headers})
       .pipe(
         map(data => {
           const movie: DetailedMovie = {
