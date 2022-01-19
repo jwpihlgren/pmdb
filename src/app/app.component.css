@@ -2,7 +2,7 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: var(--secondary);
+    background-color: var(--primary-alt);
     align-items: center;
 
 }
@@ -14,16 +14,16 @@ nav {
 a {
     all: unset;
     padding: 1rem;
-    background-color: var(--secondary);
+    background-color: var(--primary-alt);
     color: var(--text-color);
 }
 
 a:hover {
-    background-color: var(--background);
+    background-color: var(--secondary);
     cursor: pointer;
 }
 
-a:active {
-    background-color: rgb(9, 90, 63);
+a:active, .active-link {
+    background-color: var(--secondary-alt);
     cursor: pointer;
 }
