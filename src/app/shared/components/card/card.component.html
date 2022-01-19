@@ -1,5 +1,7 @@
 <article *ngIf="movie; else placeholder">
-    <img src={{movie.poster}} alt="Hello">
+    <a href="movie/{{movie.id}}">
+        <img src={{movie.poster}} alt="Hello">
+    </a>
     <div class="content"> 
         <h5><abbr title="{{movie.title}}">{{movie.title | clampText:35}}</abbr></h5>
         <div class="details">
@@ -10,8 +12,8 @@
 
         <p>{{movie.synopsis | clampText:120}}</p>
         <app-button (onClickRequest)="showMovie()" text="Visa mer"></app-button>
-
     </div>
+    
 </article>
 
 <ng-template #placeholder>

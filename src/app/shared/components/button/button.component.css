@@ -2,24 +2,26 @@ button {
     
     all:unset;
     padding-block: 1rem;
-    background-color: darkslategray;
-    color: white;
+    border: 2px solid var(--secondary-alt);
+/*     background-color: darkslategray; */
+    color: var(--secondary-alt);
     border-radius: 4px;
     width: 100%;
     text-align: center;
     user-select: none;
+    font-weight: 500;
 }
 
 button:hover {
     transition: 0.5s;
-    background-color: var(--button-hover)
+    background-color: var(--primary)
 }
 
 button:active {
-    background-color: var(--button-active)
+    background-color: var(--primary-alt)
 }
 
 button:focus-visible {
-    outline: 2px solid var(--button-hover);
+    outline: 2px solid var(--secondary-alt);
     outline-offset: 2px;
 }
