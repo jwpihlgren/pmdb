@@ -5,9 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod --base-href=/trending-movies-2/",
-    "deploy": "git checkout gh-pages && git merge master && npm run build && git add --all && git git commit -m 'new release' && git push",
+    "deploy": "git checkout gh-pages && git merge master && npm run build && git add --all && git commit -m 'new release' && git push && npm run done",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "done": "echo 'Build done'"
   },
   "private": true,
   "dependencies": {
