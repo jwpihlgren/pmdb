@@ -16,6 +16,7 @@ a {
     padding: 1rem;
     background-color: var(--primary-alt);
     color: var(--text-color);
+    transition: var(--medium-fade);
 }
 
 a:hover {

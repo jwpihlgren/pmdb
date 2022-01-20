@@ -14,7 +14,7 @@ button {
 }
 
 button:hover {
-    transition: 0.5s;
+    transition: var(--medium-fade);
     background-color: var(--primary);
 }
 
