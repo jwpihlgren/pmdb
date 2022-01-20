@@ -44,14 +44,24 @@ h1, h2, h3, h4, h5 {
 
 h1 {
   margin-top: 0;
-  font-size: 5.653rem;
+  font-size: clamp(calc(5.653rem * 0.5), calc(12px + 6.125vw), 5.653rem);
 }
 
-h2 {font-size: 3.998rem;}
+h2 {
+   /*  font-size: 3.998rem; */
+    font-size: clamp(calc(3.998rem * 0.5), calc(12px + 4.5vw), 3.998rem);
+}
 
-h3 {font-size: 2.827rem;}
 
-h4 {font-size: 1.999rem;}
+h3 {
+    /* font-size: 2.827rem; */
+    font-size: clamp(calc(5.653rem * 0.5), calc(12px + 3.375vw), 5.653rem);
+}
+
+h4 {
+    /* font-size: 1.999rem; */
+    font-size: clamp(calc(5.653rem * 0.5), calc(12px + 2.55vw), 5.653rem);
+}
 
 h5{
     text-transform: uppercase;
