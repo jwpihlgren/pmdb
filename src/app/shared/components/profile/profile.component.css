@@ -15,3 +15,19 @@
     align-items: center;
     text-align: center;
 }
+
+@media screen and (max-width: 768px) {
+    .clip-circle {
+        max-width: 85px;
+        clip-path: circle(40%);
+        overflow: hidden;
+    }
+    
+    .info {
+        min-height: 4rem;
+        max-width: 85px;
+        align-items: center;
+        text-align: center;
+    }
+    
+}

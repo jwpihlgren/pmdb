@@ -29,7 +29,7 @@
             <app-video-player-component [videoId]=movie.videos[0].key>
             </app-video-player-component>
         </div>
-        <div class="flex row gap-sm" >
+        <div class="genres flex row gap-sm" >
             <app-pill *ngFor="let genre of movie.genres">
                 {{genre.name}}
             </app-pill>
