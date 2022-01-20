@@ -28,11 +28,11 @@ export class MovieService {
 
     
   getMovie(id: number): Observable<DetailedMovie> {
-/*     const storedMovie = this.localStorageService.get(`${id}`);
+    const storedMovie = this.localStorageService.get(`${id}`);
     if(storedMovie) {
       console.log("I had stuff stored!")
       return of(storedMovie)
-    } */
+    }
 
     return this.http.get<any>(`${environment.TMDB_BASE_URL}${this.MEDIA_TYPE}${id}?api_key=${environment.TMDB_API_KEY}${this.appendUrl}`, {headers: this.headers})
       .pipe(
@@ -59,8 +59,8 @@ export class MovieService {
               return castPerson
             })
           }
-/*           console.log("I fetched stuf from the API")
-          this.localStorageService.set(`${id}`, movie, this.EIGHT_HOURS_IN_MS) */
+          console.log("I fetched stuf from the API")
+          this.localStorageService.set(`${id}`, movie, this.EIGHT_HOURS_IN_MS)
           return movie;
         }),
           catchError(this.errorService.handleError)
