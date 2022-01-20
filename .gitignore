@@ -120,6 +120,9 @@ typings/
 .env
 .env.test
 
+# angular environment variables file
+src/environment/*
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
