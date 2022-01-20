@@ -22,11 +22,11 @@ export class TrendingMoviesService {
     
   getTrendingMovies(): Observable<Movie[]> {
     const storedMovies = this.localStorageService.get("trendingMovies");
-    if(storedMovies) {
+/*     if(storedMovies) {
       console.log("I had stuff stored!")
       return of(storedMovies)
-    }
-    else {
+    } */
+/*     else { */
     return this.http.get<any[]>(`${environment.TMDB_BASE_URL}/trending/movie/week?api_key=${environment.TMDB_API_KEY}`, {headers: this.headers})
       .pipe(
         map((response: any) => {
@@ -46,12 +46,12 @@ export class TrendingMoviesService {
 
             })
           })
-          console.log("I fetched stuf from the API")
-          this.localStorageService.set("trendingMovies", movies, this.EIGHT_HOURS_IN_MS)
+/*           console.log("I fetched stuf from the API")
+          this.localStorageService.set("trendingMovies", movies, this.EIGHT_HOURS_IN_MS) */
           return movies;
 
         }), catchError(this.errorService.handleError)
       )
-    }
+    
   }
 }
