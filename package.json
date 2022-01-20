@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href=/trending-movies-2",
+    "build": "ng build --base-href=/trending-movies-2/",
     "deploy": "git checkout gh-pages && git merge master && npm run build && git add --all && git commit -m 'new release' && git push && echo 'Build done'",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
