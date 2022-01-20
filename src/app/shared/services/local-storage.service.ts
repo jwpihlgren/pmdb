@@ -25,7 +25,6 @@ export class LocalStorageService {
 
   set(key: string, value: any, timeToPersist: number): boolean {
     value.timeToExpire = Date.now() + timeToPersist;
-    console.log(value)
     if (this.isLocalStorageSupported) {
       this.localStorage.setItem(key, JSON.stringify(value));
       return true;
