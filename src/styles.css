@@ -11,6 +11,7 @@
     --text-color: rgb(255, 255, 255);
     --secondary: rgb(255, 203, 154);
     --secondary-alt: rgb(217, 176, 140);
+    --medium-fade: 0.5s
 }
 /* CSS RESET */
 * {
