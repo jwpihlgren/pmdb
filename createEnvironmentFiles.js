@@ -22,11 +22,19 @@ fs.access(dir, fs.constants.F_OK, (err) => {
         fs.writeFileSync(`${dir}/${file}`, content);
         fs.writeFileSync(`${dir}/${prodFile}`, content);
         console.log(`Created successfully in ${process.cwd()}`);
+
+        if(fs.existsSync(`${dir}/${File}`)) {
+            console.log(`File is created ${path.resolve(`${dir}/${File}`)}`);
+            const str = fs.readFileSync(dir + "/" + File).toString();
+            console.log(str)
+        }
+
         if(fs.existsSync(`${dir}/${prodFile}`)) {
-            console.log(`File is created ${path.resolve(`${dir}/${prodFile}`)}`);
+            console.log(`ProdFile is created ${path.resolve(`${dir}/${prodFile}`)}`);
             const str = fs.readFileSync(dir + "/" + prodFile).toString();
             console.log(str)
         }
+
     } catch (err) {
         console.error(err);
         process.exit(1);
