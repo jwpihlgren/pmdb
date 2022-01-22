@@ -13,7 +13,10 @@ jobs:
     steps:
       - name: git-checkout
         uses: actions/checkout@v2
-
+        uses: actions/setup-node@v2
+          - run: node createEnvironmentFiles.js
+            env: 
+              ENVIRONMENT_VARIABLES: '${{ secrets.ENVIRONMENT_VARIABLES }}'
       - name: Install all dependencies
         run: npm install
 
