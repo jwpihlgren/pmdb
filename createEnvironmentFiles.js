@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const dir = "src/environments";
+const file = "environment.ts";
 const prodFile = "environment.prod.ts";
 
 const content = `${process.env.ENVIRONMENT_VARIABLES}`;
@@ -18,6 +19,7 @@ fs.access(dir, fs.constants.F_OK, (err) => {
     }
 
     try {
+        fs.writeFileSync(`${dir}/${file}`, content);
         fs.writeFileSync(`${dir}/${prodFile}`, content);
         console.log(`Created successfully in ${process.cwd()}`);
         if(fs.existsSync(`${dir}/${prodFile}`)) {
