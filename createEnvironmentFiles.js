@@ -36,7 +36,7 @@ fs.access(dir, fs.constants.F_OK, (err) => {
         }
 
     } catch (err) {
-        console.error(err);
+        console.error(err), "HEre I am";
         process.exit(1);
     }
 })
