@@ -10,7 +10,10 @@ fs.access(dir, fs.constants.F_OK, (err) => {
     if(err) {
         console.log(`src doesn't exist, creating it now ${process.cwd()}`);
         fs.mkdir(dir, {recursive: true}, (err) => {
-            if (err) throw err;
+            if (err) {
+                console.log("This is where I failed")
+                throw err;
+            }
         });
     }
 
