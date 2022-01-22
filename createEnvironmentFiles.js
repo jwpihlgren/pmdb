@@ -19,7 +19,7 @@ fs.access(dir, fs.constants.F_OK, (err) => {
         console.log(`Created successfully in ${process.cwd()}`);
         if(fs.existsSync(`${dir}/${prodFile}`)) {
             console.log(`File is created ${path.resolve(`${dir}/${prodFile}`)}`);
-            const string = fs.readFileSync(`${dir}/${prodFile}`).toString();
+            const str = fs.readFileSync(dir + "/" + prodFile).toString()
             console.log(str)
         }
     } catch (err) {
