@@ -15,9 +15,9 @@ jobs:
         uses: actions/checkout@v2
       - name: Create environment vars
         uses: actions/setup-node@v2
-          run: node createEnvironmentFiles.js
-          env: 
-            ENVIRONMENT_VARIABLES: '${{ secrets.ENVIRONMENT_VARIABLES }}'
+      - run: node createEnvironmentFiles.js
+        env: 
+          ENVIRONMENT_VARIABLES: '${{ secrets.ENVIRONMENT_VARIABLES }}'
       - name: Install all dependencies
         run: npm install
 
