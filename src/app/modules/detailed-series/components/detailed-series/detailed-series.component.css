@@ -74,7 +74,7 @@ app-grid.credits {
         display: none;
     }
 
-    img {
+    .media img {
         width: 75%;
         height: auto;
         
