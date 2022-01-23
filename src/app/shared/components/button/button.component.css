@@ -12,7 +12,9 @@ button {
 }
 
 span {
+    display: flex;
     padding-inline: 1rem;
+    justify-content: center;
 }
 
 button:hover {

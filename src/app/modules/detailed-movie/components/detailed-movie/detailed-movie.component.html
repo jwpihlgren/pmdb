@@ -1,5 +1,5 @@
 <ng-container class="" *ngIf="movie$ |async as movie; else placeholder">
-    <app-button (onClickRequest)="goBack($event)" >{{buttonText}}</app-button>
+    <app-button (onClickRequest)="goBack($event)" ><span class="flex row gap-sm"><i icon class="fas fa-chevron-left fa-lg"></i>{{buttonText}}</span></app-button>
     <section class="subheader flex row space-between">
         <div class="details flex col">
             <h1>{{movie.title}}</h1>

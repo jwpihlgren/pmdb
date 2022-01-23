@@ -51,11 +51,6 @@ app-button {
    align-self: flex-start;
 }
 
-app-button > button {
-    padding: 2rem
-}
-
-
 @media screen and (max-width:768px) {
     :host {
         max-width: 768px;
