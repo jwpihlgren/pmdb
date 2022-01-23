@@ -1,6 +1,6 @@
 
 <article  *ngIf="content">
-    <a [routerLink]="['/content', content.id]">
+    <a (click)="showContent($event)">
         <img src={{content.poster}} alt="Hello">
     </a>
     <div class="content"> 
@@ -12,7 +12,7 @@
         </div>
 
         <p>{{content.synopsis | clampText:120}}</p>
-        <app-button (onClickRequest)="showContent()" text="Visa mer"></app-button>
+        <app-button (onClickRequest)="showContent($event)">{{buttonText}}</app-button>
     </div>
     
 </article>
@@ -20,3 +20,5 @@
 <ng-template #placeholder>
     Loading...
 </ng-template>
+
+

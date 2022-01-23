@@ -16,6 +16,5 @@ export class TrendingMoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.movies$ = this.trendingMoviesService.getTrendingMovies();
-
   }
 }
