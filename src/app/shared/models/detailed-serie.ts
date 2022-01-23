@@ -17,7 +17,7 @@ export interface DetailedSerie {
     videos: any[],
     voteAverage: number
     genres: Genre[],
-    episodeRuntime: number,
+    episodeRuntime: number[],
     credits: Cast[],
     numberOfSeasons: number,
     numberOfEpisodes:number,

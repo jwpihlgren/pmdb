@@ -12,6 +12,7 @@ import { DataItemComponent } from './components/data-item/data-item.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { GridComponent } from './components/grid/grid.component';
 import { SmallCardComponent } from './components/small-card/small-card.component';
+import { RoundToFullMinutePipe } from './pipes/round-to-full-minute.pipe';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SmallCardComponent } from './components/small-card/small-card.component
     ProfileComponent,
     GridComponent,
     SmallCardComponent,
+    RoundToFullMinutePipe,
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { SmallCardComponent } from './components/small-card/small-card.component
     DataItemComponent,
     ProfileComponent,
     GridComponent,
-    SmallCardComponent
+    SmallCardComponent,
+    RoundToFullMinutePipe
   ]
 })
 export class SharedModule { }
