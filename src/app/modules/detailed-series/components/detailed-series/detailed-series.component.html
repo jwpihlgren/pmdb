@@ -4,9 +4,9 @@
         <div class="details flex col">
             <h1>{{serie.name}}</h1>
             <div class="data-points flex row">
-                <span>{{serie.firstAirDate}}</span>
+                <span>{{serie.firstAirDate }} </span>
                 <span>&#8226;</span>
-                <span>{{serie.episodeRuntime}}</span>
+                <span>{{serie.episodeRuntime[0] | roundToFullMinute}} min</span>
             </div>
         </div>
         <div class="misc flex row">
