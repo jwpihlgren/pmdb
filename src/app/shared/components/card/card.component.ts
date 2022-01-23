@@ -22,4 +22,8 @@ export class CardComponent implements OnInit {
     this.router.navigateByUrl(`${this.content?.mediaType}/${this.content?.id}`)
   }
 
+  getRoute(): string {
+    return `${this.content?.mediaType}/${this.content?.id}`
+  }
+
 }
