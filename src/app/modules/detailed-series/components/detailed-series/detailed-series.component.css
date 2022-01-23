@@ -44,7 +44,7 @@ height: auto;
 }
 
 app-grid.seasons {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 }
 
 app-grid.credits {
@@ -85,7 +85,7 @@ app-grid.credits {
     }
 
     app-grid.seasons {
-        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
     }
 
     app-grid.credits {
