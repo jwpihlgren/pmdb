@@ -1,3 +1,4 @@
+import { HomeModule } from './modules/home/home.module';
 import { TrendingSeriesModule } from './modules/trending-series/trending-series.module';
 import { AboutModule } from './modules/about/about.module';
 import { DetailedMovieModule } from './modules/detailed-movie/detailed-movie.module';
@@ -29,6 +30,7 @@ export function configProviderFactory(provider: TmdbConfigService) {
     AboutModule,
     TrendingSeriesModule,
     DetailedSeriesModule,
+    HomeModule
   ],
   providers: [
     TmdbConfigService,

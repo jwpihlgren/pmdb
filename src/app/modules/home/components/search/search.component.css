@@ -1,0 +1,47 @@
+:host, form, span {
+    width: 100%;
+}
+
+input {
+    all: unset;
+    background-color: var(--white);
+    border-radius: 100px 0 0 100px;
+    padding-block: 1rem;
+    padding-inline: 2rem;
+    color: var(--button-active);
+    font-size: 1.2rem;
+    font-weight: 600;
+    width: 80%;
+    max-width: 1280px
+}
+
+input::placeholder {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.hidden {
+    display: none;
+}
+
+i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--white);
+    border-radius: 0 100px 100px 0;
+    padding: 1rem;
+    padding-inline-end: 2rem;
+    color: var(--button-active);
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+input {
+
+}
+
+
+
