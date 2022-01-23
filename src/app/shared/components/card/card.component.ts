@@ -18,7 +18,8 @@ export class CardComponent implements OnInit {
   @Input() content?: Media
   buttonText: string = "Show more"
 
-  showContent() {
+  showContent(event: any) {
+    event.preventDefault();
     this.router.navigateByUrl(`${this.content?.mediaType}/${this.content?.id}`)
   }
 

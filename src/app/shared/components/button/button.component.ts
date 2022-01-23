@@ -12,8 +12,6 @@ export class ButtonComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  @Input() text:string = '';
   
   @Output() onClickRequest = new EventEmitter<Event>();
 

@@ -1,9 +1,7 @@
 button {
-    
     all:unset;
     padding-block: 1rem;
     border: 2px solid var(--secondary-alt);
-/*     background-color: darkslategray; */
     color: var(--secondary-alt);
     border-radius: 4px;
     width: 100%;
@@ -11,6 +9,10 @@ button {
     user-select: none;
     font-weight: 500;
     cursor: pointer;
+}
+
+span {
+    padding-inline: 1rem;
 }
 
 button:hover {

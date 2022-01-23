@@ -1,6 +1,6 @@
 
 <article  *ngIf="content">
-    <a (click)="showContent()">
+    <a (click)="showContent($event)">
         <img src={{content.poster}} alt="Hello">
     </a>
     <div class="content"> 
@@ -12,7 +12,7 @@
         </div>
 
         <p>{{content.synopsis | clampText:120}}</p>
-        <app-button (onClickRequest)="showContent()" [text]=buttonText></app-button>
+        <app-button (onClickRequest)="showContent($event)">{{buttonText}}</app-button>
     </div>
     
 </article>

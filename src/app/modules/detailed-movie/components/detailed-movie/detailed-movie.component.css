@@ -47,6 +47,14 @@ app-grid.credits {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
 }
 
+app-button {
+   align-self: flex-start;
+}
+
+app-button > button {
+    padding: 2rem
+}
+
 
 @media screen and (max-width:768px) {
     :host {
