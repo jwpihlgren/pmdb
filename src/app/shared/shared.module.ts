@@ -11,6 +11,7 @@ import { PillComponent } from './components/pill/pill.component';
 import { DataItemComponent } from './components/data-item/data-item.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { GridComponent } from './components/grid/grid.component';
+import { SmallCardComponent } from './components/small-card/small-card.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { GridComponent } from './components/grid/grid.component';
     DataItemComponent,
     ProfileComponent,
     GridComponent,
+    SmallCardComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { GridComponent } from './components/grid/grid.component';
     PillComponent,
     DataItemComponent,
     ProfileComponent,
-    GridComponent
+    GridComponent,
+    SmallCardComponent
   ]
 })
 export class SharedModule { }

@@ -10,7 +10,9 @@ import { Media } from 'src/app/shared/models/media';
 })
 export class TrendingSeriesComponent implements OnInit {
 
-  constructor(private trendingMoviesService: TrendingMediaService) { }
+  constructor(
+    private trendingMoviesService: TrendingMediaService,
+    ) { }
 
   series$: Observable<Media[]> = new Observable();
 

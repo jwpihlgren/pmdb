@@ -1,1 +1,56 @@
-<p>detailed-series works!</p>
+<ng-container class="" *ngIf="serie$ |async as serie; else placeholder">
+    <section class="subheader flex row space-between">
+        <div class="details flex col">
+            <h1>{{serie.name}}</h1>
+            <div class="data-points flex row">
+                <span>{{serie.firstAirDate}}</span>
+                <span>&#8226;</span>
+                <span>{{serie.episodeRuntime}}</span>
+            </div>
+        </div>
+        <div class="misc flex row">
+            <app-data-item>
+                <ng-container caption>Average rating</ng-container>
+                <i icon class="fas fa-star fa-lg"></i>
+                <span text> {{serie.voteAverage}} / 10</span>
+                <span subtext>{{serie.voteCount}} voters</span>
+            </app-data-item>
+            <app-data-item>
+                <ng-container caption>popularty score</ng-container>
+                <i icon class="fas fa-chart-line fa-lg"></i>
+                <span text> {{serie.popularity}}</span>
+            </app-data-item>
+        </div>
+    </section>
+    <section class="media flex col gap-sm">
+        <p>{{serie.synopsis}}</p>
+        <div class="media flex row">
+            <img src="{{serie.poster}}" alt="serie poster">
+            <app-video-player-component [videoId]=serie.videos[0].key>
+            </app-video-player-component>
+        </div>
+        <div class="genres flex row gap-sm" >
+            <app-pill *ngFor="let genre of serie.genres">
+                {{genre.name}}
+            </app-pill>
+        </div>
+    </section>
+
+    <section *ngIf="serie.seasons.length > 0">
+        <h2>Season</h2>
+        <app-small-card *ngFor="let season of serie.seasons" [season]=season></app-small-card>
+    </section>
+
+
+    <section class="credits">
+        <h2>Credits</h2>
+        <div class="grid">
+            <app-profile *ngFor="let castPerson of serie.credits" [castPerson]=castPerson></app-profile>
+        </div>
+    </section>
+
+</ng-container>
+
+<ng-template #placeholder>
+    Loading serie ...
+</ng-template>
