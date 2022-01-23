@@ -1,12 +1,17 @@
 <ng-container class="" *ngIf="serie$ |async as serie; else placeholder">
     <app-button (onClickRequest)="goBack($event)" ><span class="flex row gap-sm"><i icon class="fas fa-chevron-left fa-lg"></i>{{buttonText}}</span></app-button>
     <section class="subheader flex row space-between">
-        <div class="details flex col">
+        <div class="details flex col gap-md">
             <h1>{{serie.name}}</h1>
             <div class="data-points flex row">
                 <span>{{serie.firstAirDate }} </span>
                 <span>&#8226;</span>
                 <span>{{serie.episodeRuntime[0] | roundToFullMinute}} min</span>
+            </div>
+            <div class="genres flex row gap-sm" >
+                <app-pill *ngFor="let genre of serie.genres">
+                    {{genre.name}}
+                </app-pill>
             </div>
         </div>
         <div class="misc flex row">
@@ -29,11 +34,6 @@
             <img src="{{serie.poster}}" alt="serie poster">
             <app-video-player-component [videoId]=serie.videos[0].key>
             </app-video-player-component>
-        </div>
-        <div class="genres flex row gap-sm" >
-            <app-pill *ngFor="let genre of serie.genres">
-                {{genre.name}}
-            </app-pill>
         </div>
     </section>
 
