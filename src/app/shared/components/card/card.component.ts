@@ -1,6 +1,5 @@
-import { MovieService } from './../../services/movie.service';
-import { Movie } from 'src/app/shared/models/movie';
 
+import { Media } from 'src/app/shared/models/media';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -11,15 +10,15 @@ import { Router } from '@angular/router';
 })
 export class CardComponent implements OnInit {
 
-  constructor(private router: Router, private movieService: MovieService) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  @Input() movie?:Movie;
+  @Input() content?: Media
 
-  showMovie() {
-    this.router.navigateByUrl(`movie/${this.movie?.id}`)
+  showContent() {
+    this.router.navigateByUrl(`${this.content?.mediaType}/${this.content?.id}`)
   }
 
 }

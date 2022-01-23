@@ -10,8 +10,8 @@ import { VideoPlayerComponent } from './components/video-player/video-player.com
 import { PillComponent } from './components/pill/pill.component';
 import { DataItemComponent } from './components/data-item/data-item.component';
 import { ProfileComponent } from './components/profile/profile.component';
-
-
+import { GridComponent } from './components/grid/grid.component';
+import { SmallCardComponent } from './components/small-card/small-card.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     VideoPlayerComponent,
     PillComponent,
     DataItemComponent,
-    ProfileComponent
+    ProfileComponent,
+    GridComponent,
+    SmallCardComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     SafePipe,
     PillComponent,
     DataItemComponent,
-    ProfileComponent
+    ProfileComponent,
+    GridComponent,
+    SmallCardComponent
   ]
 })
 export class SharedModule { }

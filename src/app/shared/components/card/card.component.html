@@ -1,17 +1,18 @@
-<article *ngIf="movie; else placeholder">
-    <a [routerLink]="['/movie', movie.id]">
-        <img src={{movie.poster}} alt="Hello">
+
+<article  *ngIf="content">
+    <a [routerLink]="['/content', content.id]">
+        <img src={{content.poster}} alt="Hello">
     </a>
     <div class="content"> 
-        <h5><abbr title="{{movie.title}}">{{movie.title | clampText:35}}</abbr></h5>
+        <h5><abbr title="{{content.title}}">{{content.title | clampText:35}}</abbr></h5>
         <div class="details">
-            <span>{{movie.voteAverage}}</span>
+            <span>{{content.voteAverage}}</span>
             <span>&#8226;</span>
-            <span>{{movie.releaseDate}}</span>
+            <span>{{content.date}}</span>
         </div>
 
-        <p>{{movie.synopsis | clampText:120}}</p>
-        <app-button (onClickRequest)="showMovie()" text="Visa mer"></app-button>
+        <p>{{content.synopsis | clampText:120}}</p>
+        <app-button (onClickRequest)="showContent()" text="Visa mer"></app-button>
     </div>
     
 </article>

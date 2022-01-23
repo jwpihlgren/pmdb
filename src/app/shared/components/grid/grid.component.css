@@ -1,0 +1,16 @@
+:host {
+    margin: 0 auto;
+    max-width: 1920px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, max-content));
+    padding: 2rem;
+    gap: 1rem;
+}
+
+
+@media screen and (max-width: 768px) {
+    :host {
+        max-width: 768px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
+    }
+}
