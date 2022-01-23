@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ClampTextPipe implements PipeTransform {
 
-  transform(text: string, limit: number): unknown {
+  transform(text: string, limit: number): string {
     return  text.length > limit ? text.split("").splice(0, limit).join("") + "..." : text
   }
 

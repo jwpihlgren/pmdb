@@ -1,12 +1,13 @@
-export interface Movie {
+export interface Media {
     poster: string
     title: string,
     synopsis: string,
     id: number,
-    releaseDate:string
     genreIds: number[]
     popularity: number,
     voteCount: number,
     video: boolean,
-    voteAverage: number
+    voteAverage: number,
+    mediaType: "tv" | "movie",
+    date: string
 }

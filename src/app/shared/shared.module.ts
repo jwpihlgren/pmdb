@@ -10,8 +10,7 @@ import { VideoPlayerComponent } from './components/video-player/video-player.com
 import { PillComponent } from './components/pill/pill.component';
 import { DataItemComponent } from './components/data-item/data-item.component';
 import { ProfileComponent } from './components/profile/profile.component';
-
-
+import { GridComponent } from './components/grid/grid.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     VideoPlayerComponent,
     PillComponent,
     DataItemComponent,
-    ProfileComponent
+    ProfileComponent,
+    GridComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +38,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     SafePipe,
     PillComponent,
     DataItemComponent,
-    ProfileComponent
+    ProfileComponent,
+    GridComponent
   ]
 })
 export class SharedModule { }

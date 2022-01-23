@@ -1,0 +1,16 @@
+<ng-container *ngIf="(movies$ | async) as movies; else placeholder">
+    <app-grid>
+        <app-card *ngFor="let movie of movies" [content]="movie"></app-card>
+    </app-grid>
+</ng-container>
+
+<ng-template #placeholder>
+    <app-grid>
+        <app-card></app-card>
+        <app-card></app-card>
+        <app-card></app-card>
+        <app-card></app-card>
+        <app-card></app-card>
+    </app-grid>
+</ng-template>
+

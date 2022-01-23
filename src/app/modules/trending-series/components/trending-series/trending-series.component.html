@@ -1,0 +1,15 @@
+<ng-container *ngIf="(series$ | async) as series; else placeholder">
+    <app-grid>
+        <app-card *ngFor="let serie of series" [content]="serie" ></app-card>
+    </app-grid>
+</ng-container>
+
+<ng-template #placeholder>
+    <app-grid>
+        <app-card></app-card>
+        <app-card></app-card>
+        <app-card></app-card>
+        <app-card></app-card>
+        <app-card></app-card>
+    </app-grid>
+</ng-template>
