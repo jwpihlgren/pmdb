@@ -1,12 +1,17 @@
 <ng-container class="" *ngIf="movie$ |async as movie; else placeholder">
     <app-button (onClickRequest)="goBack($event)" ><span class="flex row gap-sm"><i icon class="fas fa-chevron-left fa-lg"></i>{{buttonText}}</span></app-button>
     <section class="subheader flex row space-between">
-        <div class="details flex col">
+        <div class="details flex col gap-md">
             <h1>{{movie.title}}</h1>
             <div class="data-points flex row">
                 <span>{{movie.releaseDate}}</span>
                 <span>&#8226;</span>
-                <span>{{movie.runtime}}</span>
+                <span>{{movie.runtime | minutesToHours}}</span>
+            </div>
+            <div class="genres flex row gap-sm" >
+                <app-pill *ngFor="let genre of movie.genres">
+                    {{genre.name}}
+                </app-pill>
             </div>
         </div>
         <div class="misc flex row">
@@ -29,11 +34,6 @@
             <img src="{{movie.poster}}" alt="Movie poster">
             <app-video-player-component [videoId]=movie.videos[0].key>
             </app-video-player-component>
-        </div>
-        <div class="genres flex row gap-sm" >
-            <app-pill *ngFor="let genre of movie.genres">
-                {{genre.name}}
-            </app-pill>
         </div>
     </section>
 

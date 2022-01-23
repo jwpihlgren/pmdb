@@ -16,15 +16,34 @@ a {
     padding: 1rem;
     background-color: var(--primary-alt);
     color: var(--text-color);
-    transition: var(--medium-fade);
+    transition: 0;
 }
 
 a:hover {
-    background-color: var(--secondary);
+    background-color: var(--button-hover);
+    cursor: pointer;
+    transition: all var(--medium-fade), border-bottom 0s, margin-bottom 0s  ;
+    border-bottom: 2px solid var(--secondary);
+    margin-bottom: -2px;
+
+}
+
+
+a:active, .active-link {
+    background-color: var(--button-active);
+    border-bottom: 2px solid var(--secondary);
+    margin-bottom: -2px;
     cursor: pointer;
 }
 
-a:active, .active-link {
-    background-color: var(--secondary-alt);
-    cursor: pointer;
+
+
+a:focus{
+    background-color: var(--primary-alt);
+    color: var(--text-color);
+}
+
+a:focus-visible {
+    border-bottom: 2px solid var(--secondary);
+    margin-bottom: -2px;
 }
