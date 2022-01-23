@@ -37,16 +37,18 @@
     </section>
 
     <section *ngIf="serie.seasons.length > 0">
-        <h2>Season</h2>
-        <app-small-card *ngFor="let season of serie.seasons" [season]=season></app-small-card>
+        <h2>Seasons</h2>
+        <app-grid class="seasons">
+            <app-small-card *ngFor="let season of serie.seasons" [season]=season></app-small-card>
+        </app-grid>
     </section>
 
 
-    <section class="credits">
+    <section>
         <h2>Credits</h2>
-        <div class="grid">
+        <app-grid class="credits">
             <app-profile *ngFor="let castPerson of serie.credits" [castPerson]=castPerson></app-profile>
-        </div>
+        </app-grid>
     </section>
 
 </ng-container>

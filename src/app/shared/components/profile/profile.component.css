@@ -1,33 +1,36 @@
 :host {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
+
 .clip-circle {
-    max-width: 185px;
-    clip-path: circle(40%);
+    width: 100%;
+    border-radius: 100%;
     overflow: hidden;
 }
 
 .info {
-    min-height: 4rem;
-    max-width: 185px;
     align-items: center;
     text-align: center;
+    justify-content: center;
 }
 
+img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+
+}
+
+
 @media screen and (max-width: 768px) {
+
+    :host {
+        gap: 0rem
+    }
+
     .clip-circle {
-        max-width: 85px;
-        clip-path: circle(40%);
+        clip-path: circle(35%);
         overflow: hidden;
     }
-    
-    .info {
-        min-height: 4rem;
-        max-width: 85px;
-        align-items: center;
-        text-align: center;
-    }
-    
 }

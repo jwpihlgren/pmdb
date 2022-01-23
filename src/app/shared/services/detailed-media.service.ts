@@ -33,7 +33,7 @@ export class DetailedMediaService {
 
   imgBaseUrl = this.tmdbConfigService.getConfig().images.secure_base_url;
   posterSize = this.tmdbConfigService.getPoster(Size.XXL);
-  profileSize = this.tmdbConfigService.getPoster(Size.M);
+  profileSize = this.tmdbConfigService.getPoster(Size.MD);
   headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     
@@ -119,7 +119,7 @@ export class DetailedMediaService {
         name: season.name,
         overview: season.overview,
         posterPath:  `${this.imgBaseUrl}${this.profileSize}/${season.poster_path}`,
-        number: season.number
+        number: season.season_number
       }
     })
     return seasons

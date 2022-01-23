@@ -1,6 +1,9 @@
 <ng-container *ngIf="season; else placeholder">
     <img [src]=season.posterPath>
-    <h5>{{season.name}}</h5>
+    <div class="flex col gap-sm">
+        <h5>{{season.name}}</h5>
+        <span>{{season.episodeCount}} episodes</span>
+    </div>
 </ng-container>
 
 

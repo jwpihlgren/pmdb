@@ -1,8 +1,8 @@
 export enum Size {
     XS,
-    S,
-    M,
-    L,
+    SM,
+    MD,
+    LG,
     XL,
     XXL,
     ORG
