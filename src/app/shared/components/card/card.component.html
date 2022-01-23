@@ -12,7 +12,7 @@
         </div>
 
         <p>{{content.synopsis | clampText:120}}</p>
-        <app-button (onClickRequest)="showContent()" text="Visa mer"></app-button>
+        <app-button (onClickRequest)="showContent()" [text]=buttonText></app-button>
     </div>
     
 </article>
