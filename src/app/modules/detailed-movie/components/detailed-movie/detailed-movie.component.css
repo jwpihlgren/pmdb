@@ -27,7 +27,7 @@ i.fa-chart-line {
 
 }
 
-img {
+.media img {
     width: 34%;
     height: auto;
 }
@@ -43,14 +43,10 @@ app-video-player-component {
     height: auto;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
-    padding-inline: 2rem;
-    gap: 1rem;
-    justify-items: center;
-    align-items: center;
+app-grid.credits {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 }
+
 
 @media screen and (max-width:768px) {
     :host {
@@ -82,10 +78,8 @@ app-video-player-component {
         flex-wrap: wrap;
     }
 
-    .grid {
-        grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-        padding-inline: 0rem;
-        gap: 0.5rem;
+    app-grid.credits {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
 }
 

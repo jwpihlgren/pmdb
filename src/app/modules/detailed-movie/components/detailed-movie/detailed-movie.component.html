@@ -39,9 +39,9 @@
 
     <section class="credits">
         <h2>Credits</h2>
-        <div class="grid">
+        <app-grid class="credits">
             <app-profile *ngFor="let castPerson of movie.credits" [castPerson]=castPerson></app-profile>
-        </div>
+        </app-grid>
     </section>
 
 </ng-container>
