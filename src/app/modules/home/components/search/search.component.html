@@ -1,7 +1,51 @@
 <form action="">
+
     <label class="hidden" for="search"></label>
-        <span class="flex row center">
-            <input id="search" type="text" placeholder="Search for movies or series...">        
-            <i (click)="resetForm" icon class="fas fa-times fa-lg close"></i>
-        </span>
+
+    <div class="flex row">
+        <input 
+            id="search" 
+            type="text" 
+            placeholder="Search for movies or series..."
+            [formControl]="search"
+            list=""
+            autocomplete="off"
+            (focus)="onToggleFocus($event)"
+            (blur)="onToggleFocus($event)" 
+            
+        > 
+
+        <div [ngClass]="{'search-button-group-active': searchIsActive}" class="search-button-group">
+            <i 
+            *ngIf="search.dirty; else default" 
+            (click)="resetForm()" 
+            icon 
+            class="fas fa-times fa-lg close"></i>
+
+            <ng-template #default>
+                <i icon class="fas fa-search fa-lg"></i>
+            </ng-template>
+        </div>
+    </div>
+    <ng-container *ngIf="queryResults$ | async as values" >
+        <ul [ngClass]="{'datalist-active': searchIsActive}" id="query-results" *ngIf="values.results.length > 0; else emptyState">
+            <li
+            (mousedown)="hinderMouseDown($event)"
+            (mouseup)="onClick(value)"
+            *ngFor="let value of values.results" 
+            [value]="value.value"
+            [attr.data-media]="value"
+            >
+                {{value.title || value.name}}
+            
+        </li>
+    </ul>
+    </ng-container>
+    <ng-template #emptyState>
+        <datalist [ngClass]="{'datalist-active': searchIsActive}" id="query-results" >
+            <option class="option-disable">No search results</option>
+        </datalist>
+    </ng-template>
 </form>
+
+

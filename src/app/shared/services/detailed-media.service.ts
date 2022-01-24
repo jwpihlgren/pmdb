@@ -26,7 +26,7 @@ export class DetailedMediaService {
     private tmdbConfigService:TmdbConfigService,
     ) { }
 
-  EIGHT_HOURS_IN_MS = 1000 * 60 * 60 * 8;
+  MS_UNTIL_EXPIRE = 1000 * 60 * 60 * 8;
   MOVIE = "movie/";
   SERIE = "tv/"   
   APPEND_URL = '&append_to_response=videos,credits';
@@ -63,7 +63,7 @@ export class DetailedMediaService {
             credits: this.extractCredits(data.credits.cast),
           }
           console.log("I fetched stuf from the API")
-          this.localStorageService.set(`${id}`, movie, this.EIGHT_HOURS_IN_MS)
+          this.localStorageService.set(`${id}`, movie, this.MS_UNTIL_EXPIRE)
           return movie;
         }),
           catchError(this.errorService.handleError)
