@@ -20,6 +20,7 @@ export class CardComponent implements OnInit {
 
   showContent(event: any) {
     event.preventDefault();
+    console.log(`${this.content?.mediaType}/${this.content?.id}`)
     this.router.navigateByUrl(`${this.content?.mediaType}/${this.content?.id}`)
   }
 

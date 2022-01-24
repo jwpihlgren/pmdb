@@ -1,3 +1,4 @@
+import { HomeModule } from './modules/home/home.module';
 import { TrendingSeriesModule } from './modules/trending-series/trending-series.module';
 import { AboutModule } from './modules/about/about.module';
 import { DetailedMovieModule } from './modules/detailed-movie/detailed-movie.module';
@@ -10,6 +11,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { DetailedSeriesModule } from './modules/detailed-series/detailed-series.module';
 import { TmdbConfigService } from './shared/services/tmdb-config.service';
+import { FormsModule } from '@angular/forms';
 
 
 export function configProviderFactory(provider: TmdbConfigService) {
@@ -29,6 +31,8 @@ export function configProviderFactory(provider: TmdbConfigService) {
     AboutModule,
     TrendingSeriesModule,
     DetailedSeriesModule,
+    HomeModule,
+ 
   ],
   providers: [
     TmdbConfigService,

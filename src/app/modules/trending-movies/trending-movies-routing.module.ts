@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [{
-  path: '', component: TrendingMoviesComponent},
-  {path: 'home', redirectTo: '', pathMatch: 'full'},
+  path: 'trending-movies', component: TrendingMoviesComponent},
 ];
 
 @NgModule({
