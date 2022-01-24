@@ -42,9 +42,9 @@
     </ul>
     </ng-container>
     <ng-template #emptyState>
-        <datalist [ngClass]="{'datalist-active': searchIsActive}" id="query-results" >
-            <option class="option-disable">No search results</option>
-        </datalist>
+        <ul [ngClass]="{'datalist-active': searchIsActive}" id="query-results" >
+            <li class="option-disable">No search results</li>
+        </ul>
     </ng-template>
 </form>
 
