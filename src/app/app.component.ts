@@ -1,5 +1,4 @@
 import { Router } from '@angular/router';
-/* import { LocalStorageService } from './shared/services/local-storage.service'; */
 import { Component, HostListener } from '@angular/core';
 
 @Component({
