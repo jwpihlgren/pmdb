@@ -39,22 +39,27 @@ export class AppComponent {
   constructor(private router: Router
     ) { };
 
-  onCollapse(event: any) :void{
+  onCollapse(event: any):void{
     event.preventDefault();
     this.collapseMenuOpen = !this.collapseMenuOpen;
   }
 
-  onClickLink(link: any) :void {
+  onBlur(event:any):void {
+    event.preventDefault();
+    this.collapseMenuOpen = false;
+  }
+
+  onClickLink(link: any):void {
     this.collapseMenuOpen = false;
     this.router.navigateByUrl(`/${link.path}`)
   }
 
-  hinderMouseDown(event:any) :void {
+  hinderMouseDown(event:any):void {
     event.preventDefault();
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event: any) :void {
+  onResize(event: any):void {
     this.screenWidth = window.innerWidth;
     this.screenHeight = window.innerHeight;
   }
