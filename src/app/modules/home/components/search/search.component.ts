@@ -55,6 +55,11 @@ export class SearchComponent implements OnInit, OnDestroy{
     event.preventDefault();
   }
 
+  fullSearch():void {
+    this.searchIsActive=false;
+
+  }
+
 
   private resetSearch() {
     return this.search.valueChanges.pipe(

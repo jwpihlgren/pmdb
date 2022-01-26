@@ -1,0 +1,10 @@
+
+<ng-container>
+    <button [ngClass]="{'disabled': currentPage <= 1}" (click)="onClick(PRT.BEGINNING)">&#60;&#60;</button>
+    <button [ngClass]="{'hide': currentPage <= 1}" (click)="onClick">{{currentPage - 1}}</button>
+    <button [ngClass]="{'disabled': numberOfPages < 1}" class="single-out">{{currentPage}}</button>
+    <button [ngClass]="{'hide': numberOfPages <= currentPage}" (click)="onClick(PRT.NEXT)">{{currentPage + 1}}</button>
+    <button [ngClass]="{'disabled': numberOfPages <= currentPage}" (click)="onClick(PRT.END)">	&#62;&#62;</button>
+</ng-container>
+
+<!-- <ng-container *ngIf="numberOfPages > 3 && currentPage < numberOfPages && currentPage > 1; else  "></ng-container -->

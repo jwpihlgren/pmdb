@@ -15,7 +15,7 @@ input {
     all: unset;
     background-color: var(--white);
     padding-block: 1rem;
-    padding-inline: 2rem;
+    padding-inline-start: 2rem;
     color: var(--button-active);
     font-size: 1.2rem;
     font-weight: 600;
@@ -31,56 +31,70 @@ input::placeholder {
     text-overflow: ellipsis;
 }
 
-@media screen and (max-width: 768px) {
-    input {
-        font-size: 0.8rem;
-    }
-
-    input::placeholder {
-        font-size: 1rem;
-        font-weight: 500;
-    }
-}
 
 input:focus {
     border-radius: 0px;
 }
+             
+input:focus-visible::placeholder  {
+    font-weight: 600;
 
-
-
+}
 
 .hidden {
     display: none;
 }
 
 i {
-    color: var(--primary);
-    padding: 1rem;
-    padding-inline-end: 2rem;
-}
-
-
-.close {
     color: var(--button-active);
+    padding: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    height: 1rem;
+    width: 1rem;
 }
-.close:hover {
+
+
+i:hover {
     cursor: pointer;
+    background-color: var(--light-gray);
     
+}
+
+i:focus-visible {
+    outline: 2px solid var(--light-gray);
+    outline-offset: 2px;
+    background-color: var(--light-gray);
 }
 
 .search-button-group {
     display: flex;
     align-items: center;
+    padding-inline-end: 2rem;
     background: var(--white);
+    gap: 0.5rem;
 }
 
 .search-button-group-active {
     border-radius: 0px;
 }
 
+.vertical-rule {
+    font-size: 0.8rem;
+    border-left: 1px solid var(--primary-alt);
+    height: 50%;
+}
 
 ul {
     display: none;
+    flex-direction: column;
+    
+}
+
+.display {
+    display: flex;
 }
 
 .datalist-active {
@@ -89,6 +103,8 @@ ul {
     flex-direction: column;
     background-color: var(--white);
     transform: translate(0, -1px);
+    max-height: 40vh;
+    overflow-y: scroll;
 }
 
 ul::after {
@@ -118,5 +134,19 @@ li:hover {
 }
 
 
+@media screen and (max-width: 768px) {
+    input {
+        font-size: 0.8rem;
+        padding-inline-start: 1rem;
+    }
 
+    input::placeholder {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .search-button-group {
+        padding-inline-end: 1rem;
+    }
+}
 

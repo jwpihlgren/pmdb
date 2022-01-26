@@ -15,12 +15,19 @@
             
         > 
 
-        <div [ngClass]="{'search-button-group-active': searchIsActive}" class="search-button-group">
-            <i 
-            *ngIf="search.dirty; else default" 
-            (click)="resetForm()" 
-            icon 
-            class="fas fa-times fa-lg close"></i>
+        <div [ngClass]="{'search-button-group-active': true}" class="search-button-group"> <!-- searchIsActive -->
+           <ng-container *ngIf="true; else default"> <!-- search.dirty -->
+            <i (click)="resetForm()"
+                tabindex="0" 
+                 icon 
+                class="fas fa-times fa-lg close"></i>
+                <span class="vertical-rule">
+                </span>
+            <i (click)="fullSearch()"
+                tabindex="0"  
+                 icon 
+                class="fas fa-search fa-lg "></i>
+           </ng-container>
 
             <ng-template #default>
                 <i icon class="fas fa-search fa-lg"></i>
@@ -47,5 +54,17 @@
         </ul>
     </ng-template>
 </form>
+
+<app-search-grid *ngIf="queryResults$ | async as data" [queryResults]="data.results">
+
+</app-search-grid>
+
+<app-paginator
+[numberOfPages]="5"
+[currentPage]="1"
+>
+
+</app-paginator>
+
 
 
