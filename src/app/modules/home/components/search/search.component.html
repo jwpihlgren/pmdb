@@ -1,7 +1,7 @@
 <form action="">
 
     <label class="hidden" for="search"></label>
-
+    <!-- Input field -->
     <div class="flex row">
         <input 
             id="search" 
@@ -15,24 +15,32 @@
             
         > 
 
-        <div [ngClass]="{'search-button-group-active': searchIsActive}" class="search-button-group">
-            <i 
-            *ngIf="search.dirty; else default" 
-            (click)="resetForm()" 
-            icon 
-            class="fas fa-times fa-lg close"></i>
+        <div [ngClass]="{'search-button-group-active': inputIsActive}" class="search-button-group"> 
+           <ng-container *ngIf="search.dirty; else default"> 
+            <i (click)="resetForm()"
+                tabindex="0" 
+                 icon 
+                class="fas fa-times fa-lg close"></i>
+                <span class="vertical-rule">
+                </span>
+            <i (click)="fullSearch()"
+                tabindex="0"  
+                 icon 
+                class="fas fa-search fa-lg "></i>
+           </ng-container>
 
             <ng-template #default>
                 <i icon class="fas fa-search fa-lg"></i>
             </ng-template>
         </div>
     </div>
+    <!-- Dropdown -->
     <ng-container *ngIf="queryResults$ | async as values" >
-        <ul [ngClass]="{'datalist-active': searchIsActive}" id="query-results" *ngIf="values.results.length > 0; else emptyState">
+        <ul [ngClass]="{'datalist-active': inputIsActive}" id="query-results" *ngIf="values.results.length > 0; else emptyState">
             <li
+            *ngFor="let value of values.results.slice(0, 10)" 
             (mousedown)="hinderMouseDown($event)"
             (mouseup)="onClick(value)"
-            *ngFor="let value of values.results" 
             [value]="value.value"
             [attr.data-media]="value"
             >
@@ -42,10 +50,27 @@
     </ul>
     </ng-container>
     <ng-template #emptyState>
-        <ul [ngClass]="{'datalist-active': searchIsActive}" id="query-results" >
+        <ul [ngClass]="{'datalist-active': inputIsActive}" id="query-results" >
             <li class="option-disable">No search results</li>
         </ul>
     </ng-template>
 </form>
+
+
+<!-- Extended resultlist -->
+<ng-container *ngIf="!inputIsActive && (queryResults$ | async) as data" >
+    <app-search-grid [data]="data" (clickRequest)="onClick($event)">
+    </app-search-grid>
+    <app-paginator
+        [numberOfPages]="data.total_pages"
+        [currentPage]="data.page"
+        [numberOfResults]="data.total"
+        (onPageRequest)=requestPage($event)
+    >
+    </app-paginator>
+</ng-container>
+
+
+
 
 

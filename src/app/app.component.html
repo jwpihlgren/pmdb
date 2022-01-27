@@ -1,43 +1,26 @@
 <header >
-  <!-- Desktop -->
   <a [routerLink]="['home']" routerLinkActive="active-link">
     Trending Movies
   </a>
+  <!-- Desktop -->
   <ng-container *ngIf="screenWidth > MOBILE_BREAKPOINT; else mobile">
-
-  <nav>
-    <a 
-    (mousedown)="hinderMouseDown"
-    (mouseup)="onClickLink(link)"
-    *ngFor="let link of links" 
-    [routerLink]="[link.path]" 
-    routerLinkActive="active-link"> 
-    {{link.name}} 
-  </a>
-  </nav>
+    <nav>
+      <a (mousedown)="hinderMouseDown"
+        (mouseup)="onClickLink(link)"
+        *ngFor="let link of links" 
+        [routerLink]="[link.path]" 
+        routerLinkActive="active-link"> 
+        {{link.name}} 
+    </a>
+    </nav>
   </ng-container>
   <!-- Mobile -->
   <ng-template #mobile>
     <nav>
-      <button 
-      (click)="onCollapse($event)"
-      (blur)="onBlur($event)" 
-      [ngClass]="{'open': collapseMenuOpen}"
-      >
-       <span></span>
-       <span></span>
-       <span></span>
-      </button>
-      <ul [ngClass]="{'open': collapseMenuOpen}">
-       <a *ngFor="let link of links" 
-       [routerLink]="[link.path]" 
-       routerLinkActive="active-link"
-       (mousedown)="hinderMouseDown($event)"
-       (mouseup)="onClickLink(link)"> 
-       {{link.name}} 
-        
-      </a>
-     </ul>
+     <app-collapse-menu 
+      [linkList]="links" 
+      (onClickRequest)="onClickLink($event)">
+     </app-collapse-menu>
     </nav>
    </ng-template>
 </header>

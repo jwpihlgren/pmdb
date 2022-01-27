@@ -1,0 +1,13 @@
+
+<ul>
+    <li *ngFor="let result of data.results" (click)="onClickRequest(result)">
+        <div class="flex row gap-md">
+            <img [src]="secureUrl(result.poster_path)" alt="">
+            <div class="flex col gap-xs">
+                <p>{{result.name || result.title}}</p>
+                <span>{{result.release_date || result.first_air_date}}</span>
+            </div>
+        </div>
+        <h5>{{result.media_type}}</h5>
+    </li>
+</ul>

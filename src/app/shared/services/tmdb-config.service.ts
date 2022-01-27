@@ -55,5 +55,9 @@ export class TmdbConfigService {
     return this.config.images.profile_size[size]
   }
 
+  getSafeImageUrl(): string {
+    return this.config.images.secure_base_url
+  }
+
 }
 

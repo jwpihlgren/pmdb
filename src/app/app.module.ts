@@ -11,15 +11,13 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { DetailedSeriesModule } from './modules/detailed-series/detailed-series.module';
 import { TmdbConfigService } from './shared/services/tmdb-config.service';
-import { FormsModule } from '@angular/forms';
-
 
 export function configProviderFactory(provider: TmdbConfigService) {
   return () => provider.loadConfig();
 }
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
