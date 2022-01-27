@@ -27,3 +27,7 @@ img {
     max-width: 3rem;
     height: auto;
 }
+
+p {
+    color: var(--secondary)
+}
