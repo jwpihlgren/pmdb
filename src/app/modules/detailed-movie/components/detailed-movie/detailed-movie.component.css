@@ -45,6 +45,7 @@ app-video-player-component {
 
 app-grid.credits {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 2rem;
 }
 
 app-button {
@@ -83,6 +84,7 @@ app-button {
 
     app-grid.credits {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 1rem;
     }
 }
 
