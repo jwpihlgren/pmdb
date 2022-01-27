@@ -28,8 +28,8 @@ export class SearchService {
     profileSize = this.tmdbConfigService.getPoster(Size.MD);
     headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-  search(query:string): Observable<any[]> {
-    return this.http.get<any>(`${environment.TMDB_BASE_URL}${this.SEARCH}?api_key=${environment.TMDB_API_KEY}&query=${query}&language=en-US&page=1&include_adult=false`, {headers: this.headers})
+  search(query:string, page:number = 1): Observable<any[]> {
+    return this.http.get<any>(`${environment.TMDB_BASE_URL}${this.SEARCH}?api_key=${environment.TMDB_API_KEY}&query=${query}&language=en-US&page=${page}&include_adult=false`, {headers: this.headers})
     .pipe(
       map(data=> {
         const filteredResponse = this.filterResponse(data);
@@ -39,7 +39,6 @@ export class SearchService {
       catchError(this.errorService.handleError)
     )
   }
-
 
   private filterResponse(data: any): any {
     const filteredResults = data.results.filter((result: any) => {

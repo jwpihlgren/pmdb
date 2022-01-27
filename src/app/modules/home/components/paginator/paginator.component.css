@@ -7,12 +7,12 @@
     max-width: 400px;
 }
 
-.disabled{
+button:disabled{
     color: var(--light-gray);
     border-color: var(--light-gray);
 }
 
-.disabled:hover{
+button:disabled:hover{
     background-color: transparent;
     cursor: default;
 }

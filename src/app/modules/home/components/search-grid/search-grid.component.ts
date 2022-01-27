@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { TmdbConfigService } from './../../../../shared/services/tmdb-config.service';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Size } from 'src/app/shared/models/size';
 
 @Component({
   selector: 'app-search-grid',
@@ -7,13 +9,25 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SearchGridComponent implements OnInit {
 
-  @Input() queryResults: any[] = [];
+  @Input() data: any;
+  @Output() clickRequest: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+
+  constructor(private tmdbConfigService: TmdbConfigService) { }
 
  
 
   ngOnInit(): void {
+    console.log(this.data)
+  }
+
+  secureUrl(path:string): string {
+    return `${this.tmdbConfigService.getSafeImageUrl()}/${this.tmdbConfigService.getPoster(Size.XS)}/${path}`
+  }
+
+  onClickRequest(result: any) {
+    console.log("li click")
+    this.clickRequest.emit(result)
   }
 
 }

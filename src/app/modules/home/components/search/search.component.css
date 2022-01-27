@@ -11,6 +11,7 @@ form {
     overflow: hidden;
 }
 
+
 input {
     all: unset;
     background-color: var(--white);
@@ -103,8 +104,8 @@ ul {
     flex-direction: column;
     background-color: var(--white);
     transform: translate(0, -1px);
-    max-height: 40vh;
-    overflow-y: scroll;
+/*     max-height: 40vh;
+    overflow-y: scroll; */
 }
 
 ul::after {

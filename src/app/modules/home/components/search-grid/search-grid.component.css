@@ -1,0 +1,29 @@
+
+ul {
+    all: unset;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+li {
+    all: unset;
+    padding: 1rem;
+    background-color: var(--button-hover);
+    color: var(--button-active);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+li:hover {
+    background-color: var(--button-active);
+    cursor: pointer;
+}
+
+
+img {
+    max-width: 3rem;
+    height: auto;
+}

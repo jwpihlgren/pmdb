@@ -1,7 +1,7 @@
 <form action="">
 
     <label class="hidden" for="search"></label>
-
+    <!-- Input field -->
     <div class="flex row">
         <input 
             id="search" 
@@ -15,8 +15,8 @@
             
         > 
 
-        <div [ngClass]="{'search-button-group-active': true}" class="search-button-group"> <!-- searchIsActive -->
-           <ng-container *ngIf="true; else default"> <!-- search.dirty -->
+        <div [ngClass]="{'search-button-group-active': inputIsActive}" class="search-button-group"> 
+           <ng-container *ngIf="search.dirty; else default"> 
             <i (click)="resetForm()"
                 tabindex="0" 
                  icon 
@@ -34,12 +34,13 @@
             </ng-template>
         </div>
     </div>
+    <!-- Dropdown -->
     <ng-container *ngIf="queryResults$ | async as values" >
-        <ul [ngClass]="{'datalist-active': searchIsActive}" id="query-results" *ngIf="values.results.length > 0; else emptyState">
+        <ul [ngClass]="{'datalist-active': inputIsActive}" id="query-results" *ngIf="values.results.length > 0; else emptyState">
             <li
+            *ngFor="let value of values.results.slice(0, 10)" 
             (mousedown)="hinderMouseDown($event)"
             (mouseup)="onClick(value)"
-            *ngFor="let value of values.results" 
             [value]="value.value"
             [attr.data-media]="value"
             >
@@ -49,22 +50,27 @@
     </ul>
     </ng-container>
     <ng-template #emptyState>
-        <ul [ngClass]="{'datalist-active': searchIsActive}" id="query-results" >
+        <ul [ngClass]="{'datalist-active': inputIsActive}" id="query-results" >
             <li class="option-disable">No search results</li>
         </ul>
     </ng-template>
 </form>
 
-<app-search-grid *ngIf="queryResults$ | async as data" [queryResults]="data.results">
 
-</app-search-grid>
+<!-- Extended resultlist -->
+<ng-container *ngIf="!inputIsActive && (queryResults$ | async) as data" >
+    <app-search-grid [data]="data" (clickRequest)="onClick($event)">
+    </app-search-grid>
+    <app-paginator
+        [numberOfPages]="data.total_pages"
+        [currentPage]="data.page"
+        [numberOfResults]="data.total"
+        (onPageRequest)=requestPage($event)
+    >
+    </app-paginator>
+</ng-container>
 
-<app-paginator
-[numberOfPages]="5"
-[currentPage]="1"
->
 
-</app-paginator>
 
 
 
