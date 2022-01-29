@@ -17,7 +17,6 @@ export class SearchGridComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.resultsObject)
   }
 
   secureUrl(path:string): string {
@@ -25,7 +24,6 @@ export class SearchGridComponent implements OnInit {
   }
 
   onClickRequest(result: any) {
-    console.log("li click")
     this.clickRequest.emit(result)
   }
 

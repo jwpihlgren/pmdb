@@ -13,7 +13,6 @@ export class SmallCardComponent implements OnInit {
   @Input() season?: Season;
 
   ngOnInit(): void {
-    console.log(this.season)
   }
 
 }
