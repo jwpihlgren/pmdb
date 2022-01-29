@@ -5,6 +5,8 @@
     border-bottom-right-radius: var(--round-corners);
     overflow: hidden;
     background-color: var(--white);
+    max-width: 1280px;
+    margin: 0 auto;
 }
 
 ul {
