@@ -16,7 +16,7 @@ export class TrendingMediaService {
     private errorService:ErrorService,
     private localStorageService: LocalStorageService) { }
 
-  MS_UNTIL_EXPIRE = 1000 * 60 * 60 * 8;   /* Currently 8 hours */
+  MS_UNTIL_EXPIRE = 1000 *  60 * 60 * 8;   /* Currently 8 hours */
   posterBaseUrl = 'https://image.tmdb.org/t/p/w500/'
   headers = new HttpHeaders({'Content-Type': 'application/json'});
 

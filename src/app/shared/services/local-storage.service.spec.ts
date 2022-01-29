@@ -13,4 +13,8 @@ describe('LocalStorageService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('Should be expired', () => {
+    expect(service.get('movies')).toBeFalsy()
+  })
 });

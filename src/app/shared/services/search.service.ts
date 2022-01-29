@@ -1,4 +1,4 @@
-import { catchError, filter, map, Observable } from 'rxjs';
+import { catchError, defaultIfEmpty, filter, map, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ErrorService } from './error.service';
@@ -31,9 +31,9 @@ export class SearchService {
   search(query:string, page:number = 1): Observable<any[]> {
     return this.http.get<any>(`${environment.TMDB_BASE_URL}${this.SEARCH}?api_key=${environment.TMDB_API_KEY}&query=${query}&language=en-US&page=${page}&include_adult=false`, {headers: this.headers})
     .pipe(
+      defaultIfEmpty(false),
       map(data=> {
         const filteredResponse = this.filterResponse(data);
-        console.log(filteredResponse)
         return filteredResponse;
       }),
       catchError(this.errorService.handleError)

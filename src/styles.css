@@ -14,6 +14,7 @@
     --medium-fade: 0.5s;
     --white: rgb(255, 255, 255);
     --light-gray: rgb(204, 204, 204);
+    --round-corners: 30px;
 }
 /* CSS RESET */
 * {
