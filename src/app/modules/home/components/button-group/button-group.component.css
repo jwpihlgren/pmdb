@@ -35,3 +35,7 @@ i:focus-visible {
     outline-offset: 2px;
     background-color: var(--light-gray);
 }
+
+.search-button-group {
+    padding-inline-end: 1rem;
+}

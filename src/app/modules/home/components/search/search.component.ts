@@ -2,7 +2,6 @@ import { debounceTime, Observable, Subscription, switchMap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SearchService } from 'src/app/shared/services/search.service';
-import { __values } from 'tslib';
 import { Router } from '@angular/router';
 
 @Component({

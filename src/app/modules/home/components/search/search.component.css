@@ -7,6 +7,13 @@ form {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
+    border-radius: var(--round-corners);
+    overflow: hidden;
+}
+
+form.input-active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 input {
@@ -39,61 +46,19 @@ input:focus-visible::placeholder  {
 
 }
 
-.hidden {
-    display: none;
-}
-
-
-.search-button-group-active {
-    border-radius: 0px;
-}
-
-
-ul {
-    display: none;
-    flex-direction: column;
-    
-}
-
-.display {
-    display: flex;
-}
-
-.datalist-active {
-    all: unset;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--white);
-    transform: translate(0, -1px);
-/*     max-height: 40vh;
-    overflow-y: scroll; */
-}
-
-ul::after {
-    content: "";
-    height: 1rem;
-    background-color: var(--white);
-}
-
-
-li {
-    all: unset;
-    color: var(--button-active);
-    background-color: var(--white);
-    padding-block: 1rem;
-    padding-inline: 2rem;
-    cursor: pointer;
+app-auto-complete {
     transform: translate(0, -1px);
 }
 
-li:hover {
-    background-color: var(--light-gray);
+.loading {
+    padding: 1rem;
+    background-color: var(--white);
+    border-bottom-left-radius: var(--round-corners);
+    border-bottom-right-radius: var(--round-corners);
+    transform: translate(0, -1px);
 }
 
-.option-disable:hover {
-    cursor: text;
-    background-color: var(--white);
-}
+
 
 
 @media screen and (max-width: 768px) {
@@ -105,10 +70,6 @@ li:hover {
     input::placeholder {
         font-size: 1rem;
         font-weight: 500;
-    }
-
-    .search-button-group {
-        padding-inline-end: 1rem;
     }
 }
 

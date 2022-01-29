@@ -1,4 +1,7 @@
-<form action="">
+<form 
+    action=""
+    [ngClass]="{'input-active': inputIsActive && search.dirty}"
+    >
     <div class="flex row">
         <input 
             id="search" 
@@ -17,7 +20,7 @@
     </div>
 </form>
 
-<ng-container *ngIf="queryResults$ | async as resultsObject">    
+<ng-container *ngIf="queryResults$ | async as resultsObject; else loading">    
     <app-auto-complete
         *ngIf="inputIsActive"
         [resultsObject]="resultsObject"
@@ -40,6 +43,10 @@
         </app-paginator>
     </ng-container>
 </ng-container>
+
+<ng-template #loading>
+    <div [ngClass]="{'loading': inputIsActive && search.dirty}"></div>
+</ng-template> 
 
 
 

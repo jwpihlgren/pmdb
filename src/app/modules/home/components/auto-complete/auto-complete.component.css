@@ -1,3 +1,24 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    border-bottom-left-radius: var(--round-corners);
+    border-bottom-right-radius: var(--round-corners);
+    overflow: hidden;
+    background-color: var(--white);
+}
+
+ul {
+    all: unset;
+    display: flex;
+    flex-direction: column;
+}
+
+ul::after {
+    content: "";
+    padding: 1rem;
+    background-color: var(--white);
+}
+
 li {
     all: unset;
     color: var(--button-active);
@@ -5,31 +26,8 @@ li {
     padding-block: 1rem;
     padding-inline: 2rem;
     cursor: pointer;
-    transform: translate(0, -1px);
 }
 
 li:hover {
     background-color: var(--light-gray);
-}
-
-ul {
-   /*  display: none; */
-   all: unset;
-   display: flex;
-    flex-direction: column;
-    
-}
-
-.display {
-    display: flex;
-}
-
-.datalist-active {
-    all: unset;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--white);
-    transform: translate(0, -1px);
-/*     max-height: 40vh;
-    overflow-y: scroll; */
 }
