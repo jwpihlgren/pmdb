@@ -34,7 +34,6 @@ export class SearchService {
       defaultIfEmpty(false),
       map(data=> {
         const filteredResponse = this.filterResponse(data);
-        console.log(filteredResponse)
         return filteredResponse;
       }),
       catchError(this.errorService.handleError)

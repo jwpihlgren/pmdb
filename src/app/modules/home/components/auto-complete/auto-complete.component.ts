@@ -15,7 +15,6 @@ export class AutoCompleteComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.resultsObject)
   }
 
   hinderMouseDown(event: Event): void {

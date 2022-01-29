@@ -41,7 +41,6 @@ export class SearchComponent implements OnInit{
   }
 
   onResultClick(media: any): void {
-    console.log(media)
     this.clearForm();
     this.router.navigateByUrl(`${media.media_type}/${media.id}`);
   }
@@ -52,8 +51,6 @@ export class SearchComponent implements OnInit{
 
   requestPage(page: number):void {
     this.queryResults$ = this.searchService.search(this.search.value, page);
-    
-
   }
 
   showExtended() :void {
