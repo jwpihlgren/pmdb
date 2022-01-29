@@ -1,0 +1,16 @@
+<ng-container *ngIf="searchIsDirty; else default"> 
+    <i (click)="clearForm()"
+        tabindex="0" 
+         icon 
+        class="fas fa-times fa-lg close"></i>
+        <span class="vertical-rule">
+        </span>
+    <i (click)="showExtended()"
+        tabindex="0"  
+         icon 
+        class="fas fa-search fa-lg "></i>
+   </ng-container>
+
+    <ng-template #default>
+        <i icon class="fas fa-search fa-lg"></i>
+    </ng-template>

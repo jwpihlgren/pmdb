@@ -7,10 +7,7 @@ form {
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
-    border-radius: 30px;
-    overflow: hidden;
 }
-
 
 input {
     all: unset;
@@ -46,47 +43,11 @@ input:focus-visible::placeholder  {
     display: none;
 }
 
-i {
-    color: var(--button-active);
-    padding: 1.25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100px;
-    height: 1rem;
-    width: 1rem;
-}
-
-
-i:hover {
-    cursor: pointer;
-    background-color: var(--light-gray);
-    
-}
-
-i:focus-visible {
-    outline: 2px solid var(--light-gray);
-    outline-offset: 2px;
-    background-color: var(--light-gray);
-}
-
-.search-button-group {
-    display: flex;
-    align-items: center;
-    padding-inline-end: 2rem;
-    background: var(--white);
-    gap: 0.5rem;
-}
 
 .search-button-group-active {
     border-radius: 0px;
 }
 
-.vertical-rule {
-    font-size: 0.8rem;
-    border-left: 1px solid var(--primary-alt);
-    height: 50%;
-}
 
 ul {
     display: none;

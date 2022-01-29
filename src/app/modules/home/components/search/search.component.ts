@@ -29,21 +29,21 @@ export class SearchComponent implements OnInit{
   ngOnInit(): void {
   }
 
-  resetForm(): void {
+  clearForm(): void {
     this.search.setValue('');
     this.search.markAsPristine();
-    this.extendedResultsActive=false;
     this.queryResults$ = this.resetSearch();
   }
 
   onToggleFocus(event: any): void {
     event.preventDefault();
     this.inputIsActive = !this.inputIsActive;
+    this.extendedResultsActive = false;
   }
 
-  onClick(media: any): void {
+  onResultClick(media: any): void {
     console.log(media)
-    this.resetForm();
+    this.clearForm();
     this.router.navigateByUrl(`${media.media_type}/${media.id}`);
   }
 
@@ -52,14 +52,13 @@ export class SearchComponent implements OnInit{
   }
 
   requestPage(page: number):void {
-    console.log(page)
     this.queryResults$ = this.searchService.search(this.search.value, page);
     
 
   }
 
-  fullSearch():void {
-    this.inputIsActive = false;
+  showExtended() :void {
+    this.extendedResultsActive = true;
   }
 
   private resetSearch() {

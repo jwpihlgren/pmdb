@@ -4,6 +4,8 @@ ul {
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    max-width: 960px;
+    margin: 0 auto;
 }
 
 li {

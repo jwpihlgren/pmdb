@@ -14,19 +14,22 @@ export class LocalStorageService {
     
     const storedObject = JSON.parse(this.localStorage.getItem(key) || "null");
     if (!storedObject) return null
-    const hasExpired = Date.now() >= storedObject.timeToExpire
+    const hasExpired = Date.now() >= storedObject.timeToExpire;
     if(hasExpired) {
       this.remove(key)
       return null
     }
     delete storedObject.timeToExpire
-    return storedObject
+    return storedObject.media
   }
 
   set(key: string, value: any, timeToPersist: number): boolean {
-    value.timeToExpire = Date.now() + timeToPersist;
+    const objectToStore: any = {
+      media:value
+    }
+    objectToStore["timeToExpire"] = Date.now() + timeToPersist;
     if (this.isLocalStorageSupported) {
-      this.localStorage.setItem(key, JSON.stringify(value));
+      this.localStorage.setItem(key, JSON.stringify(objectToStore));
       return true;
     }
     return false;

@@ -1,4 +1,4 @@
-import { TmdbConfigService } from './../../../../shared/services/tmdb-config.service';
+import { TmdbConfigService } from 'src/app/shared/services/tmdb-config.service';
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Size } from 'src/app/shared/models/size';
 
@@ -9,16 +9,15 @@ import { Size } from 'src/app/shared/models/size';
 })
 export class SearchGridComponent implements OnInit {
 
-  @Input() data: any;
+  @Input() resultsObject: any;
   @Output() clickRequest: EventEmitter<any> = new EventEmitter();
 
 
   constructor(private tmdbConfigService: TmdbConfigService) { }
 
- 
 
   ngOnInit(): void {
-    console.log(this.data)
+    console.log(this.resultsObject)
   }
 
   secureUrl(path:string): string {

@@ -1,0 +1,17 @@
+<ng-container >
+    <ul >
+        <li
+        *ngFor="let result of resultsObject.results.slice(0, 10)" 
+        (mousedown)="hinderMouseDown($event)"
+        (mouseup)="resultClick(result)"
+        >
+            {{result.title || result.name}}
+    </li>
+</ul>
+</ng-container>
+
+<ng-template #emptyState>
+    <ul>
+        <li class="option-disable">No search results</li>
+    </ul>
+</ng-template>
