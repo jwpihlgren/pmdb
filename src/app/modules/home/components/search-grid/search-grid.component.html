@@ -1,16 +1,16 @@
 
 <ul>
     <li 
-    *ngFor="let result of resultsObject.results" 
+    *ngFor="let result of resultsObject?.results" 
     (click)="onClickRequest(result)"
     tabindex="0">
         <div class="flex row gap-md">
-            <img [src]="secureUrl(result.poster_path)" alt="">
+            <img [src]="result.poster" alt="">
             <div class="flex col gap-xs">
-                <p>{{result.name || result.title}}</p>
-                <span>{{result.release_date || result.first_air_date}}</span>
+                <p>{{result.name}}</p>
+                <span>{{result.date}}</span>
             </div>
         </div>
-        <h5>{{result.media_type}}</h5>
+        <h5>{{result.mediaType}}</h5>
     </li>
 </ul>

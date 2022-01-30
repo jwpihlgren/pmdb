@@ -1,5 +1,5 @@
-import { SearchGridComponent } from './../search-grid/search-grid.component';
-import { debounceTime, Observable, Subscription, switchMap } from 'rxjs';
+import { ResultObject } from 'src/app/shared/models/result-object';
+import { SearchGridComponent } from './../search-grid/search-grid.component';import { debounceTime, Observable, Subscription, switchMap } from 'rxjs';
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SearchService } from 'src/app/shared/services/search.service';
@@ -10,28 +10,23 @@ import { Router } from '@angular/router';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit, AfterViewInit{
+export class SearchComponent implements OnInit{
 
   search: FormControl;
   subscriptions: Subscription[] = [];
   inputIsActive: boolean = false;
   extendedResultsActive: boolean = false;
-  queryResults$: Observable<any> = new Observable();
+  queryResults$: Observable<ResultObject> = new Observable();
 
   constructor(
     private searchService: SearchService,
     private router: Router,
-    private elementRef: ElementRef,
-    private renderer: Renderer2) { 
+    private elementRef: ElementRef) { 
       this.search = new FormControl('');
       this.queryResults$ = this.resetSearch();
     }
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit():void {
-    console.log(this.elementRef)
   }
 
   clearForm(): void {
@@ -48,7 +43,7 @@ export class SearchComponent implements OnInit, AfterViewInit{
 
   onResultClick(media: any): void {
     this.clearForm();
-    this.router.navigateByUrl(`${media.media_type}/${media.id}`);
+    this.router.navigateByUrl(`${media.mediaType}/${media.id}`);
   }
 
   hinderMouseDown(event:any) {

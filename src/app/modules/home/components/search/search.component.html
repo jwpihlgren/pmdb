@@ -40,9 +40,9 @@
         </app-search-grid>
 
         <app-paginator
-            [numberOfPages]="resultsObject.total_pages"
-            [currentPage]="resultsObject.page"
-            [numberOfResults]="resultsObject.total"
+            [numberOfPages]="resultsObject.totalPages"
+            [currentPage]="resultsObject.currentPage"
+            [numberOfResults]="resultsObject.totalResults"
             (onPageRequest)=requestPage($event)>
         </app-paginator>
     </ng-container>
