@@ -12,6 +12,11 @@ app-button {
  }
 
  .media img {
-    width: 34%;
+    width: 50%;
     height: auto;
+    object-fit:contain;
+}
+
+p {
+    flex-grow: 2;
 }
