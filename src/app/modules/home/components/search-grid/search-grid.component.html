@@ -1,6 +1,9 @@
 
 <ul>
-    <li *ngFor="let result of resultsObject.results" (click)="onClickRequest(result)">
+    <li 
+    *ngFor="let result of resultsObject.results" 
+    (click)="onClickRequest(result)"
+    tabindex="0">
         <div class="flex row gap-md">
             <img [src]="secureUrl(result.poster_path)" alt="">
             <div class="flex col gap-xs">

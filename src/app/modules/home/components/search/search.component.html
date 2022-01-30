@@ -11,7 +11,9 @@
             list=""
             autocomplete="off"
             (focus)="onToggleFocus($event)"
-            (blur)="onToggleFocus($event)"> 
+            (blur)="onToggleFocus($event)"
+            (keydown.enter)="hinderMouseDown($event)"
+            (keyup.enter)="showExtended()" >
         <app-button-group 
             [searchIsDirty]="search.dirty" 
             (clearFormRequest)="clearForm()" 
@@ -31,6 +33,8 @@
 
     <ng-container *ngIf="extendedResultsActive">
         <app-search-grid 
+        #extendedList 
+        tabindex="0"
         [resultsObject]="resultsObject" 
         (clickRequest)="onResultClick($event)">
         </app-search-grid>

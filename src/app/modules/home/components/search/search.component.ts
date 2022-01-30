@@ -1,5 +1,6 @@
+import { SearchGridComponent } from './../search-grid/search-grid.component';
 import { debounceTime, Observable, Subscription, switchMap } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit{
+export class SearchComponent implements OnInit, AfterViewInit{
 
   search: FormControl;
   subscriptions: Subscription[] = [];
@@ -19,13 +20,18 @@ export class SearchComponent implements OnInit{
 
   constructor(
     private searchService: SearchService,
-    private router: Router
-  ) { 
-    this.search = new FormControl('');
-   this.queryResults$ = this.resetSearch();
-   }
+    private router: Router,
+    private elementRef: ElementRef,
+    private renderer: Renderer2) { 
+      this.search = new FormControl('');
+      this.queryResults$ = this.resetSearch();
+    }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit():void {
+    console.log(this.elementRef)
   }
 
   clearForm(): void {
@@ -54,6 +60,7 @@ export class SearchComponent implements OnInit{
   }
 
   showExtended() :void {
+    this.elementRef.nativeElement.focus();
     this.extendedResultsActive = true;
   }
 
