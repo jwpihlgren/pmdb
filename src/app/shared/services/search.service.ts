@@ -41,6 +41,7 @@ export class SearchService {
       map(data=> {
         /* const filteredResponse = this.filterResponse(data); */
         const storedResults = this.localStorageService.get(this.STORAGE_NAME);
+        console.log(data)
         if (storedResults) {
           console.log("There was a previous store and I added to it")
           storedResults[query] = data;
