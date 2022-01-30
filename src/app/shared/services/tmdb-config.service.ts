@@ -11,7 +11,7 @@ import { Size } from 'src/app/shared/models/size';
 })
 export class TmdbConfigService {
 
-  SEVENTY_TWO_HOURS_IN_MS = 1000 * 60 * 60 * 72;
+  MS_UNTIL_EXPIRE = 1000 * 60 * 60 * 72; /*Currently 72 hours */
   API_MEDIA_TYPE = "/configuration" 
 
   constructor(
@@ -39,7 +39,7 @@ export class TmdbConfigService {
           map(config => {
             console.log("I fetched the config"),
             this.config = config;
-            this.localStorageService.set("config", config, this.SEVENTY_TWO_HOURS_IN_MS)
+            this.localStorageService.set("config", config, this.MS_UNTIL_EXPIRE)
             return config
           }),
             catchError(this.errorService.handleError)

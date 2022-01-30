@@ -57,10 +57,16 @@ export class SearchComponent implements OnInit{
     this.extendedResultsActive = true;
   }
 
-  private resetSearch() {
+  private resetSearch(): Observable<any> {
     return this.search.valueChanges.pipe(
       debounceTime(200),
-      switchMap(query => this.searchService.search(query))
+      switchMap(query => {
+        if(query !== '') {
+         return this.searchService.search(query)
+        }
+        return new Observable<any>()
+        
+      } )
     )
   }
 
