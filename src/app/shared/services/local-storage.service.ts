@@ -20,12 +20,12 @@ export class LocalStorageService {
       return null
     }
     delete storedObject.timeToExpire
-    return storedObject.media
+    return storedObject.data
   }
 
   set(key: string, value: any, timeToPersist: number): boolean {
     const objectToStore: any = {
-      media:value
+      data:value
     }
     objectToStore["timeToExpire"] = Date.now() + timeToPersist;
     if (this.isLocalStorageSupported) {
