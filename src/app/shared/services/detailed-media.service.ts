@@ -49,7 +49,7 @@ export class DetailedMediaService {
       .pipe(
         map(data => {
           const movie: DetailedMovie = {
-            poster: data.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${data.poster_path}` : 'src/assets/images/poster_placeholder.jpg',
+            poster: data.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${data.poster_path}` : "assets/images/poster_placeholder.png",
             title: data.title,
             synopsis: data.overview,
             id: data.id,
@@ -82,7 +82,7 @@ export class DetailedMediaService {
       .pipe(
         map(data => {
           const serie: DetailedSerie = {
-            poster: data.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${data.poster_path}` : 'src/assets/images/poster_placeholder.jpg',
+            poster: data.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${data.poster_path}` : "assets/images/poster_placeholder.png",
             name: data.name,
             synopsis: data.overview,
             id: data.id,
@@ -118,7 +118,7 @@ export class DetailedMediaService {
         id: season.id,
         name: season.name,
         overview: season.overview,
-        posterPath:  `${this.imgBaseUrl}${this.profileSize}/${season.poster_path}`,
+        posterPath:  season.poster_path ? `${this.imgBaseUrl}${this.profileSize}/${season.poster_path}` : "assets/images/poster_placeholder.png" ,
         number: season.season_number
       }
     })
@@ -133,7 +133,7 @@ export class DetailedMediaService {
       episodeName: data.name,
       episodeSynopsis: data.overview,
       seasonNumber: data.season_number,
-      episodePoster: data.still_path ? `${this.imgBaseUrl}${this.profileSize}/${data.still_path}` : "still_path_placeholder.jpg",
+      episodePoster: data.still_path ? `${this.imgBaseUrl}${this.profileSize}/${data.still_path}` : "assets/images/poster_placeholder.png",
       episodeVoteAverage: data.vote_average,
       episodeVoteCount: data.vote_count
     }
