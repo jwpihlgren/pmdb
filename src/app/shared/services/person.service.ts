@@ -34,8 +34,6 @@ export class PersonService {
     getPerson(id: number): Observable<Person> {
       const storedPersons = this.localStorageService.get(this.STORAGE_NAME);
       if(storedPersons && storedPersons[id] && storedPersons[id].id === id) {
-        console.log(`[Person] id: ${id} was found in storage`)
-        console.log(storedPersons)
         return of(storedPersons[id])
       }
       else {
@@ -43,7 +41,7 @@ export class PersonService {
           .pipe(
             map((data: any)=> {
               const person: Person = {
-                profilePath: data.profile_path ? `${this.imgBaseUrl}${this.posterSize}/${data.profile_path}` : 'src/assets/images/poster_placeholder.jpg',
+                profilePath: data.profile_path ? `${this.imgBaseUrl}${this.posterSize}/${data.profile_path}` : "assets/images/poster_placeholder.png",
                 birthday: data.birthday,
                 deathday: data.deathday,
                 id: data.id,
@@ -56,16 +54,12 @@ export class PersonService {
               }
               const storedPersons = this.localStorageService.get(this.STORAGE_NAME);
               if(storedPersons) {
-                console.log(`[Person] Storage found. Adding ${id} to it`)
                 storedPersons[id] = person
-                console.log(storedPersons)
                 this.localStorageService.set(this.STORAGE_NAME, storedPersons, this.MS_UNTIL_EXPIRE)
               }
               else {
-                console.log(`[Person] NO Storage found. Creating it and adding ${id} to it`)
                 const storedPersons: any = {};
                 storedPersons[id] = person;
-                console.log(storedPersons)
                 this.localStorageService.set(this.STORAGE_NAME, storedPersons, this.MS_UNTIL_EXPIRE)
               }
               return person
@@ -80,7 +74,7 @@ export class PersonService {
       cast.forEach((item: any) => {
         starredIn.push(
             { character: item.character,
-              poster: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : 'src/assets/images/poster_placeholder.jpg',
+              poster: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
               title: item.title || item.name,
               synopsis: item.overview,
               id: item.id,
@@ -100,7 +94,7 @@ export class PersonService {
       const workedOn: CrewInMedia[] = [];
       cast.forEach((item: any) => {
         workedOn.push(
-          { poster: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : 'src/assets/images/poster_placeholder.jpg',
+          { poster: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
             title: item.title || item.name,
             synopsis: item.overview,
             id: item.id,
