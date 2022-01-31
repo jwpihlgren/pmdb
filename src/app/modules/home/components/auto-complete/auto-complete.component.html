@@ -1,11 +1,11 @@
 <ng-container >
     <ul >
         <li
-        *ngFor="let result of resultsObject.results.slice(0, 10)" 
+        *ngFor="let result of resultsObject?.slice(0, 10)" 
         (mousedown)="hinderMouseDown($event)"
         (mouseup)="resultClick(result)"
         >
-            {{result.title || result.name}}
+            {{result.name}}
     </li>
 </ul>
 </ng-container>

@@ -23,8 +23,6 @@ export class PaginatorComponent {
   }
 
   onClick(page: number): void {
-    console.log(this.currentPage)
-    console.log("click page", page)
     if (page >= 1 && page <= this.numberOfPages) {
       this.onPageRequest.emit(page);
     }
