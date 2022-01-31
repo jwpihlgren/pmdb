@@ -1,8 +1,11 @@
+
+import { ResultObject } from 'src/app/shared/models/result-object';
 import { debounceTime, Observable, Subscription, switchMap } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { Router } from '@angular/router';
+import { SearchResult } from 'src/app/shared/models/search-result';
 
 @Component({
   selector: 'app-search',
@@ -15,15 +18,17 @@ export class SearchComponent implements OnInit{
   subscriptions: Subscription[] = [];
   inputIsActive: boolean = false;
   extendedResultsActive: boolean = false;
-  queryResults$: Observable<any> = new Observable();
+  queryResults$: Observable<ResultObject> = new Observable();
+  autoCompleteResults$: Observable<SearchResult[]> = new Observable();
 
   constructor(
     private searchService: SearchService,
-    private router: Router
-  ) { 
-    this.search = new FormControl('');
-   this.queryResults$ = this.resetSearch();
-   }
+    private router: Router,
+    private elementRef: ElementRef) { 
+      this.search = new FormControl('');
+      this.autoCompleteResults$ = this.resetSearch();
+      this.queryResults$;
+    }
 
   ngOnInit(): void {
   }
@@ -31,7 +36,8 @@ export class SearchComponent implements OnInit{
   clearForm(): void {
     this.search.setValue('');
     this.search.markAsPristine();
-    this.queryResults$ = this.resetSearch();
+    this.autoCompleteResults$ = this.resetSearch();
+    this.queryResults$ = new Observable();
   }
 
   onToggleFocus(event: any): void {
@@ -40,9 +46,15 @@ export class SearchComponent implements OnInit{
     this.extendedResultsActive = false;
   }
 
+  onSuggestionClick(media:any): void {
+    this.search.setValue(media.name)
+    this.showExtended();
+
+  }
+
   onResultClick(media: any): void {
     this.clearForm();
-    this.router.navigateByUrl(`${media.media_type}/${media.id}`);
+    this.router.navigateByUrl(`${media.mediaType}/${media.id}`);
   }
 
   hinderMouseDown(event:any) {
@@ -54,7 +66,9 @@ export class SearchComponent implements OnInit{
   }
 
   showExtended() :void {
+    this.elementRef.nativeElement.focus();
     this.extendedResultsActive = true;
+    this.requestPage(1);
   }
 
   private resetSearch(): Observable<any> {
@@ -62,7 +76,7 @@ export class SearchComponent implements OnInit{
       debounceTime(200),
       switchMap(query => {
         if(query !== '') {
-         return this.searchService.search(query)
+         return this.searchService.getAutoComplete(query)
         }
         return new Observable<any>()
         

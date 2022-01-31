@@ -1,4 +1,6 @@
-import { catchError, defaultIfEmpty, filter, map, Observable, of } from 'rxjs';
+import { ResultObject } from './../models/result-object';
+import { SearchResult } from 'src/app/shared/models/search-result';
+import { catchError, defaultIfEmpty, map, Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ErrorService } from './error.service';
@@ -18,7 +20,7 @@ export class SearchService {
   APPEND_URL = '&append_to_response=videos,credits';
 
   imgBaseUrl = this.tmdbConfigService.getConfig().images.secure_base_url;
-  posterSize = this.tmdbConfigService.getPoster(Size.XXL);
+  posterSize = this.tmdbConfigService.getPoster(Size.MD);
   profileSize = this.tmdbConfigService.getPoster(Size.MD);
   headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -29,42 +31,86 @@ export class SearchService {
     private tmdbConfigService:TmdbConfigService,
     ){ }
 
-  search(query:string, page:number = 1): Observable<any[]> {
+  
+  getAutoComplete(query: string): Observable<SearchResult[]> {
+    return this.http.get<any>(`${environment.TMDB_BASE_URL}${this.SEARCH}?api_key=${environment.TMDB_API_KEY}&query=${query}&language=en-US&include_adult=false`, {headers: this.headers})
+      .pipe(
+        map((data: any) => {
+          
+          const filteredResults = this.filterUnique(data);
+          const convertedResults = this.convertToSearchResult(filteredResults);
+          return convertedResults;
+        }),
+        catchError(this.errorService.handleError)
+      )
+  }
+
+  search(query:string, page:number = 1): Observable<ResultObject> {
     const storedResults: any = this.localStorageService.get(this.STORAGE_NAME);
-    if(storedResults && storedResults[query]) {
-      console.log("The previous search was stored")
-      return of(storedResults[query])
+    if(storedResults && storedResults[query] && storedResults[query][page]) {
+      return of(storedResults[query][page]);
     }
     return this.http.get<any>(`${environment.TMDB_BASE_URL}${this.SEARCH}?api_key=${environment.TMDB_API_KEY}&query=${query}&language=en-US&page=${page}&include_adult=false`, {headers: this.headers})
     .pipe(
       defaultIfEmpty(false),
-      map(data=> {
-        /* const filteredResponse = this.filterResponse(data); */
-        const storedResults = this.localStorageService.get(this.STORAGE_NAME);
-        console.log(data)
-        if (storedResults) {
-          console.log("There was a previous store and I added to it")
-          storedResults[query] = data;
-          this.localStorageService.set(this.STORAGE_NAME, storedResults, this.MS_UNTIL_EXPIRE);
+      map((data:any) => {
+        const searchResults: SearchResult[] = this.convertToSearchResult(data.results);
+        const resultObject: ResultObject = {
+          currentPage: data.page,
+          totalPages: data.total_pages,
+          totalResults: data.total_results,
+          results: searchResults
         }
-        else {
-          console.log("There wasn't a precious store so I created one and added to it");
-          const newStoredResults: any = {};
-          newStoredResults[query] = data;
-          this.localStorageService.set(this.STORAGE_NAME, newStoredResults, this.MS_UNTIL_EXPIRE);
-        }
-        
-        return data;
+
+        this.writeToLocalStorage(query, resultObject)
+        return resultObject;
       }),
       catchError(this.errorService.handleError)
     )
   }
 
-  private filterResponse(data: any): any {
-    const filteredResults = data.results.filter((result: any) => {
-      return result.media_type !== "person"
-    })
-    data.results = filteredResults
-    return data;
+  private writeToLocalStorage(query:string ,resultObject: ResultObject): void {
+    let storedResults = this.localStorageService.get(this.STORAGE_NAME);
+
+    if(!storedResults) {
+      storedResults = {}
+    }
+    const resultToStore: any = {};
+    resultToStore[resultObject.currentPage] = resultObject;
+    storedResults[query] = {...storedResults[query], ...resultToStore};
+
+    this.localStorageService.set(this.STORAGE_NAME, storedResults, this.MS_UNTIL_EXPIRE)
   }
+
+  private convertToSearchResult(data:any): SearchResult[] {
+    const searchResults: SearchResult[] = []
+    data.forEach((result: any) => {
+      searchResults.push(
+        {
+          poster: result.poster_path || result.profile_path ? `${this.imgBaseUrl}${this.posterSize}/${result.poster_path || result.profile_path}` : 'assets/images/poster_placeholder.png',
+          name: result.name || result.title,
+          date: result.release_date || result.first_air_date || result.birthday,
+          mediaType: result.media_type,
+          id: result.id
+        }
+      )
+    })
+    return searchResults
+  }
+
+  private filterUnique(data: any): any {
+    const results: any = [];
+    data.results.forEach((result:any) => {
+      const name = result.title || result.name
+      const existingNames = results.map((entity: any) => {
+        return entity.name || entity.title
+      })
+      if(!existingNames.includes(name)) {
+        results.push(result)
+      }
+    })
+
+    return results;
+  }
+  
 }

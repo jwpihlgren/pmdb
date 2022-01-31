@@ -6,7 +6,7 @@ import { PageRequestType } from 'src/app/shared/models/page-request-type';
   templateUrl: './paginator.component.html',
   styleUrls: ['./paginator.component.css']
 })
-export class PaginatorComponent implements OnInit {
+export class PaginatorComponent {
 
   FIRST_PAGE: number = 1;
 
@@ -14,20 +14,12 @@ export class PaginatorComponent implements OnInit {
   @Input() numberOfPages: number = 0;
   @Input() numberOfResults: number = 0;
 
-  previousPage: number = 0;
-  nextPage: number = 0;
-
   @Output() onPageRequest: EventEmitter<number> = new EventEmitter();
 
   public PRT = PageRequestType;
   
   constructor() { 
 
-  }
-
-  ngOnInit():void {
-    this.previousPage =  this.currentPage - 1;
-    this.nextPage = this.currentPage + 1;
   }
 
   onClick(page: number): void {

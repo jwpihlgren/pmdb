@@ -1,8 +1,8 @@
 
 <ng-container>
     <button [disabled]="currentPage <= FIRST_PAGE"  (click)="onClick(FIRST_PAGE)">{{FIRST_PAGE}}</button>
-    <button  [disabled]="currentPage <= FIRST_PAGE" (click)="onClick(previousPage)">&#60;&#60;</button>
-    <button  [disabled]="currentPage < FIRST_PAGE" class="single-out" >{{currentPage}}</button>
-    <button  [disabled]="numberOfPages <= currentPage" (click)="onClick(nextPage)">&#62;&#62;</button>
+    <button [disabled]="currentPage <= FIRST_PAGE" (click)="onClick(currentPage - 1)">&#60;&#60;</button>
+    <button [disabled]="currentPage < FIRST_PAGE" class="single-out" >{{currentPage}}</button>
+    <button [disabled]="numberOfPages <= currentPage" (click)="onClick(currentPage + 1)">&#62;&#62;</button>
     <button [disabled]="numberOfPages <= currentPage"  (click)="onClick(numberOfPages)">{{numberOfPages}}</button>
 </ng-container>

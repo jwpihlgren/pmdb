@@ -1,4 +1,5 @@
 :host{
+    all: unset;
     width: 100%; 
 }
 

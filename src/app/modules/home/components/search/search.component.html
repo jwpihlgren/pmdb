@@ -11,7 +11,9 @@
             list=""
             autocomplete="off"
             (focus)="onToggleFocus($event)"
-            (blur)="onToggleFocus($event)"> 
+            (blur)="onToggleFocus($event)"
+            (keydown.enter)="hinderMouseDown($event)"
+            (keyup.enter)="showExtended()" >
         <app-button-group 
             [searchIsDirty]="search.dirty" 
             (clearFormRequest)="clearForm()" 
@@ -20,33 +22,35 @@
     </div>
 </form>
 
-<ng-container *ngIf="queryResults$ | async as resultsObject; else loading">    
-    <app-auto-complete
-        *ngIf="inputIsActive"
-        [resultsObject]="resultsObject"
-        (hinderMouseDownRequest)="hinderMouseDown($event)"
-        (resultClickRequest)="onResultClick($event)"
-    >
-    </app-auto-complete>
+<app-auto-complete
+    *ngIf="inputIsActive && (autoCompleteResults$ | async) as resultsObject; else loading"
+    [resultsObject]="resultsObject"
+    (hinderMouseDownRequest)="hinderMouseDown($event)"
+    (resultClickRequest)="onSuggestionClick($event)"
+>
+</app-auto-complete>
 
-    <ng-container *ngIf="extendedResultsActive">
-        <app-search-grid 
-        [resultsObject]="resultsObject" 
-        (clickRequest)="onResultClick($event)">
-        </app-search-grid>
-
-        <app-paginator
-            [numberOfPages]="resultsObject.total_pages"
-            [currentPage]="resultsObject.page"
-            [numberOfResults]="resultsObject.total"
-            (onPageRequest)=requestPage($event)>
-        </app-paginator>
-    </ng-container>
-</ng-container>
 
 <ng-template #loading>
     <div [ngClass]="{'loading': inputIsActive && search.dirty}"></div>
 </ng-template> 
+
+
+<ng-container *ngIf="extendedResultsActive && (queryResults$ | async) as resultsObject">
+    <app-search-grid 
+    #extendedList 
+    tabindex="0"
+    [resultsObject]="resultsObject" 
+    (clickRequest)="onResultClick($event)">
+    </app-search-grid>
+
+    <app-paginator
+        [numberOfPages]="resultsObject.totalPages"
+        [currentPage]="resultsObject.currentPage"
+        [numberOfResults]="resultsObject.totalResults"
+        (onPageRequest)=requestPage($event)>
+    </app-paginator>
+</ng-container>
 
 
 
