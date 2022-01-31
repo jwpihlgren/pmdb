@@ -51,7 +51,11 @@ export class SearchComponent implements OnInit{
   }
 
   requestPage(page: number):void {
-    this.queryResults$ = this.searchService.search(this.search.value, page);
+    const tmp: any = this.searchService.search(this.search.value, page);
+    this.queryResults$ = tmp;
+    tmp.subscribe((data:any) => {
+      console.log(data)
+    })
   }
 
   showExtended() :void {

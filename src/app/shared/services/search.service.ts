@@ -33,13 +33,16 @@ export class SearchService {
 
   search(query:string, page:number = 1): Observable<ResultObject> {
     const storedResults: any = this.localStorageService.get(this.STORAGE_NAME);
-    if(storedResults && storedResults[query]) {
-      return of(storedResults[query])
+    if(storedResults && storedResults[query] && storedResults[query][page]) {
+/*       console.log(page)
+      console.log(storedResults[query][page]) */
+      return of(storedResults[query][page]);
     }
     return this.http.get<any>(`${environment.TMDB_BASE_URL}${this.SEARCH}?api_key=${environment.TMDB_API_KEY}&query=${query}&language=en-US&page=${page}&include_adult=false`, {headers: this.headers})
     .pipe(
       defaultIfEmpty(false),
       map((data:any) => {
+        /* Convert results array to searchResults */
         const searchResults: SearchResult[] = []
         data.results.forEach((result: any) => {
           searchResults.push(
@@ -52,20 +55,28 @@ export class SearchService {
             }
           )
         })
-        data.results = searchResults;
-        console.log(data.results)
-        const storedResults = this.localStorageService.get(this.STORAGE_NAME);
-        if (storedResults) {
-          storedResults[query] = data;
-          this.localStorageService.set(this.STORAGE_NAME, storedResults, this.MS_UNTIL_EXPIRE);
+
+        /* Convert response data to result object */
+        const resultObject: ResultObject = {
+          currentPage: data.page,
+          totalPages: data.total_pages,
+          totalResults: data.total_results,
+          results: searchResults
         }
-        else {
-          const newStoredResults: any = {};
-          newStoredResults[query] = data;
-          this.localStorageService.set(this.STORAGE_NAME, newStoredResults, this.MS_UNTIL_EXPIRE);
+
+
+        let storedResults = this.localStorageService.get(this.STORAGE_NAME);
+        /* Create a store if there isn't one*/
+        if(!storedResults) {
+          storedResults = {}
         }
-        
-        return data as ResultObject;
+        const resultToStore: any = {};
+        resultToStore[resultObject.currentPage] = resultObject;
+        storedResults[query] = {...storedResults[query], ...resultToStore};
+        /* Save to store. */
+        this.localStorageService.set(this.STORAGE_NAME, storedResults, this.MS_UNTIL_EXPIRE)
+        console.log(resultObject, "resultObject")
+        return resultObject;
       }),
       catchError(this.errorService.handleError)
     )
