@@ -146,7 +146,8 @@ export class DetailedMediaService {
       name: person.name,
       profilePath: person.profile_path ? `${this.imgBaseUrl}${this.profileSize}/${person.profile_path}` : "assets/images/profile_placeholder.png",
       character: person.character,
-      order: person.order
+      order: person.order,
+      id: person.id
     }
     })
     return credits;

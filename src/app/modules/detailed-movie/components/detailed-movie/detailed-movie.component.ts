@@ -15,11 +15,12 @@ export class DetailedMovieComponent implements OnInit {
   constructor(
     private detailedMediaService: DetailedMediaService, 
     private route: ActivatedRoute,
+    private router: Router,
     private navigationService: NavigationService
     ) { }
 
-   movie$?: Observable<DetailedMovie>;
-   buttonText: string = "Back"
+  movie$?: Observable<DetailedMovie>;
+  buttonText: string = "Back"
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -29,6 +30,10 @@ export class DetailedMovieComponent implements OnInit {
   goBack(event: any): void {
     event.preventDefault()
     this.navigationService.back();
+  }
+
+  onPersonClick(id:number): void {
+    this.router.navigateByUrl(`person/${id}`);
   }
 
   

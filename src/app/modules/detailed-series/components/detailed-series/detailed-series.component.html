@@ -48,7 +48,12 @@
     <section>
         <h2>Credits</h2>
         <app-grid class="credits">
-            <app-profile *ngFor="let castPerson of serie.credits" [castPerson]=castPerson></app-profile>
+            <app-profile 
+                *ngFor="let castPerson of serie.credits" 
+                [castPerson]=castPerson
+                (click)="onPersonClick(castPerson.id)"
+            >
+            </app-profile>
         </app-grid>
     </section>
 

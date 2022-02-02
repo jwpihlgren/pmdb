@@ -2,5 +2,6 @@ export interface Cast {
     name:string,
     profilePath:string,
     character:string,
-    order: number
+    order: number,
+    id: number
 }
