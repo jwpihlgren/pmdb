@@ -24,7 +24,7 @@ export class TrendingMediaService {
   getTrendingMovies(): Observable<Media[]> {
     const storedMovies: Media[] = this.localStorageService.get("trendingMovies");
     if(storedMovies) {
-      console.log("I had movies stored!")
+      
       return of(storedMovies)
     }
     else {
@@ -32,7 +32,7 @@ export class TrendingMediaService {
       .pipe(
         map((response: any) => {
           const movies: Media[] = this.extractDataToMediaType(response)
-          console.log("I fetched movies from the API")
+          
           this.localStorageService.set("trendingMovies", movies, this.MS_UNTIL_EXPIRE)
           return movies;
 
@@ -44,7 +44,7 @@ export class TrendingMediaService {
   getTrendingSeries(): Observable<Media[]> {
     const storedSeries: Media[] = this.localStorageService.get("trendingSeries");
     if(storedSeries) {
-      console.log("I had series stored!")
+      
       return of(storedSeries)
     }
     else {
@@ -52,7 +52,7 @@ export class TrendingMediaService {
       .pipe(
         map((response: any) => {
           const series: Media[] = this.extractDataToMediaType(response)
-          console.log("I fetched series from the API")
+          
           this.localStorageService.set("trendingSeries", series, this.MS_UNTIL_EXPIRE)
           return series;
 

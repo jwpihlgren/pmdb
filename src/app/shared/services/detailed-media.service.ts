@@ -41,7 +41,7 @@ export class DetailedMediaService {
     this.tmdbConfigService.getConfig();
     const storedMovie = this.localStorageService.get(`${id}`);
     if(storedMovie) {
-      console.log("I had stuff stored!")
+      
       return of(storedMovie)
     }
     else {
@@ -62,7 +62,7 @@ export class DetailedMediaService {
             runtime: data.runtime,
             credits: this.extractCredits(data.credits.cast),
           }
-          console.log("I fetched stuf from the API")
+          
           this.localStorageService.set(`${id}`, movie, this.MS_UNTIL_EXPIRE)
           return movie;
         }),
@@ -74,7 +74,7 @@ export class DetailedMediaService {
   getSerie(id:number): Observable<DetailedSerie> {
     const storedSerie = this.localStorageService.get(`${id}`);
     if(storedSerie) {
-      console.log("I had serie stored");
+      ;
       return of(storedSerie)
     }
     else {
@@ -146,7 +146,8 @@ export class DetailedMediaService {
       name: person.name,
       profilePath: person.profile_path ? `${this.imgBaseUrl}${this.profileSize}/${person.profile_path}` : "assets/images/profile_placeholder.png",
       character: person.character,
-      order: person.order
+      order: person.order,
+      id: person.id
     }
     })
     return credits;

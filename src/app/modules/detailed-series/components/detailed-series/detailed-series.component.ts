@@ -2,7 +2,7 @@ import { NavigationService } from 'src/app/shared/services/navigation.service';
 import { DetailedSerie } from 'src/app/shared/models/detailed-serie';
 import { Component, OnInit } from '@angular/core';
 import { DetailedMediaService } from 'src/app/shared/services/detailed-media.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,6 +15,7 @@ export class DetailedSeriesComponent implements OnInit {
   constructor(
     private detailedMediaService: DetailedMediaService,
     private route: ActivatedRoute,
+    private router: Router,
     private navigationService: NavigationService
     ) { }
   
@@ -30,6 +31,10 @@ export class DetailedSeriesComponent implements OnInit {
   goBack(event: any): void {
     event.preventDefault()
     this.navigationService.back();
+  }
+
+  onPersonClick(id:number): void {
+    this.router.navigateByUrl(`person/${id}`);
   }
 
 }

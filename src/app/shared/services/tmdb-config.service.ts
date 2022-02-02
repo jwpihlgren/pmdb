@@ -29,7 +29,7 @@ export class TmdbConfigService {
     loadConfig(){
       const config = this.localStorageService.get("config");
       if (config) {
-        console.log("Using saved config")
+        
         this.config = config;
         return lastValueFrom(of(config))
       }
@@ -37,7 +37,6 @@ export class TmdbConfigService {
       else {
         return lastValueFrom(this.http.get<any>(`${environment.TMDB_BASE_URL}${this.API_MEDIA_TYPE}?api_key=${environment.TMDB_API_KEY}`).pipe(
           map(config => {
-            console.log("I fetched the config"),
             this.config = config;
             this.localStorageService.set("config", config, this.MS_UNTIL_EXPIRE)
             return config
