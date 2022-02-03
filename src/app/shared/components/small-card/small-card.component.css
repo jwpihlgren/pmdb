@@ -10,3 +10,7 @@ img {
     height: auto;
     object-fit: contain;
 }
+
+img:hover {
+    cursor: pointer;
+}

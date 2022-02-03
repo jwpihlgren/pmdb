@@ -1,5 +1,8 @@
 <ng-container *ngIf="content; else placeholder">
-    <img [src]=content.posterPath>
+    <img 
+    [src]=content.posterPath
+    (click)="showContent($event)"
+    >
     <div class="flex col gap-sm">
         
         <ng-content></ng-content>

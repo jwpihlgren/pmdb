@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Season } from 'src/app/shared/models/season';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-small-card',
@@ -8,12 +8,22 @@ import { Season } from 'src/app/shared/models/season';
 })
 export class SmallCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   @Input() content: any;
 
   ngOnInit(): void {
-    console.log(this.content)
+  }
+
+  showContent(event: any) {
+    event.preventDefault();
+    this.router.navigateByUrl(`${this.content?.mediaType}/${this.content?.id}`)
+  }
+
+  getRoute(): string {
+    return `${this.content?.mediaType}/${this.content?.id}`
   }
 
 }
