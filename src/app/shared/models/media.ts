@@ -1,5 +1,5 @@
 export interface Media {
-    poster: string
+    posterPath: string
     title: string,
     synopsis: string,
     id: number,

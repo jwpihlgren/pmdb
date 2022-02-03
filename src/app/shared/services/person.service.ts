@@ -74,7 +74,7 @@ export class PersonService {
       cast.forEach((item: any) => {
         starredIn.push(
             { character: item.character,
-              poster: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
+              posterPath: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
               title: item.title || item.name,
               synopsis: item.overview,
               id: item.id,
@@ -94,7 +94,7 @@ export class PersonService {
       const workedOn: CrewInMedia[] = [];
       cast.forEach((item: any) => {
         workedOn.push(
-          { poster: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
+          { posterPath: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
             title: item.title || item.name,
             synopsis: item.overview,
             id: item.id,
