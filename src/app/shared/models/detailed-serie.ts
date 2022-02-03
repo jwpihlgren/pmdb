@@ -4,7 +4,7 @@ import { Genre } from "./genre";
 import { Season } from "./season";
 
 export interface DetailedSerie {
-    poster: string
+    posterPath: string
     name: string,
     synopsis: string,
     id: number,

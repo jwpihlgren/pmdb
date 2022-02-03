@@ -1,7 +1,7 @@
 
 <article  *ngIf="content">
     <a (click)="showContent($event)">
-        <img src={{content.poster}} alt="Hello">
+        <img src={{content.posterPath}} alt="Hello">
     </a>
     <div class="content"> 
         <h5><abbr title="{{content.title}}">{{content.title | clampText:35}}</abbr></h5>

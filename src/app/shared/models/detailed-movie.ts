@@ -2,7 +2,7 @@ import { Cast } from "./cast";
 import { Genre } from "./genre";
 
 export interface DetailedMovie {
-        poster: string
+        posterPath: string
         title: string,
         synopsis: string,
         id: number,

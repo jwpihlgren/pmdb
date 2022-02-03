@@ -10,9 +10,10 @@ export class SmallCardComponent implements OnInit {
 
   constructor() { }
 
-  @Input() season?: Season;
+  @Input() content: any;
 
   ngOnInit(): void {
+    console.log(this.content)
   }
 
 }

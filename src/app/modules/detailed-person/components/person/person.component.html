@@ -16,24 +16,30 @@
 
     </section>
     <section class="media flex row gap-sm">
-        <img src="{{person.profilePath}}" alt="Movie poster">
+        <img src="{{person.profilePath}}" alt="Movie posterPath">
         <p>{{person.biography}}</p>    
     </section>
 
     <section>
         <h2>Filmography ({{person.starredIn.length}})</h2>
-        <app-grid>
-            <app-card 
-                *ngFor="let movie of person.starredIn" [content]="movie">
-            </app-card>
+        <app-grid class="gap-lg">
+            <app-small-card 
+                *ngFor="let movie of person.starredIn" 
+                [content]="movie">
+                <h5>{{movie.title}}</h5>
+                <span>as {{movie.character}}</span>
+            </app-small-card>
         </app-grid>
     </section>
     <section>
         <h2>Other involvements ({{person.workedOn.length}})</h2>
         <app-grid>
-            <app-card 
-                *ngFor="let movie of person.workedOn">
-            </app-card>
+            <app-small-card 
+                *ngFor="let movie of person.workedOn" 
+                [content]="movie">
+                <h5>{{movie.title}}</h5>
+                <span>{{movie.job}}</span>
+            </app-small-card>
         </app-grid>
     </section>
 </ng-container>

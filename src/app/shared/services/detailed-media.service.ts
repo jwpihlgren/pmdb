@@ -49,7 +49,7 @@ export class DetailedMediaService {
       .pipe(
         map(data => {
           const movie: DetailedMovie = {
-            poster: data.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${data.poster_path}` : "assets/images/poster_placeholder.png",
+            posterPath: data.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${data.poster_path}` : "assets/images/poster_placeholder.png",
             title: data.title,
             synopsis: data.overview,
             id: data.id,
@@ -82,7 +82,7 @@ export class DetailedMediaService {
       .pipe(
         map(data => {
           const serie: DetailedSerie = {
-            poster: data.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${data.poster_path}` : "assets/images/poster_placeholder.png",
+            posterPath: data.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${data.poster_path}` : "assets/images/poster_placeholder.png",
             name: data.name,
             synopsis: data.overview,
             id: data.id,
