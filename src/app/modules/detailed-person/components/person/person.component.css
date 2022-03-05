@@ -23,3 +23,16 @@ app-button {
 p {
     flex-grow: 2;
 }
+
+@media screen and (max-width: 768px) {
+    .media {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .media img {
+        width: 75%;
+        max-width: 300px;
+    }
+    
+}
