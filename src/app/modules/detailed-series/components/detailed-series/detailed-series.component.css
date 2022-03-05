@@ -75,7 +75,7 @@ app-button {
     }
 
     app-video-player-component {
-        display: none;
+        aspect-ratio: 16 / 9;
     }
 
     .media img {

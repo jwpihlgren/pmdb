@@ -69,13 +69,13 @@ app-button {
         gap: 2rem
     }
 
-    app-video-player-component {
-        display: none;
-    }
-
-    img {
+    .media img {
         width: 75%;
         height: auto;
+    }
+
+    app-video-player-component {
+        aspect-ratio: 16/9;
     }
 
     .genres {
