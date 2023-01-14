@@ -14,6 +14,7 @@ import { GridComponent } from './components/grid/grid.component';
 import { SmallCardComponent } from './components/small-card/small-card.component';
 import { RoundToFullMinutePipe } from './pipes/round-to-full-minute.pipe';
 import { CollapseMenuComponent } from './components/collapse-menu/collapse-menu.component';
+import { RoundNumbersPipe } from './pipes/round-numbers.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CollapseMenuComponent } from './components/collapse-menu/collapse-menu.
     SmallCardComponent,
     RoundToFullMinutePipe,
     CollapseMenuComponent,
+    RoundNumbersPipe,
   ],
   imports: [
     CommonModule,

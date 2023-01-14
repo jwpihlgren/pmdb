@@ -6,7 +6,7 @@
     <div class="content"> 
         <h5><abbr title="{{content.title}}">{{content.title | clampText:35}}</abbr></h5>
         <div class="details">
-            <span>{{content.voteAverage}}</span>
+            <span>{{content.voteAverage | roundNumbers}}</span>
             <span>&#8226;</span>
             <span>{{content.date}}</span>
         </div>

@@ -1,6 +1,6 @@
 import { ResultObject } from './../models/result-object';
 import { SearchResult } from 'src/app/shared/models/search-result';
-import { catchError, defaultIfEmpty, map, Observable, of } from 'rxjs';
+import { catchError, defaultIfEmpty, map, Observable, of, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ErrorService } from './error.service';
@@ -36,7 +36,6 @@ export class SearchService {
     return this.http.get<any>(`${environment.TMDB_BASE_URL}${this.SEARCH}?api_key=${environment.TMDB_API_KEY}&query=${query}&language=en-US&include_adult=false`, {headers: this.headers})
       .pipe(
         map((data: any) => {
-          
           const filteredResults = this.filterUnique(data);
           const convertedResults = this.convertToSearchResult(filteredResults);
           return convertedResults;
@@ -99,6 +98,8 @@ export class SearchService {
   }
 
   private filterUnique(data: any): any {
+    console.log(data);
+    if(!data || !data.results) return []
     const results: any = [];
     data.results.forEach((result:any) => {
       const name = result.title || result.name

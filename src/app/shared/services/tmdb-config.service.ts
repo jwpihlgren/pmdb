@@ -35,6 +35,7 @@ export class TmdbConfigService {
       }
       
       else {
+        console.log(environment.TMDB_BASE_URL, environment.TMDB_API_KEY)
         return lastValueFrom(this.http.get<any>(`${environment.TMDB_BASE_URL}${this.API_MEDIA_TYPE}?api_key=${environment.TMDB_API_KEY}`).pipe(
           map(config => {
             this.config = config;
