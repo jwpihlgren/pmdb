@@ -18,7 +18,7 @@
             <app-data-item>
                 <ng-container caption>Average rating</ng-container>
                 <i icon class="fas fa-star fa-lg"></i>
-                <span text> {{movie.voteAverage}} / 10</span>
+                <span text> {{movie.voteAverage.toFixed(1)}} / 10</span>
                 <span subtext>{{movie.voteCount}} voters</span>
             </app-data-item>
             <app-data-item>
