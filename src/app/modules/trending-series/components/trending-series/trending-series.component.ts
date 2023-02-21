@@ -22,6 +22,6 @@ export class TrendingSeriesComponent implements OnInit {
   }
 
   requestPage(page: number):void {
-    this.trendingSeries$  = this.trendingMoviesService.getTrendingMovies(page);
+    this.trendingSeries$  = this.trendingMoviesService.getTrendingSeries(page);
   }
 }
