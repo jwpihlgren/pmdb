@@ -1,7 +1,7 @@
 import { TrendingMediaService } from 'src/app/shared/services/trending-Media.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Media, TrendingMediaResponse } from 'src/app/shared/models/media';
+import { TrendingMediaResponse } from 'src/app/shared/models/media';
 
 @Component({
   selector: 'app-trending-series',
