@@ -1,7 +1,7 @@
 import { TrendingMediaService } from 'src/app/shared/services/trending-Media.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Media } from 'src/app/shared/models/media';
+import { Media, TrendingMediaResponse } from 'src/app/shared/models/media';
 
 @Component({
   selector: 'app-trending-series',
@@ -14,10 +14,14 @@ export class TrendingSeriesComponent implements OnInit {
     private trendingMoviesService: TrendingMediaService,
     ) { }
 
-  series$: Observable<Media[]> = new Observable();
+  trendingSeries$: Observable<TrendingMediaResponse> = new Observable();
 
   ngOnInit(): void {
-    this.series$ = this.trendingMoviesService.getTrendingSeries();
+    this.trendingSeries$ = this.trendingMoviesService.getTrendingSeries();
 
+  }
+
+  requestPage(page: number):void {
+    this.trendingSeries$  = this.trendingMoviesService.getTrendingMovies(page);
   }
 }
