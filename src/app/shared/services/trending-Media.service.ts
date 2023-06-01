@@ -2,7 +2,7 @@ import { ErrorService } from './error.service';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, throwError } from 'rxjs';  
-import { Media } from 'src/app/shared/models/media';
+import { Media, TrendingMediaResponse } from 'src/app/shared/models/media';
 import { LocalStorageService } from './local-storage.service';
 import { environment } from 'src/environments/environment';
 
@@ -21,40 +21,50 @@ export class TrendingMediaService {
   headers = new HttpHeaders({'Content-Type': 'application/json'});
 
     
-  getTrendingMovies(): Observable<Media[]> {
-    const storedMovies: Media[] = this.localStorageService.get("trendingMovies");
-    if(storedMovies) {
-      
+  getTrendingMovies(page: number = 1): Observable<TrendingMediaResponse> {
+    const storedMovies: TrendingMediaResponse = this.localStorageService.get(`trendingMovies_Page${page}`);
+    if(storedMovies && storedMovies.page === page) {
       return of(storedMovies)
     }
     else {
-    return this.http.get<any[]>(`${environment.TMDB_BASE_URL}/trending/movie/week?api_key=${environment.TMDB_API_KEY}`, {headers: this.headers})
+    return this.http.get<any[]>(`${environment.TMDB_BASE_URL}/trending/movie/week?api_key=${environment.TMDB_API_KEY}&page=${page}`, {headers: this.headers})
       .pipe(
         map((response: any) => {
           const movies: Media[] = this.extractDataToMediaType(response)
+          const trendingMediaResponse: TrendingMediaResponse = {
+            results: movies,
+            page: response.page,
+            totalResults: response.total_results,
+            totalPages: response.total_pages
+          }
           
-          this.localStorageService.set("trendingMovies", movies, this.MS_UNTIL_EXPIRE)
-          return movies;
+          this.localStorageService.set(`trendingMovies_Page${page}`, trendingMediaResponse, this.MS_UNTIL_EXPIRE)
+          return trendingMediaResponse;
 
         }), catchError(this.errorService.handleError)
       )
     }
   }
 
-  getTrendingSeries(): Observable<Media[]> {
-    const storedSeries: Media[] = this.localStorageService.get("trendingSeries");
-    if(storedSeries) {
-      
+  getTrendingSeries(page: number = 1): Observable<TrendingMediaResponse> {
+    const storedSeries: TrendingMediaResponse = this.localStorageService.get(`trendingSeries_Page${page}`);
+    if(storedSeries && storedSeries.page === page) {
       return of(storedSeries)
     }
     else {
-    return this.http.get<any[]>(`${environment.TMDB_BASE_URL}/trending/tv/week?api_key=${environment.TMDB_API_KEY}`, {headers: this.headers})
+    return this.http.get<any[]>(`${environment.TMDB_BASE_URL}/trending/tv/week?api_key=${environment.TMDB_API_KEY}&page=${page}`, {headers: this.headers})
       .pipe(
         map((response: any) => {
           const series: Media[] = this.extractDataToMediaType(response)
+          const TrendingMediaResponse: TrendingMediaResponse = {
+            results: series,
+            page: response.page,
+            totalResults: response.total_results,
+            totalPages: response.total_pages
+          }
           
-          this.localStorageService.set("trendingSeries", series, this.MS_UNTIL_EXPIRE)
-          return series;
+          this.localStorageService.set(`trendingSeries_Page${page}`, TrendingMediaResponse, this.MS_UNTIL_EXPIRE)
+          return TrendingMediaResponse;
 
         }), catchError(this.errorService.handleError)
       )
@@ -65,7 +75,7 @@ export class TrendingMediaService {
     const mediaArr: Media[] = []
     response.results.forEach((occurance: any) => {
         mediaArr.push({
-          posterPath: `${this.posterBaseUrl}${occurance.poster_path}`,
+          poster_path: `${this.posterBaseUrl}${occurance.poster_path}`,
           title: occurance.title || occurance.name,
           synopsis: occurance.overview,
           id: occurance.id,

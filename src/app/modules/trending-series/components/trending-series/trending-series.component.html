@@ -1,7 +1,13 @@
-<ng-container *ngIf="(series$ | async) as series; else placeholder">
+<ng-container *ngIf="(trendingSeries$ | async) as trendingSeries; else placeholder">
     <app-grid>
-        <app-card *ngFor="let serie of series" [content]="serie" ></app-card>
+        <app-card *ngFor="let serie of trendingSeries.results" [content]="serie" ></app-card>
     </app-grid>
+    <app-paginator
+    [numberOfPages]="trendingSeries.totalPages"
+    [currentPage]="trendingSeries.page"
+    [numberOfResults]="trendingSeries.totalResults"
+    (onPageRequest)=requestPage($event)>
+</app-paginator>
 </ng-container>
 
 <ng-template #placeholder>

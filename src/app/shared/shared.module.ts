@@ -15,6 +15,7 @@ import { SmallCardComponent } from './components/small-card/small-card.component
 import { RoundToFullMinutePipe } from './pipes/round-to-full-minute.pipe';
 import { CollapseMenuComponent } from './components/collapse-menu/collapse-menu.component';
 import { RoundNumbersPipe } from './pipes/round-numbers.pipe';
+import { PaginatorComponent } from './components/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { RoundNumbersPipe } from './pipes/round-numbers.pipe';
     RoundToFullMinutePipe,
     CollapseMenuComponent,
     RoundNumbersPipe,
+    PaginatorComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { RoundNumbersPipe } from './pipes/round-numbers.pipe';
     GridComponent,
     SmallCardComponent,
     RoundToFullMinutePipe,
-    CollapseMenuComponent
+    CollapseMenuComponent,
+    PaginatorComponent
   ]
 })
 export class SharedModule { }

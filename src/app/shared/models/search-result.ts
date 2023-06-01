@@ -1,5 +1,5 @@
 export interface SearchResult {
-    posterPath: string,
+    poster_path: string,
     name:string,
     date: string,
     mediaType: string,

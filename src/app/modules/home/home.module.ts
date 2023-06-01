@@ -7,7 +7,6 @@ import { SearchComponent } from './components/search/search.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchGridComponent } from './components/search-grid/search-grid.component';
-import { PaginatorComponent } from './components/paginator/paginator.component';
 import { ButtonGroupComponent } from './components/button-group/button-group.component';
 import { AutoCompleteComponent } from './components/auto-complete/auto-complete.component';
 
@@ -17,7 +16,6 @@ import { AutoCompleteComponent } from './components/auto-complete/auto-complete.
     HomeComponent,
     SearchComponent,
     SearchGridComponent,
-    PaginatorComponent,
     ButtonGroupComponent,
     AutoCompleteComponent
   ],

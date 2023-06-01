@@ -1,13 +1,10 @@
 <ng-container *ngIf="content; else placeholder">
     <img 
-    [src]=content.posterPath
+    [src]=content.poster_path
     (click)="showContent($event)"
     >
     <div class="flex col gap-sm">
-        
         <ng-content></ng-content>
-        <h5><ng-content></ng-content><!-- {{season.name}} --></h5>
-        <ng-content></ng-content><!-- {{season.episodeCount}} -->
     </div>
 </ng-container>
 

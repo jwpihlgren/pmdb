@@ -1,7 +1,13 @@
-<ng-container *ngIf="(movies$ | async) as movies; else placeholder">
+<ng-container *ngIf="(trendingMovies$ | async) as trendingMovies; else placeholder">
     <app-grid>
-        <app-card *ngFor="let movie of movies" [content]="movie"></app-card>
+        <app-card *ngFor="let movie of trendingMovies.results" [content]="movie"></app-card>
     </app-grid>
+    <app-paginator
+        [numberOfPages]="trendingMovies.totalPages"
+        [currentPage]="trendingMovies.page"
+        [numberOfResults]="trendingMovies.totalResults"
+        (onPageRequest)=requestPage($event)>
+    </app-paginator>
 </ng-container>
 
 <ng-template #placeholder>
