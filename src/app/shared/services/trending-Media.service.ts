@@ -75,7 +75,7 @@ export class TrendingMediaService {
     const mediaArr: Media[] = []
     response.results.forEach((occurance: any) => {
         mediaArr.push({
-          posterPath: `${this.posterBaseUrl}${occurance.poster_path}`,
+          poster_path: `${this.posterBaseUrl}${occurance.poster_path}`,
           title: occurance.title || occurance.name,
           synopsis: occurance.overview,
           id: occurance.id,

@@ -2,7 +2,7 @@ import { CrewInMedia } from './crew-in-media';
 import { StarredInMedia } from 'src/app/shared/models/starred-in-media';
 
 export interface Person {
-    profilePath: string | null,
+    profile_path: string | null,
     birthday: string,
     deathday: null | string,
     id: number,

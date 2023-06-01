@@ -41,7 +41,7 @@ export class PersonService {
           .pipe(
             map((data: any)=> {
               const person: Person = {
-                profilePath: data.profile_path ? `${this.imgBaseUrl}${this.posterSize}/${data.profile_path}` : "assets/images/poster_placeholder.png",
+                profile_path: data.profile_path ? `${this.imgBaseUrl}${this.posterSize}/${data.profile_path}` : "assets/images/poster_placeholder.png",
                 birthday: data.birthday,
                 deathday: data.deathday,
                 id: data.id,
@@ -74,7 +74,7 @@ export class PersonService {
       cast.forEach((item: any) => {
         starredIn.push(
             { character: item.character,
-              posterPath: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
+              poster_path: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
               title: item.title || item.name,
               synopsis: item.overview,
               id: item.id,
@@ -94,7 +94,7 @@ export class PersonService {
       const workedOn: CrewInMedia[] = [];
       cast.forEach((item: any) => {
         workedOn.push(
-          { posterPath: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
+          { poster_path: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
             title: item.title || item.name,
             synopsis: item.overview,
             id: item.id,

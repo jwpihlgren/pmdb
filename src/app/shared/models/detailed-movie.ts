@@ -1,17 +1,17 @@
-import { Cast } from "./cast";
-import { Genre } from "./genre";
+import { ICast, ICrew, IGenre, IVideo } from "./tv-response-object.interface";
 
 export interface DetailedMovie {
-        posterPath: string
+        poster_path: string
         title: string,
         synopsis: string,
         id: number,
         releaseDate:string
         popularity: number,
         voteCount: number,
-        videos: any[],
         voteAverage: number
-        genres: Genre[],
+        genres: IGenre[],
         runtime: number,
-        credits: Cast[],
+        cast: ICast[],
+        crew: ICrew[],
+        videos: IVideo[],
 }
