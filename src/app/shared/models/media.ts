@@ -6,7 +6,7 @@ export interface TrendingMediaResponse {
 }
 
 export interface Media {
-    posterPath: string
+    poster_path: string
     title: string
     synopsis: string
     id: number

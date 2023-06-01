@@ -1,5 +1,4 @@
 import { TmdbConfigService } from './tmdb-config.service';
-import { Episode } from 'src/app/shared/models/episode';
 import { DetailedSerie } from 'src/app/shared/models/detailed-serie';
 import { environment } from 'src/environments/environment';
 import { LocalStorageService } from './local-storage.service';
@@ -9,8 +8,8 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 import { ErrorService } from './error.service';
-import { Season } from 'src/app/shared/models/season';
 import { Size } from 'src/app/shared/models/size';
+import ITvResponseObject, { IAppendedCredits, ICast, ICredit, ICrew, IEpisode, ISeason, IVideo } from '../models/tv-response-object.interface';
 
 
 
@@ -49,18 +48,19 @@ export class DetailedMediaService {
       .pipe(
         map(data => {
           const movie: DetailedMovie = {
-            posterPath: data.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${data.poster_path}` : "assets/images/poster_placeholder.png",
+            poster_path: this.setposter_path(data.poster_path),
             title: data.title,
             synopsis: data.overview,
             id: data.id,
             releaseDate: data.release_date,
             popularity: data.popularity,
             voteCount: data.vote_count,
-            videos: data.videos.results,
             voteAverage: data.vote_average,
             genres: data.genres,
             runtime: data.runtime,
-            credits: this.extractCredits(data.credits.cast),
+            cast: this.setCreditsposter_path(data.credits.cast) as ICast[],
+            crew: this.setCreditsposter_path(data.credits.crew) as ICrew[],
+            videos: data.videos.results,
           }
           
           this.localStorageService.set(`${id}`, movie, this.MS_UNTIL_EXPIRE)
@@ -78,29 +78,29 @@ export class DetailedMediaService {
       return of(storedSerie)
     }
     else {
-      return this.http.get<any>(`${environment.TMDB_BASE_URL}${this.SERIE}${id}?api_key=${environment.TMDB_API_KEY}${this.APPEND_URL}`, {headers: this.headers})
+      return this.http.get<ITvResponseObject>(`${environment.TMDB_BASE_URL}${this.SERIE}${id}?api_key=${environment.TMDB_API_KEY}${this.APPEND_URL}`, {headers: this.headers})
       .pipe(
         map(data => {
           const serie: DetailedSerie = {
-            posterPath: data.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${data.poster_path}` : "assets/images/poster_placeholder.png",
+            poster_path: this.setposter_path(data.poster_path),
             name: data.name,
             synopsis: data.overview,
             id: data.id,
             firstAirDate: data.first_air_date,
             lastAirDate: data.last_air_date,
-            lastEpisodeToAir: this.extractEpisode(data.last_episode_to_air),
-            nextEpisodeToAir: data.next_episode_to_air ? this.extractEpisode(data.next_episode_to_air) : null,
+            lastEpisodeToAir: this.setEpisodeposter_path(data.last_episode_to_air),
+            nextEpisodeToAir: data.next_episode_to_air,
             popularity: data.popularity,
             voteCount: data.vote_count,
             voteAverage: data.vote_average,
             episodeRuntime: data.episode_run_time,
             genres: data.genres,
-            credits: this.extractCredits(data.credits.cast),
+            crew: this.setCreditsposter_path(data.credits.crew) as ICrew[],
+            cast: this.setCreditsposter_path(data.credits.cast) as ICast[],
             videos: data.videos.results,
-            status:data.status,
             numberOfEpisodes: data.number_of_episodes,
             numberOfSeasons: data.number_of_seasons,
-            seasons: this.extractSeason(data.seasons)
+            seasons: this.setSeasonposter_path(data.seasons)
           }
           return serie
         }),
@@ -110,47 +110,34 @@ export class DetailedMediaService {
     }
   }
 
-  private extractSeason(data: any): Season[] {
-    const seasons: Season[] = data.map((season: any) => {
-      return {
-        airDate: season.air_date,
-        episodeCount: season.episode_count,
-        id: season.id,
-        name: season.name,
-        overview: season.overview,
-        posterPath:  season.poster_path ? `${this.imgBaseUrl}${this.profileSize}/${season.poster_path}` : "assets/images/poster_placeholder.png" ,
-        number: season.season_number
-      }
-    })
-    return seasons
+  private setposter_path(path: string): string {
+    return path ? `${this.imgBaseUrl}${this.posterSize}/${path}` : "assets/images/poster_placeholder.png"
   }
 
-  private extractEpisode(data: any): Episode {  
-    const episode: Episode = {
-      airDate: data.air_date,
-      episodeNumber: data.episodeNumber,
-      id: data.id,
-      episodeName: data.name,
-      episodeSynopsis: data.overview,
-      seasonNumber: data.season_number,
-      episodePoster: data.still_path ? `${this.imgBaseUrl}${this.profileSize}/${data.still_path}` : "assets/images/poster_placeholder.png",
-      episodeVoteAverage: data.vote_average,
-      episodeVoteCount: data.vote_count
-    }
-    return episode
+
+  private setSeasonposter_path(data: ISeason[]): ISeason[] {
+    data.forEach((season: ISeason) => {
+      if(!season.poster_path) season["poster_path"] = "assets/images/poster_placeholder.png"
+      else season.poster_path = season.poster_path ? `${this.imgBaseUrl}${this.profileSize}/${season.poster_path}` : "assets/images/poster_placeholder.png"
+    })
+    return data
   }
 
-  private extractCredits(data: any): Cast[] {
-    const credits: Cast[] = data.map((person: any) => {
-      return {
-      name: person.name,
-      profilePath: person.profile_path ? `${this.imgBaseUrl}${this.profileSize}/${person.profile_path}` : "assets/images/profile_placeholder.png",
-      character: person.character,
-      order: person.order,
-      id: person.id
-    }
-    })
-    return credits;
+  private setEpisodeposter_path(data: IEpisode): IEpisode {
+    if (!data) return data
+    if(!data.still_path) data["still_path"] = "assets/images/poster_placeholder.png"
+    data.still_path = data.still_path ? `${this.imgBaseUrl}${this.profileSize}/${data.still_path}` : "assets/images/poster_placeholder.png"
+    return data
   }
+
+  private setCreditsposter_path(data: ICast[] | ICrew[]): ICast[] | ICrew[] {
+    data.forEach((credit: ICast | ICrew) => {
+      if(!credit.profile_path) credit["profile_path"] = "assets/images/poster_placeholder.png"
+      else credit.profile_path = credit.profile_path ? `${this.imgBaseUrl}${this.profileSize}/${credit.profile_path}` : "assets/images/profile_placeholder.png"
+    })
+
+    return data
+  }
+
 }
 

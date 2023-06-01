@@ -1,26 +1,24 @@
-import { Cast } from "./cast";
-import { Episode } from "./episode";
 import { Genre } from "./genre";
-import { Season } from "./season";
+import { ICast, ICrew, IEpisode, ISeason } from "./tv-response-object.interface";
 
 export interface DetailedSerie {
-    posterPath: string
+    poster_path: string
     name: string,
     synopsis: string,
     id: number,
     firstAirDate:string,
     lastAirDate:string,
-    lastEpisodeToAir: Episode,
-    nextEpisodeToAir: Episode | null,
+    lastEpisodeToAir: IEpisode,
+    nextEpisodeToAir: string,
     popularity: number,
     voteCount: number,
     videos: any[],
     voteAverage: number
     genres: Genre[],
     episodeRuntime: number[],
-    credits: Cast[],
+    crew: ICrew[],
+    cast: ICast[],
     numberOfSeasons: number,
     numberOfEpisodes:number,
-    status: string,
-    seasons: Season[]
+    seasons: ISeason[],
 }

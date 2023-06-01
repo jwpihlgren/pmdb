@@ -86,7 +86,7 @@ export class SearchService {
     data.forEach((result: any) => {
       searchResults.push(
         {
-          posterPath: result.poster_path || result.profile_path ? `${this.imgBaseUrl}${this.posterSize}/${result.poster_path || result.profile_path}` : 'assets/images/poster_placeholder.png',
+          poster_path: result.poster_path || result.profile_path ? `${this.imgBaseUrl}${this.posterSize}/${result.poster_path || result.profile_path}` : 'assets/images/poster_placeholder.png',
           name: result.name || result.title,
           date: result.release_date || result.first_air_date || result.birthday,
           mediaType: result.media_type,

@@ -15,6 +15,7 @@ export class SmallCardComponent implements OnInit {
   @Input() content: any;
 
   ngOnInit(): void {
+    console.log(this.content)
   }
 
   showContent(event: any) {

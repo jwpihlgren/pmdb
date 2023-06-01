@@ -1,5 +1,5 @@
-import { Cast } from './../../models/cast';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { ICast, ICrew } from '../../models/tv-response-object.interface';
+import { Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @Input() castPerson? : Cast
+  @Input() castPerson? : ICast 
+  @Input() crewPerson? : ICrew
 
 }
