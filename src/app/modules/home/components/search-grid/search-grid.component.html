@@ -5,8 +5,10 @@
     (click)="onClickRequest(result)"
     tabindex="0">
         <div class="flex row gap-md">
+            
             <img [src]="result.poster_path" alt="">
             <div class="flex col gap-xs">
+                {{result.poster_path}}
                 <p>{{result.name}}</p>
                 <span>{{result.date}}</span>
             </div>
