@@ -49,6 +49,8 @@ export class PersonService {
                 workedOn: this.extractWorkedMedia(data.combined_credits.crew)
                 
               }
+              person.starredIn = person.starredIn.sort((a, b) => a.date > b.date ? -1 : 1)
+              person.workedOn = person.workedOn.sort((a, b) => a.date > b.date ? -1 : 1)
               const storedPersons = this.localStorageService.get(this.STORAGE_NAME);
               if(storedPersons) {
                 storedPersons[id] = person
