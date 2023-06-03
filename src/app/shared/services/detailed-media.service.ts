@@ -102,6 +102,9 @@ export class DetailedMediaService {
             numberOfSeasons: data.number_of_seasons,
             seasons: this.setSeasonposter_path(data.seasons)
           }
+
+          serie.cast = serie.cast.sort((a, b) => a.order > b.order ? 1 : -1)
+          serie.crew = serie.crew.sort((a, b) => a.job > b.job ? 1 : -1)
           return serie
         }),
         catchError(this.errorService.handleError)

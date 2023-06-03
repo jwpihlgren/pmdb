@@ -21,10 +21,10 @@ export class HeroNavigationComponent implements OnInit {
   trendiestTv$!: Observable<ITrendingTv>
 
   config: IHeroNavigationConfig = {
-    movieButtonTitle: 'To Trending Movies',
+    movieButtonTitle: 'More movies',
     trendingMoviesRoute: '/trending-movies',
     detailedMovieRoute: '/movie',
-    tvButtonTitle: 'To Trending Series',
+    tvButtonTitle: 'More series',
     trendingTvRoute: '/trending-series',
     detailedTvRoute: '/tv'
   }
