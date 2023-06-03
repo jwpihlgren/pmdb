@@ -1,7 +1,7 @@
 
-import { Media } from 'src/app/shared/models/media';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-card',
@@ -15,16 +15,21 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  @Input() content?: Media
-  buttonText: string = "Show more"
+@Input() content!: ICardOptions
+buttonText: string = "Show more"
 
   showContent(event: any) {
     event.preventDefault();
-    this.router.navigateByUrl(`${this.content?.mediaType}/${this.content?.id}`)
+    this.router.navigateByUrl(`${this.content.stub}/${this.content.id}`)
   }
+}
 
-  getRoute(): string {
-    return `${this.content?.mediaType}/${this.content?.id}`
-  }
-
+export interface ICardOptions {
+  id: number
+  stub: string
+  title: string
+  description: string
+  voteAverage: number
+  posterPath: string
+  year: string,
 }

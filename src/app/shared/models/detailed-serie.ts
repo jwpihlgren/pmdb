@@ -1,5 +1,4 @@
-import { Genre } from "./genre";
-import { ICast, ICrew, IEpisode, ISeason } from "./tv-response-object.interface";
+import { ICast, ICrew, IEpisode, IGenre, ISeason } from "./tv-response-object.interface";
 
 export interface DetailedSerie {
     poster_path: string
@@ -14,7 +13,7 @@ export interface DetailedSerie {
     voteCount: number,
     videos: any[],
     voteAverage: number
-    genres: Genre[],
+    genres: IGenre[],
     episodeRuntime: number[],
     crew: ICrew[],
     cast: ICast[],

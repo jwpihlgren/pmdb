@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SearchGridComponent } from './components/search-grid/search-grid.component';
 import { ButtonGroupComponent } from './components/button-group/button-group.component';
 import { AutoCompleteComponent } from './components/auto-complete/auto-complete.component';
+import { HeroNavigationComponent } from './components/hero-navigation/hero-navigation.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AutoCompleteComponent } from './components/auto-complete/auto-complete.
     SearchComponent,
     SearchGridComponent,
     ButtonGroupComponent,
-    AutoCompleteComponent
+    AutoCompleteComponent,
+    HeroNavigationComponent
   ],
   imports: [
     CommonModule,

@@ -35,7 +35,10 @@ html, span, i {
     font-family: 'Montserrat', sans-serif;
 }
 
-p {margin-bottom: 1rem;}
+p {
+    margin-bottom: 1rem;
+    line-height: 180%;
+}
 
 h1, h2, h3, h4, h5{
   font-family: 'Montserrat', sans-serif;
