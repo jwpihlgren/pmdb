@@ -1,17 +1,17 @@
 
-<article  *ngIf="content">
+<article>
     <a (click)="showContent($event)">
-        <img src={{content.poster_path}} alt="Hello">
+        <img src={{content.posterPath}}>
     </a>
     <div class="content"> 
         <h5><abbr title="{{content.title}}">{{content.title | clampText:35}}</abbr></h5>
         <div class="details">
             <span>{{content.voteAverage | roundNumbers}}</span>
             <span>&#8226;</span>
-            <span>{{content.date}}</span>
+            <span >{{content.year }}</span>
         </div>
 
-        <p>{{content.synopsis | clampText:120}}</p>
+        <p>{{content.description | clampText:120}}</p>
         <app-button (onClickRequest)="showContent($event)">{{buttonText}}</app-button>
     </div>
     
