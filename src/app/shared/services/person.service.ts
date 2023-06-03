@@ -1,6 +1,3 @@
-import { CrewInMedia } from './../models/crew-in-media';
-import { StarredInMedia } from './../models/starred-in-media';
-
 import { Person } from 'src/app/shared/models/person';
 import { Observable, of, catchError, map } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -69,8 +66,8 @@ export class PersonService {
       }
     }
 
-    private extractStarredMedia(cast: any): StarredInMedia[] {
-      const starredIn: StarredInMedia[] = []
+    private extractStarredMedia(cast: any): any[] {
+      const starredIn: any[] = []
       cast.forEach((item: any) => {
         starredIn.push(
             { character: item.character,
@@ -90,8 +87,8 @@ export class PersonService {
       })
       return starredIn;
     }
-    private extractWorkedMedia(cast: any): CrewInMedia[] {
-      const workedOn: CrewInMedia[] = [];
+    private extractWorkedMedia(cast: any): any[] {
+      const workedOn: any[] = [];
       cast.forEach((item: any) => {
         workedOn.push(
           { poster_path: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",

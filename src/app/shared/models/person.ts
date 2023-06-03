@@ -1,6 +1,3 @@
-import { CrewInMedia } from './crew-in-media';
-import { StarredInMedia } from 'src/app/shared/models/starred-in-media';
-
 export interface Person {
     profile_path: string | null,
     birthday: string,
@@ -9,6 +6,6 @@ export interface Person {
     name: string,
     biography: string,
     placeOfBirth: string,
-    starredIn: StarredInMedia[]
-    workedOn: CrewInMedia[]
+    starredIn: any[] /* TODO: Create interface */
+    workedOn: any[] /* TODO: Create interface */
 }
