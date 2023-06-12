@@ -1,4 +1,4 @@
-<img [src]="images[0].url" alt="" (click)="openLightbox()">
+<img [src]="lightBoxOptions.images[0].url" alt="" (click)="openLightbox()">
 
 
 
@@ -6,11 +6,11 @@
     <span class="close" (click)="closeLightbox()">&times;</span>
     <div class="modal-content">
         <app-slide 
-            *ngFor="let image of images let index = index"
+            *ngFor="let image of lightBoxOptions.images let index = index"
             [ngClass]="{'display': index === currentSlide }"
             [slideOptions]="{
             orderInLine: index + 1,
-            slideLength: images.length,
+            slideLength: lightBoxOptions.images.length,
             url: image.url,
             alt: image.alt}">
         </app-slide>

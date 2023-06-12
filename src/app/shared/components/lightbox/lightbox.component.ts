@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-lightbox',
@@ -9,13 +9,8 @@ export class LightboxComponent implements OnInit {
 
   currentSlide: number = 0
   lightBoxOpen: boolean = false
-  images: any[] = [
-    { url: "https://images.unsplash.com/photo-1686285386868-1e0469db5ddf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80" },
-    { url: "https://images.unsplash.com/photo-1685438531044-ef75606db89d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80" },
-    { url: "https://images.unsplash.com/photo-1686538199004-b893a314ddb7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80" },
-    { url: "https://images.unsplash.com/photo-1686515265863-14a4ebda172c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80" },
-    { url: "https://plus.unsplash.com/premium_photo-1669223464729-437d1d2b5287?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" },
-  ]
+
+  @Input() lightBoxOptions!: ILightBoxOptions
 
   constructor() { }
 
@@ -31,13 +26,22 @@ export class LightboxComponent implements OnInit {
   }
 
   nextSlide() {
-    if (this.currentSlide < this.images.length - 1) return this.currentSlide++
+    if (this.currentSlide < this.lightBoxOptions.images.length - 1) return this.currentSlide++
     return this.currentSlide = 0
   }
 
   previousSlide() {
     if (this.currentSlide > 0) return this.currentSlide--
-    return this.currentSlide = this.images.length - 1
+    return this.currentSlide = this.lightBoxOptions.images.length - 1
   }
 
+}
+
+export interface ILightBoxOptions {
+  images: Iimage[]
+}
+
+export interface Iimage {
+  url: string
+  alt?: string
 }

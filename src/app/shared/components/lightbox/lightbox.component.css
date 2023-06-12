@@ -6,6 +6,9 @@ img {
     width: 100%;
     height: auto;
 }
+img:hover {
+    cursor: pointer;
+}
 
 .modal {
     display: none;
