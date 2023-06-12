@@ -1,0 +1,27 @@
+<img [src]="images[0].url" alt="" (click)="openLightbox()">
+
+
+
+<div class="modal" [ngClass]="{'display': lightBoxOpen}">
+    <span class="close" (click)="closeLightbox()">&times;</span>
+    <div class="modal-content">
+        <app-slide 
+            *ngFor="let image of images let index = index"
+            [ngClass]="{'display': index === currentSlide }"
+            [slideOptions]="{
+            orderInLine: index + 1,
+            slideLength: images.length,
+            url: image.url,
+            alt: image.alt}">
+        </app-slide>
+        <a class="prev" (click)="previousSlide()">&#10094;</a>
+        <a class="next" (click)="nextSlide()">&#10095;</a>
+    
+        <div class="caption-container">
+            <p class="caption"></p>
+        </div>
+    </div>
+
+
+
+</div>
