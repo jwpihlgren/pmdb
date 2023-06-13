@@ -31,7 +31,7 @@
     <section class="media flex col gap-sm">
         <p>{{movie.synopsis}}</p>
         <div class="media flex row">
-            <img src="{{movie.poster_path}}" alt="Movie posterPath">
+            <app-lightbox  [lightBoxOptions]="{images: [{url: movie.poster_path , alt: movie.title}]}"></app-lightbox>
             <app-video-player-component *ngIf="movie.videos[0]" [videoId]=movie.videos[0].key>
             </app-video-player-component>
         </div>

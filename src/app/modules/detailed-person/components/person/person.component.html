@@ -15,9 +15,9 @@
         </div>
 
     </section>
-    <section class="media flex row gap-sm">
-        <img src="{{person.profile_path}}" alt="Movie posterPath">
-        <p>{{person.biography}}</p>    
+    <section class="media flex row gap-lg">
+        <app-lightbox  [lightBoxOptions]="{images: [{url: person.profile_path , alt: person.name}]}"></app-lightbox>
+        <p class="media">{{person.biography}}</p>    
     </section>
 
     <section>

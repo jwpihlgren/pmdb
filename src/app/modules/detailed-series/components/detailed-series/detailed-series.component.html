@@ -5,8 +5,8 @@
             <h1>{{serie.name}}</h1>
             <div class="data-points flex row">
                 <span>{{serie.firstAirDate }} </span>
-                <span>&#8226;</span>
-                <span>{{serie.episodeRuntime[0] | roundToFullMinute}} min</span>
+                <span *ngIf="serie.episodeRuntime[0]">&#8226;</span>
+                <span *ngIf="serie.episodeRuntime[0]">{{serie.episodeRuntime[0] | roundToFullMinute}} min</span>
             </div>
             <div class="genres flex row gap-sm" >
                 <app-pill *ngFor="let genre of serie.genres">
@@ -31,8 +31,8 @@
     <section class="media flex col gap-sm">
         <p>{{serie.synopsis}}</p>
         <div class="media flex row">
-            <img src="{{serie.poster_path}}" alt="serie posterPath">
-            <app-video-player-component [videoId]=serie.videos[0].key>
+            <app-lightbox  [lightBoxOptions]="{images: [{url: serie.poster_path, alt: serie.name}]}"></app-lightbox>
+            <app-video-player-component *ngIf="serie.videos[0]" [videoId]=serie.videos[0].key>
             </app-video-player-component>
         </div>
     </section>

@@ -1,0 +1,6 @@
+img {
+    width: 100%;
+    height: auto;
+    max-height: var(--image-max-height ,80vh);
+    object-fit: var(--image-object-fit ,contain);
+}
