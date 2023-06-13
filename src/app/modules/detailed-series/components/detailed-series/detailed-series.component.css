@@ -32,11 +32,6 @@ app-lightbox {
     height: auto;
 }
 
-
-.media {
-margin: 0 auto;
-}
-
 app-video-player-component {
 width: 66vw;
 max-width: calc(1280px * 0.66);

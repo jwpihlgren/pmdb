@@ -36,5 +36,4 @@ export class DetailedSeriesComponent implements OnInit {
   onPersonClick(id:number): void {
     this.router.navigateByUrl(`person/${id}`);
   }
-
 }
