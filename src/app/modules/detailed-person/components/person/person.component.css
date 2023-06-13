@@ -18,6 +18,7 @@ app-button {
     max-width: 400px;
     width: 34vw;
     height: auto;
+    margin-bottom: auto;
 }
 
 p.media {
