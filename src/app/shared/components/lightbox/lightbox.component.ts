@@ -10,14 +10,18 @@ export class LightboxComponent implements OnInit {
   currentSlide: number = 0
   lightBoxOpen: boolean = false
 
-  @Input() lightBoxOptions!: ILightBoxOptions
+  @Input() lightBoxOptions: ILightBoxOptions = {
+    images: [],
+    showAll: false
+  }
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  openLightbox() {
+  openLightbox(index: any = 0) {
+    this.currentSlide = index as number 
     this.lightBoxOpen = true
   }
   
@@ -39,6 +43,7 @@ export class LightboxComponent implements OnInit {
 
 export interface ILightBoxOptions {
   images: Iimage[]
+  showAll?: boolean
 }
 
 export interface Iimage {
