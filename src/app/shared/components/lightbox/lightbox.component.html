@@ -25,8 +25,8 @@
             url: image.url,
             alt: image.alt}">
         </app-slide>
-        <a class="prev" (click)="previousSlide()">&#10094;</a>
-        <a class="next" (click)="nextSlide()">&#10095;</a>
+        <a *ngIf="lightBoxOptions.images.length > 1" class="prev" (click)="previousSlide()">&#10094;</a>
+        <a *ngIf="lightBoxOptions.images.length > 1" class="next" (click)="nextSlide()">&#10095;</a>
     
         <div class="caption-container">
             <p class="caption"></p>

@@ -27,7 +27,7 @@ font-size: 1.5rem;
 
 }
 
-.media img {
+app-lightbox {
     width: 34%;
     height: auto;
 }
@@ -78,10 +78,9 @@ app-button {
         aspect-ratio: 16 / 9;
     }
 
-    .media img {
+    app-lightbox {
         width: 75%;
-        height: auto;
-        
+        height: auto;  
     }
 
     .genres {
