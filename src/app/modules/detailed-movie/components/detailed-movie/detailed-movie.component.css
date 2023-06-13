@@ -27,7 +27,7 @@ i.fa-chart-line {
 
 }
 
-.media img {
+app-lightbox {
     width: 34%;
     height: auto;
 }
@@ -69,7 +69,7 @@ app-button {
         gap: 2rem
     }
 
-    .media img {
+    app-lightbox {
         width: 75%;
         height: auto;
     }

@@ -1,7 +1,7 @@
 export interface Person {
-    profile_path: string | null,
+    profile_path: string,
     birthday: string,
-    deathday: null | string,
+    deathday: string,
     id: number,
     name: string,
     biography: string,

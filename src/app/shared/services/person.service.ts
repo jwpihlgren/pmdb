@@ -40,7 +40,7 @@ export class PersonService {
               const person: Person = {
                 profile_path: data.profile_path ? `${this.imgBaseUrl}${this.posterSize}/${data.profile_path}` : "assets/images/poster_placeholder.png",
                 birthday: data.birthday,
-                deathday: data.deathday,
+                deathday: data.deathday ? data.deathday : "",
                 id: data.id,
                 name: data.name,
                 biography: data.biography,
