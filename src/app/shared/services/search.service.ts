@@ -1,5 +1,4 @@
-import { ResultObject } from './../models/result-object';
-import { SearchResult } from 'src/app/shared/models/search-result';
+import { SearchResultObject, SearchResult  } from './../models/interfaces/search-result-object';
 import { catchError, defaultIfEmpty, map, Observable, of, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,7 +6,7 @@ import { ErrorService } from './error.service';
 import { LocalStorageService } from './local-storage.service';
 import { TmdbConfigService } from './tmdb-config.service';
 import { environment } from 'src/environments/environment';
-import { Size } from 'src/app/shared/models/size';
+import { Size } from 'src/app/shared/models/enums/tmdb/size';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +43,7 @@ export class SearchService {
       )
   }
 
-  search(query:string, page:number = 1): Observable<ResultObject> {
+  search(query:string, page:number = 1): Observable<SearchResultObject> {
     const storedResults: any = this.localStorageService.get(this.STORAGE_NAME);
     if(storedResults && storedResults[query] && storedResults[query][page]) {
       return of(storedResults[query][page]);
@@ -54,7 +53,7 @@ export class SearchService {
       defaultIfEmpty(false),
       map((data:any) => {
         const searchResults: SearchResult[] = this.convertToSearchResult(data.results);
-        const resultObject: ResultObject = {
+        const resultObject: SearchResultObject = {
           currentPage: data.page,
           totalPages: data.total_pages,
           totalResults: data.total_results,
@@ -68,7 +67,7 @@ export class SearchService {
     )
   }
 
-  private writeToLocalStorage(query:string ,resultObject: ResultObject): void {
+  private writeToLocalStorage(query:string ,resultObject: SearchResultObject): void {
     let storedResults = this.localStorageService.get(this.STORAGE_NAME);
 
     if(!storedResults) {

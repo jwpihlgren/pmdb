@@ -4,7 +4,7 @@ import { LocalStorageService } from './local-storage.service';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { catchError, lastValueFrom, map, of } from 'rxjs';
-import { Size } from 'src/app/shared/models/size';
+import { Size } from 'src/app/shared/models/enums/tmdb/size';
 
 @Injectable({
   providedIn: 'root'

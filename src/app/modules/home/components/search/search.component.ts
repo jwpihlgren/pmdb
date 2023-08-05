@@ -1,11 +1,10 @@
-
-import { ResultObject } from 'src/app/shared/models/result-object';
 import { debounceTime, Observable, Subscription, switchMap } from 'rxjs';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { Router } from '@angular/router';
-import { SearchResult } from 'src/app/shared/models/search-result';
+import { SearchResult, SearchResultObject } from 'src/app/shared/models/interfaces/search-result-object';
+
 
 @Component({
   selector: 'app-search',
@@ -18,7 +17,7 @@ export class SearchComponent implements OnInit{
   subscriptions: Subscription[] = [];
   inputIsActive: boolean = false;
   extendedResultsActive: boolean = false;
-  queryResults$: Observable<ResultObject> = new Observable();
+  queryResults$: Observable<SearchResultObject> = new Observable();
   autoCompleteResults$: Observable<SearchResult[]> = new Observable();
 
   constructor(

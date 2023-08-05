@@ -1,8 +1,8 @@
-import { Person } from 'src/app/shared/models/person';
+import { Person } from 'src/app/shared/models/interfaces/person';
 import { Observable, of, catchError, map } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Size } from '../models/size';
+import { Size } from '../models/enums/tmdb/size';
 import { ErrorService } from './error.service';
 import { LocalStorageService } from './local-storage.service';
 import { TmdbConfigService } from './tmdb-config.service';
@@ -49,8 +49,8 @@ export class PersonService {
                 workedOn: this.extractWorkedMedia(data.combined_credits.crew)
                 
               }
-              person.starredIn = person.starredIn.sort((a, b) => a.date > b.date ? -1 : 1)
-              person.workedOn = person.workedOn.sort((a, b) => a.date > b.date ? -1 : 1)
+              person.starredIn = person.starredIn.sort((a: any, b: any) => a.date > b.date ? -1 : 1)
+              person.workedOn = person.workedOn.sort((a: any, b: any) => a.date > b.date ? -1 : 1)
               const storedPersons = this.localStorageService.get(this.STORAGE_NAME);
               if(storedPersons) {
                 storedPersons[id] = person

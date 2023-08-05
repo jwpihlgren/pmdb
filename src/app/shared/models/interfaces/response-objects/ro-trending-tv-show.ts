@@ -1,11 +1,11 @@
-export interface ITrendingTvResponseObject {
+export interface RoTrendingTvShow {
     page: number
     results: ITrendingTv[]
     total_pages: number
     total_results: number
 }
 
-export interface ITrendingTv {
+interface ITrendingTv {
     adult: boolean
     backdrop_path: string
     id: number

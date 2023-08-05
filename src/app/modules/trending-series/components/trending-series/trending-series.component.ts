@@ -1,7 +1,7 @@
-import { TrendingMediaService } from 'src/app/shared/services/trending-Media.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ITrendingTvResponseObject } from 'src/app/shared/models/trending-tv-response-object.interface';
+import { ITrendingTvResponseObject } from 'src/app/shared/models/interfaces/response-objects/trending-tv';
+import { TvShowService } from 'src/app/shared/services/tv-show.service';
 
 
 @Component({
@@ -12,17 +12,17 @@ import { ITrendingTvResponseObject } from 'src/app/shared/models/trending-tv-res
 export class TrendingSeriesComponent implements OnInit {
 
   constructor(
-    private trendingMoviesService: TrendingMediaService,
+    private tvShowService: TvShowService,
     ) { }
 
   trendingSeries$: Observable<ITrendingTvResponseObject> = new Observable();
 
   ngOnInit(): void {
-    this.trendingSeries$ = this.trendingMoviesService.getTrendingSeries();
+    this.trendingSeries$ = this.tvShowService.getTrendingTvShows();
 
   }
 
   requestPage(page: number):void {
-    this.trendingSeries$  = this.trendingMoviesService.getTrendingSeries(page);
+    this.trendingSeries$  = this.tvShowService.getTrendingTvShows(page);
   }
 }

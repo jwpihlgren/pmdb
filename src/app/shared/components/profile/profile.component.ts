@@ -1,5 +1,6 @@
-import { ICast, ICrew } from '../../models/tv-response-object.interface';
 import { Component, Input, OnInit} from '@angular/core';
+import { ICast } from '../../models/interfaces/cast';
+import { ICrew } from '../../models/interfaces/crew';
 
 @Component({
   selector: 'app-profile',

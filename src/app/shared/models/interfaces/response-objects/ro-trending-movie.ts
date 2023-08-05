@@ -1,11 +1,11 @@
-export interface ITrendingMovieResponseObject {
+export interface RoTrendingMovie {
     page: number
     results: ITrendingMovie[]
     total_pages: number
     total_results: number
 }
 
-export interface ITrendingMovie {
+interface ITrendingMovie {
     adult: boolean
     backdrop_path: string
     id: number
