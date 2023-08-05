@@ -13,6 +13,8 @@ import { IVideo } from '../models/interfaces/video';
 import { IRoDetailedMovie } from '../models/interfaces/response-objects/ro-detailed-movie';
 import { ITrendingMovieResult } from '../models/interfaces/trending-movie';
 import { IRoTrendingMovieItem, IRoTrendingMovieResult } from '../models/interfaces/response-objects/ro-trending-movie';
+import { IRoProductionCompany } from '../models/interfaces/response-objects/ro-producing-company';
+import { IRoProductionCountry } from '../models/interfaces/response-objects/ro-production-country';
 
 
 @Injectable({
@@ -89,6 +91,8 @@ MovieService {
           console.log(response);
           const movie:IDetailedMovie = {
             posterPath: this.imageService.setPosterPath(response.poster_path),
+            productionCompanies: this.setProductionCompanies(response.production_companies),
+            productionCountries: this.setProductionCountries(response.production_countries),
             title: response.title,
             synopsis: response.overview,
             id: response.id,
@@ -104,6 +108,7 @@ MovieService {
           }
           
           this.localStorageService.set(`${id}`, movie, this.MS_UNTIL_EXPIRE)
+          console.log(movie);
           return movie;
         }),
           catchError(this.errorService.handleError)
@@ -117,5 +122,17 @@ MovieService {
       url: videos.results[0].key
     }
     return video
+  }
+
+  setProductionCompanies(companies: IRoProductionCompany[]): string[] {
+    return companies.map((company: IRoProductionCompany) => {
+      return company.name
+    })
+  }
+
+  setProductionCountries(countries: IRoProductionCountry[]): string[] {
+    return countries.map((country: IRoProductionCountry) => {
+      return country.name
+    })
   }
 }

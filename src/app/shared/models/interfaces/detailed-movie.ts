@@ -10,6 +10,8 @@ export interface IDetailedMovie {
     id: number
     posterPath: string
     popularity: number
+    productionCompanies: string[]
+    productionCountries: string[]
     releaseDate: string
     runtime: number
     synopsis: string

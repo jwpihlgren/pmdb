@@ -15,7 +15,6 @@ export class CrewService {
   constructor(private imageSerive: PosterService) { }
 
   setCast(cast: IRoCast[]): ICast[] {
-    console.log(cast);
     return cast.map((cast: IRoCast) => {
       return {
         id: cast.id,

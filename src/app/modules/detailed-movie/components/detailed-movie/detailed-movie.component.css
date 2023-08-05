@@ -78,7 +78,7 @@ app-button {
         aspect-ratio: 16/9;
     }
 
-    .genres {
+    .wrap {
         flex-wrap: wrap;
     }
 
