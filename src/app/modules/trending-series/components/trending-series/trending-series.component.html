@@ -1,19 +1,19 @@
-<ng-container *ngIf="(trendingSeries$ | async) as trendingSeries; else placeholder">
+<ng-container *ngIf="trendingTvShows$ | async as trendingTvShows; else placeholder">
     <app-grid>
-        <app-card *ngFor="let serie of trendingSeries.results" [content]="{
-            title: serie.name,
-            posterPath: serie.poster_path,
-            voteAverage: serie.vote_average,
-            year: serie.first_air_date,
-            description: serie.overview,
-            id: serie.id,
+        <app-card *ngFor="let tvShow of trendingTvShows.results" [content]="{
+            title: tvShow.name,
+            posterPath: tvShow.posterPath,
+            voteAverage: tvShow.voteAverage,
+            year: tvShow.firstAirDate,
+            description: tvShow.overview,
+            id: tvShow.id,
             stub: 'tv'
         }" ></app-card>
     </app-grid>
     <app-paginator
-    [numberOfPages]="trendingSeries.total_pages"
-    [currentPage]="trendingSeries.page"
-    [numberOfResults]="trendingSeries.total_results"
+    [numberOfPages]="trendingTvShows.totalPages"
+    [currentPage]="trendingTvShows.currentPage"
+    [numberOfResults]="trendingTvShows.totalResults"
     (onPageRequest)=requestPage($event)>
 </app-paginator>
 </ng-container>

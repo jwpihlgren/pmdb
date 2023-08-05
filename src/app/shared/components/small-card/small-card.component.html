@@ -1,10 +1,10 @@
-<ng-container *ngIf="content; else placeholder">
+<ng-container *ngIf="config else placeholder">
     <img 
-    [src]=content.poster_path
-    (click)="showContent($event)"
-    >
+    [src]=config.imageUrl
+    (click)="showContent($event)">
     <div class="flex col gap-sm">
-        <ng-content></ng-content>
+        <h5>{{config.title}}</h5>
+        <span>{{config.subtitle}}</span>
     </div>
 </ng-container>
 

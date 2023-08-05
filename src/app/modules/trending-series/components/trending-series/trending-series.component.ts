@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ITrendingTvResponseObject } from 'src/app/shared/models/interfaces/response-objects/trending-tv';
+import { ITrendingTvShowResult } from 'src/app/shared/models/interfaces/trending-tv-show';
 import { TvShowService } from 'src/app/shared/services/tv-show.service';
 
 
@@ -15,14 +15,14 @@ export class TrendingSeriesComponent implements OnInit {
     private tvShowService: TvShowService,
     ) { }
 
-  trendingSeries$: Observable<ITrendingTvResponseObject> = new Observable();
+  trendingTvShows$: Observable<ITrendingTvShowResult> = new Observable();
 
   ngOnInit(): void {
-    this.trendingSeries$ = this.tvShowService.getTrendingTvShows();
+    this.trendingTvShows$ = this.tvShowService.getTrendingTvShows();
 
   }
 
   requestPage(page: number):void {
-    this.trendingSeries$  = this.tvShowService.getTrendingTvShows(page);
+    this.trendingTvShows$  = this.tvShowService.getTrendingTvShows(page);
   }
 }

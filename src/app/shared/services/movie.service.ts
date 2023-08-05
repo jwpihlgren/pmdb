@@ -1,16 +1,18 @@
 import { ErrorService } from './error.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of, throwError } from 'rxjs';  
+import { catchError, map, Observable, of } from 'rxjs';  
 import { LocalStorageService } from './local-storage.service';
 import { environment } from 'src/environments/environment';
-import { ITrendingMovieResponseObject } from '../models/interfaces/response-objects/trending-movie';
-import { DetailedMovie } from '../models/interfaces/detailed-movie';
-import { IDetailedMovieResponseObject } from '../models/interfaces/response-objects/detailed-movie';
+import { IDetailedMovie } from '../models/interfaces/detailed-movie';
 import { CrewService } from './crew.service';
-import { ImageService } from './image.service';
+import { PosterService } from './poster.service';
 import { TmdbConfigService } from './tmdb-config.service';
-import { ITrendingMovie } from '../models/interfaces/trending-movie';
+import { IRoVideo} from '../models/interfaces/response-objects/ro-Video';
+import { IVideo } from '../models/interfaces/video';
+import { IRoDetailedMovie } from '../models/interfaces/response-objects/ro-detailed-movie';
+import { ITrendingMovieResult } from '../models/interfaces/trending-movie';
+import { IRoTrendingMovieItem, IRoTrendingMovieResult } from '../models/interfaces/response-objects/ro-trending-movie';
 
 
 @Injectable({
@@ -32,27 +34,48 @@ MovieService {
     private localStorageService: LocalStorageService,
     private tmdbConfigService:TmdbConfigService,
     private crewService: CrewService,
-    private imageService: ImageService,
+    private imageService: PosterService,
     ) { }
     
-  getTrendingMovies(page: number = 1): Observable<ITrendingMovie[]> {
-    const storedMovies: ITrendingMovieResponseObject = this.localStorageService.get(`trendingMovies_Page${page}`);
+  getTrendingMovies(page: number = 1): Observable<ITrendingMovieResult> {
+    const storedMovies: ITrendingMovieResult = this.localStorageService.get(`trendingMovies_Page${page}`);
     if(storedMovies && storedMovies.page === page) {
       return of(storedMovies)
     }
     else {
-    return this.http.get<ITrendingMovieResponseObject>(`${environment.TMDB_BASE_URL}/trending/movie/week?api_key=${environment.TMDB_API_KEY}&page=${page}`, {headers: this.headers})
+    return this.http.get<IRoTrendingMovieResult>(`${environment.TMDB_BASE_URL}/trending/movie/week?api_key=${environment.TMDB_API_KEY}&page=${page}`, {headers: this.headers})
       .pipe(
         map((response) => {        
-          const trendingMovies: ITrendingMovie[] = []
-          return trendingMovies
+          const trendingMovieResult: ITrendingMovieResult = {
+            page: response.page,
+            totalPages: response.total_pages,
+            totalResults: response.total_results,
+            results: response.results.map((movie: IRoTrendingMovieItem) => {
+              return {
+                adult: movie.adult,
+                id: movie.id,
+                overview: movie.overview,
+                posterPath: this.imageService.setPosterPath(movie.poster_path),
+                releaseDate: movie.release_date,
+                title: movie.title,
+                voteAverage: movie.vote_average,
+                voteCount: movie.vote_count,
+                popularity: movie.popularity,
+                originalLanguage: movie.original_language,
+                originalTitle: movie.original_title,
+                genreIds: movie.genre_ids
+              }
+            }),
+          }
+          this.localStorageService.set(`trendingMovies_Page${page}`, trendingMovieResult, this.MS_UNTIL_EXPIRE)
+          return trendingMovieResult;
 
         }), catchError(this.errorService.handleError)
       )
     }
   }
 
-  getMovieDetails(id: number): Observable<DetailedMovie> {
+  getMovieDetails(id: number): Observable<IDetailedMovie> {
     this.tmdbConfigService.getConfig();
     const storedMovie = this.localStorageService.get(`${id}`);
     if(storedMovie) {
@@ -60,24 +83,24 @@ MovieService {
       return of(storedMovie)
     }
     else {
-      return this.http.get<IDetailedMovieResponseObject>(`${environment.TMDB_BASE_URL}${this.MOVIE}${id}?api_key=${environment.TMDB_API_KEY}${this.APPEND_URL}`, {headers: this.headers})
+      return this.http.get<IRoDetailedMovie>(`${environment.TMDB_BASE_URL}${this.MOVIE}${id}?api_key=${environment.TMDB_API_KEY}${this.APPEND_URL}`, {headers: this.headers})
       .pipe(
-        map(data => {
-          const movie: DetailedMovie = {
-            poster_path: this.imageService.setPosterPath(data.poster_path),
-            title: data.title,
-            synopsis: data.overview,
-            id: data.id,
-            releaseDate: data.release_date,
-            popularity: data.popularity,
-            voteCount: data.vote_count,
-            voteAverage: data.vote_average,
-            genres: data.genres,
-            runtime: data.runtime,
-            cast: this.crewService.setCast(data.credits!.cast),
-            crew: this.crewService.setCrew(data.credits!.crew),
-            videoExists: data.video,
-            videos: data.videos!.results,
+        map(response => {
+          console.log(response);
+          const movie:IDetailedMovie = {
+            posterPath: this.imageService.setPosterPath(response.poster_path),
+            title: response.title,
+            synopsis: response.overview,
+            id: response.id,
+            releaseDate: response.release_date,
+            popularity: response.popularity,
+            voteAverage: response.vote_average,
+            voteCount: response.vote_count,
+            genres: response.genres,
+            runtime: response.runtime,
+            cast: this.crewService.setCast(response.credits.cast),
+            crew: this.crewService.setCrew(response.credits.crew),
+            video: this.setVideo(response.videos)
           }
           
           this.localStorageService.set(`${id}`, movie, this.MS_UNTIL_EXPIRE)
@@ -86,5 +109,13 @@ MovieService {
           catchError(this.errorService.handleError)
       )
     }
+  }
+
+  setVideo(videos: IRoVideo): IVideo | undefined {
+    if(videos.results.length < 1) return undefined
+    const video: IVideo = {
+      url: videos.results[0].key
+    }
+    return video
   }
 }

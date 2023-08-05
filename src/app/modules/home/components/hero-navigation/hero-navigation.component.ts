@@ -2,9 +2,9 @@ import { Router } from '@angular/router';
 import { MovieService } from '../../../../shared/services/movie.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { ITrendingMovie } from 'src/app/shared/models/interfaces/trending-movie';
-import { ITrendingTvShow } from 'src/app/shared/models/interfaces/trending-tv-show';
+import { ITrendingTvShowItem } from 'src/app/shared/models/interfaces/trending-tv-show';
 import { TvShowService } from 'src/app/shared/services/tv-show.service';
+import { ITrendingMovieItem} from 'src/app/shared/models/interfaces/trending-movie';
 
 
 @Component({
@@ -20,8 +20,8 @@ export class HeroNavigationComponent implements OnInit {
     private router: Router
     ) { }
 
-  trendiestMovie$!: Observable<ITrendingMovie>
-  trendiestTv$!: Observable<ITrendingTvShow>
+  trendiestMovie$!: Observable<ITrendingMovieItem>
+  trendiestTv$!: Observable<ITrendingTvShowItem>
 
   config: IHeroNavigationConfig = {
     movieButtonTitle: 'More movies',

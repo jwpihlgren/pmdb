@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ISmallCardConfig } from '../../models/interfaces/small-card-config';
 
 @Component({
   selector: 'app-small-card',
@@ -12,18 +13,16 @@ export class SmallCardComponent implements OnInit {
     private router: Router
   ) { }
 
-  @Input() content: any;
+  @Input() config!: ISmallCardConfig;
 
   ngOnInit(): void {
   }
 
   showContent(event: any) {
     event.preventDefault();
-    this.router.navigateByUrl(`${this.content?.mediaType}/${this.content?.id}`)
+    if(this.config.href) {
+      this.router.navigateByUrl(this.config.href)
+    }
+    
   }
-
-  getRoute(): string {
-    return `${this.content?.mediaType}/${this.content?.id}`
-  }
-
 }

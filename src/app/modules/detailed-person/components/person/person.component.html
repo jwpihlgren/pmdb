@@ -16,7 +16,7 @@
 
     </section>
     <section class="media flex row gap-lg">
-        <app-lightbox  [lightBoxOptions]="{images: [{url: person.profile_path , alt: person.name}]}"></app-lightbox>
+        <app-lightbox  [lightBoxOptions]="{images: [{url: person.profilePath , alt: person.name}]}"></app-lightbox>
         <p class="media">{{person.biography}}</p>    
     </section>
 
@@ -25,9 +25,7 @@
         <app-grid class="gap-lg">
             <app-small-card 
                 *ngFor="let movie of person.starredIn" 
-                [content]="movie">
-                <h5>{{movie.title}}</h5>
-                <span>as {{movie.character}}</span>
+                [config]="createStarredInCardConfig(movie)">
             </app-small-card>
         </app-grid>
     </section>
@@ -36,9 +34,7 @@
         <app-grid>
             <app-small-card 
                 *ngFor="let movie of person.workedOn" 
-                [content]="movie">
-                <h5>{{movie.title}}</h5>
-                <span>{{movie.job}}</span>
+                [config]="createOtherCardConfig(movie)">
             </app-small-card>
         </app-grid>
     </section>

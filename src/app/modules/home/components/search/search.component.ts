@@ -3,8 +3,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SearchService } from 'src/app/shared/services/search.service';
 import { Router } from '@angular/router';
-import { SearchResult, SearchResultObject } from 'src/app/shared/models/interfaces/search-result-object';
-
+import { ISearchResult, ISearchResultItem } from 'src/app/shared/models/interfaces/search-result';
 
 @Component({
   selector: 'app-search',
@@ -17,8 +16,8 @@ export class SearchComponent implements OnInit{
   subscriptions: Subscription[] = [];
   inputIsActive: boolean = false;
   extendedResultsActive: boolean = false;
-  queryResults$: Observable<SearchResultObject> = new Observable();
-  autoCompleteResults$: Observable<SearchResult[]> = new Observable();
+  queryResults$: Observable<ISearchResult> = new Observable();
+  autoCompleteResults$: Observable<ISearchResultItem[]> = new Observable();
 
   constructor(
     private searchService: SearchService,

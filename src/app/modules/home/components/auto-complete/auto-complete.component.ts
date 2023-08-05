@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { SearchResult } from 'src/app/shared/models/search-result';
+import { ISearchResultItem } from 'src/app/shared/models/interfaces/search-result';
 
 @Component({
   selector: 'app-auto-complete',
@@ -8,7 +8,7 @@ import { SearchResult } from 'src/app/shared/models/search-result';
 })
 export class AutoCompleteComponent implements OnInit {
 
-  @Input() resultsObject?: SearchResult[];
+  @Input() resultsObject?: ISearchResultItem[];
 
   @Output() hinderMouseDownRequest: EventEmitter<Event> = new EventEmitter();
   @Output() resultClickRequest: EventEmitter<any> = new EventEmitter();

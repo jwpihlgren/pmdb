@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
+import { PosterService } from './poster.service';
 import { ICast } from '../models/interfaces/cast';
 import { ICrew } from '../models/interfaces/crew';
-import { ICastResponseObject } from '../models/interfaces/response-objects/cast';
-import { ICrewResponseObject } from '../models/interfaces/response-objects/crew';
-import { ImageService } from './image.service';
+import { IRoCast } from '../models/interfaces/response-objects/ro-cast';
+import { IRoCrew } from '../models/interfaces/response-objects/ro-crew';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,11 @@ export class CrewService {
 
 
 
-  constructor(private imageSerive: ImageService) { }
+  constructor(private imageSerive: PosterService) { }
 
-  setCast(cast: ICastResponseObject[]): ICast[] {
-    return cast.map((cast: ICastResponseObject) => {
+  setCast(cast: IRoCast[]): ICast[] {
+    console.log(cast);
+    return cast.map((cast: IRoCast) => {
       return {
         id: cast.id,
         character: cast.character,
@@ -26,8 +27,8 @@ export class CrewService {
     })
   }
 
-  setCrew(crew: ICrewResponseObject[]): ICrew[] {
-     return crew.map((crew: ICrewResponseObject) => {
+  setCrew(crew: IRoCrew[]): ICrew[] {
+     return crew.map((crew: IRoCrew) => {
       return {
         id: crew.id,
         job: crew.job,

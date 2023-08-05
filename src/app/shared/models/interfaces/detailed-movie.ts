@@ -1,2 +1,20 @@
-export interface DetailedMovie {
+import { ICast } from "./cast"
+import { ICrew } from "./crew"
+import { IGenre } from "./genre"
+import { IVideo } from "./video"
+
+export interface IDetailedMovie {
+    cast: ICast[]
+    crew: ICrew[]
+    genres: IGenre[]
+    id: number
+    posterPath: string
+    popularity: number
+    releaseDate: string
+    runtime: number
+    synopsis: string
+    title: string
+    video?: IVideo
+    voteAverage: number
+    voteCount: number
 }

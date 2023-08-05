@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ITrendingMovieResponseObject } from 'src/app/shared/models/interfaces/response-objects/trending-movie';
+import { ITrendingMovieResult } from 'src/app/shared/models/interfaces/trending-movie';
 import { MovieService } from 'src/app/shared/services/movie.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class TrendingMoviesComponent implements OnInit {
 
   constructor(private movieService: MovieService) { }
 
-  trendingMovies$: Observable<ITrendingMovieResponseObject> = new Observable();
+  trendingMovies$: Observable<ITrendingMovieResult> = new Observable();
 
   ngOnInit(): void {
     this.trendingMovies$ = this.movieService.getTrendingMovies();
