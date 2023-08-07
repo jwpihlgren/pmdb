@@ -1,5 +1,5 @@
-export interface Person {
-    profile_path: string,
+export interface IDetailedPerson {
+    profilePath: string,
     birthday: string,
     deathday: string,
     id: number,

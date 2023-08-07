@@ -1,14 +1,16 @@
-import { ICast, ICrew, IEpisode, IGenre, ISeason } from "./tv-response-object.interface";
+import { ICast } from "./cast"
+import { ICrew } from "./crew"
+import { IGenre } from "./genre"
+import { IProductionCountry } from "./production-country"
+import { ISeason } from "./season"
 
-export interface DetailedSerie {
-    poster_path: string
+export interface IDetailedTvShow {
+    posterPath: string
     name: string,
     synopsis: string,
     id: number,
     firstAirDate:string,
     lastAirDate:string,
-    lastEpisodeToAir: IEpisode,
-    nextEpisodeToAir: string,
     popularity: number,
     voteCount: number,
     videos: any[],
@@ -20,4 +22,6 @@ export interface DetailedSerie {
     numberOfSeasons: number,
     numberOfEpisodes:number,
     seasons: ISeason[],
+    productionCompanies: string[]
+    productionCountries: IProductionCountry[]
 }

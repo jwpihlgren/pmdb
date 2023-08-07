@@ -1,4 +1,4 @@
-export enum PageRequestType {
+export enum PageRequest {
         PREVIOUS,
         NEXT,
         PAGE,

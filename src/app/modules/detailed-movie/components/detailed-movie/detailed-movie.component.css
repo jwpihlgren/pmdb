@@ -1,20 +1,18 @@
 :host {
-        margin: 0 auto;
-        max-width: 1280px;
-        padding: 2rem;
-        gap: 4rem;
-        display: flex;
-        flex-direction: column;
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: 2rem;
+    gap: 4rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.data-points {
-    gap: 0.5rem;
-}
 
 .misc {
     gap: 2rem;
 
 }
+
 
 .data-item{
     display: flex;
@@ -78,7 +76,7 @@ app-button {
         aspect-ratio: 16/9;
     }
 
-    .genres {
+    .wrap {
         flex-wrap: wrap;
     }
 

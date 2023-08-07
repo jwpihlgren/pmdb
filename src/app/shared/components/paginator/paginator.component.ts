@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { PageRequestType } from 'src/app/shared/models/page-request-type';
+import { PageRequest } from '../../models/enums/page-request';
 
 @Component({
   selector: 'app-paginator',
@@ -16,7 +16,7 @@ export class PaginatorComponent {
 
   @Output() onPageRequest: EventEmitter<number> = new EventEmitter();
 
-  public PRT = PageRequestType;
+  public PRT = PageRequest;
   
   constructor() { 
 

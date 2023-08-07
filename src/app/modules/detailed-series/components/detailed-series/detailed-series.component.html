@@ -1,37 +1,44 @@
 <ng-container class="" *ngIf="serie$ |async as serie; else placeholder">
     <app-button (onClickRequest)="goBack($event)" ><span class="flex row gap-sm"><i icon class="fas fa-chevron-left fa-lg"></i>{{buttonText}}</span></app-button>
-    <section class="subheader flex row space-between">
-        <div class="details flex col gap-md">
+    <section class="subheader flex col space-between">
+        <div class="flex row space-between">
             <h1>{{serie.name}}</h1>
-            <div class="data-points flex row">
-                <span>{{serie.firstAirDate }} </span>
-                <span *ngIf="serie.episodeRuntime[0]">&#8226;</span>
-                <span *ngIf="serie.episodeRuntime[0]">{{serie.episodeRuntime[0] | roundToFullMinute}} min</span>
-            </div>
-            <div class="genres flex row gap-sm" >
-                <app-pill *ngFor="let genre of serie.genres">
-                    {{genre.name}}
-                </app-pill>
+            <div class="misc flex row">
+                <app-data-item>
+                    <ng-container caption>Average rating</ng-container>
+                    <i icon class="fas fa-star fa-lg"></i>
+                    <span text> {{serie.voteAverage.toFixed(1)}} / 10</span>
+                    <span subtext>{{serie.voteCount}} voters</span>
+                </app-data-item>
+                <app-data-item>
+                    <ng-container caption>popularty score</ng-container>
+                    <i icon class="fas fa-chart-line fa-lg"></i>
+                    <span text> {{serie.popularity}}</span>
+                </app-data-item>
             </div>
         </div>
-        <div class="misc flex row">
-            <app-data-item>
-                <ng-container caption>Average rating</ng-container>
-                <i icon class="fas fa-star fa-lg"></i>
-                <span text> {{serie.voteAverage.toFixed(1)}} / 10</span>
-                <span subtext>{{serie.voteCount}} voters</span>
-            </app-data-item>
-            <app-data-item>
-                <ng-container caption>Popularity score</ng-container>
-                <i icon class="fas fa-chart-line fa-lg"></i>
-                <span text> {{serie.popularity}}</span>
-            </app-data-item>
+        <div class="details flex col gap-md">
+        <div class="flex row a-center trailing-bullet">
+            <span>{{serie.firstAirDate}}</span>
+            <span *ngIf="serie.episodeRuntime.length > 0; else fallbackRuntime">{{serie.episodeRuntime[0]}} min</span>
+            <ng-template #fallbackRuntime><span>Not premiered</span></ng-template>
+            <div>
+                <span class="horizontal-list" *ngFor="let country of serie.productionCountries" title="{{country.name}}">{{country.short}}</span>
+            </div>
+
         </div>
+        <div class="genres flex row gap-sm" >
+            <app-pill *ngFor="let genre of serie.genres">
+                {{genre.name}}
+            </app-pill>
+        </div>
+        </div>
+
     </section>
     <section class="media flex col gap-sm">
         <p>{{serie.synopsis}}</p>
         <div class="media flex row">
-            <app-lightbox  [lightBoxOptions]="{images: [{url: serie.poster_path, alt: serie.name}]}"></app-lightbox>
+            <app-lightbox  [lightBoxOptions]="{images: [{url: serie.posterPath, alt: serie.name}]}"></app-lightbox>
             <app-video-player-component *ngIf="serie.videos[0]" [videoId]=serie.videos[0].key>
             </app-video-player-component>
         </div>
@@ -40,9 +47,7 @@
     <section *ngIf="serie.seasons.length > 0">
         <h2>Seasons</h2>
         <app-grid class="seasons">
-            <app-small-card *ngFor="let season of serie.seasons" [content]=season>
-                <h5>{{season.name}}</h5>
-                <span>{{season.episode_count}} episodes</span>
+            <app-small-card *ngFor="let season of serie.seasons" [config]=createCardConfig(season)>
             </app-small-card>
         </app-grid>
     </section>

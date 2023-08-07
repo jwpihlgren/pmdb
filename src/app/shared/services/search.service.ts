@@ -1,5 +1,3 @@
-import { ResultObject } from './../models/result-object';
-import { SearchResult } from 'src/app/shared/models/search-result';
 import { catchError, defaultIfEmpty, map, Observable, of, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,7 +5,9 @@ import { ErrorService } from './error.service';
 import { LocalStorageService } from './local-storage.service';
 import { TmdbConfigService } from './tmdb-config.service';
 import { environment } from 'src/environments/environment';
-import { Size } from 'src/app/shared/models/size';
+import { Size } from 'src/app/shared/models/enums/tmdb/size';
+import { ISearchResult, ISearchResultItem } from '../models/interfaces/search-result';
+import { PosterService } from './poster.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +29,11 @@ export class SearchService {
     private errorService:ErrorService,
     private localStorageService: LocalStorageService,
     private tmdbConfigService:TmdbConfigService,
+    private posterService: PosterService
     ){ }
 
   
-  getAutoComplete(query: string): Observable<SearchResult[]> {
+  getAutoComplete(query: string): Observable<ISearchResultItem[]> {
     return this.http.get<any>(`${environment.TMDB_BASE_URL}${this.SEARCH}?api_key=${environment.TMDB_API_KEY}&query=${query}&language=en-US&include_adult=false`, {headers: this.headers})
       .pipe(
         map((data: any) => {
@@ -44,7 +45,7 @@ export class SearchService {
       )
   }
 
-  search(query:string, page:number = 1): Observable<ResultObject> {
+  search(query:string, page:number = 1): Observable<ISearchResult> {
     const storedResults: any = this.localStorageService.get(this.STORAGE_NAME);
     if(storedResults && storedResults[query] && storedResults[query][page]) {
       return of(storedResults[query][page]);
@@ -53,8 +54,8 @@ export class SearchService {
     .pipe(
       defaultIfEmpty(false),
       map((data:any) => {
-        const searchResults: SearchResult[] = this.convertToSearchResult(data.results);
-        const resultObject: ResultObject = {
+        const searchResults: ISearchResultItem[] = this.convertToSearchResult(data.results);
+        const resultObject: ISearchResult = {
           currentPage: data.page,
           totalPages: data.total_pages,
           totalResults: data.total_results,
@@ -68,7 +69,7 @@ export class SearchService {
     )
   }
 
-  private writeToLocalStorage(query:string ,resultObject: ResultObject): void {
+  private writeToLocalStorage(query:string ,resultObject: ISearchResult): void {
     let storedResults = this.localStorageService.get(this.STORAGE_NAME);
 
     if(!storedResults) {
@@ -81,12 +82,12 @@ export class SearchService {
     this.localStorageService.set(this.STORAGE_NAME, storedResults, this.MS_UNTIL_EXPIRE)
   }
 
-  private convertToSearchResult(data:any): SearchResult[] {
-    const searchResults: SearchResult[] = []
+  private convertToSearchResult(data:any): ISearchResultItem[] {
+    const searchResults: ISearchResultItem[] = []
     data.forEach((result: any) => {
       searchResults.push(
         {
-          poster_path: result.poster_path || result.profile_path ? `${this.imgBaseUrl}${this.posterSize}/${result.poster_path || result.profile_path}` : 'assets/images/poster_placeholder.png',
+          posterPath: this.posterService.setPosterPath(result.poster_path),
           name: result.name || result.title,
           date: result.release_date || result.first_air_date || result.birthday,
           mediaType: result.media_type,

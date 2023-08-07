@@ -1,12 +1,13 @@
-import { Person } from 'src/app/shared/models/person';
 import { Observable, of, catchError, map } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Size } from '../models/size';
+import { Size } from '../models/enums/tmdb/size';
 import { ErrorService } from './error.service';
 import { LocalStorageService } from './local-storage.service';
 import { TmdbConfigService } from './tmdb-config.service';
 import { environment } from 'src/environments/environment';
+import { IDetailedPerson } from '../models/interfaces/detailed-person';
+import { IRoDetailedPerson } from '../models/interfaces/response-objects/ro-detailed-person';
 
 @Injectable({
   providedIn: 'root'
@@ -28,17 +29,17 @@ export class PersonService {
     private localStorageService: LocalStorageService,
     private tmdbConfigService:TmdbConfigService) { }
 
-    getPerson(id: number): Observable<Person> {
+    getPerson(id: number): Observable<IDetailedPerson> {
       const storedPersons = this.localStorageService.get(this.STORAGE_NAME);
       if(storedPersons && storedPersons[id] && storedPersons[id].id === id) {
         return of(storedPersons[id])
       }
       else {
-        return this.http.get<any>(`${environment.TMDB_BASE_URL}${this.REQUEST_TYPE}/${id}?api_key=${environment.TMDB_API_KEY}&language=en-US&include_adult=false&${this.APPEND_URL}`, {headers: this.headers})
+        return this.http.get<IRoDetailedPerson>(`${environment.TMDB_BASE_URL}${this.REQUEST_TYPE}/${id}?api_key=${environment.TMDB_API_KEY}&language=en-US&include_adult=false&${this.APPEND_URL}`, {headers: this.headers})
           .pipe(
             map((data: any)=> {
-              const person: Person = {
-                profile_path: data.profile_path ? `${this.imgBaseUrl}${this.posterSize}/${data.profile_path}` : "assets/images/poster_placeholder.png",
+              const person: IDetailedPerson = {
+                profilePath: data.profile_path ? `${this.imgBaseUrl}${this.posterSize}/${data.profile_path}` : "assets/images/poster_placeholder.png",
                 birthday: data.birthday,
                 deathday: data.deathday ? data.deathday : "",
                 id: data.id,
@@ -49,8 +50,8 @@ export class PersonService {
                 workedOn: this.extractWorkedMedia(data.combined_credits.crew)
                 
               }
-              person.starredIn = person.starredIn.sort((a, b) => a.date > b.date ? -1 : 1)
-              person.workedOn = person.workedOn.sort((a, b) => a.date > b.date ? -1 : 1)
+              person.starredIn = person.starredIn.sort((a: any, b: any) => a.date > b.date ? -1 : 1)
+              person.workedOn = person.workedOn.sort((a: any, b: any) => a.date > b.date ? -1 : 1)
               const storedPersons = this.localStorageService.get(this.STORAGE_NAME);
               if(storedPersons) {
                 storedPersons[id] = person
@@ -73,7 +74,7 @@ export class PersonService {
       cast.forEach((item: any) => {
         starredIn.push(
             { character: item.character,
-              poster_path: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
+              posterPath: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
               title: item.title || item.name,
               synopsis: item.overview,
               id: item.id,
@@ -93,7 +94,7 @@ export class PersonService {
       const workedOn: any[] = [];
       cast.forEach((item: any) => {
         workedOn.push(
-          { poster_path: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
+          { posterPath: item.poster_path ? `${this.imgBaseUrl}${this.posterSize}/${item.poster_path}` : "assets/images/poster_placeholder.png",
             title: item.title || item.name,
             synopsis: item.overview,
             id: item.id,

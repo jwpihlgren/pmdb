@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { PersonService } from 'src/app/shared/services/person.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { Person } from 'src/app/shared/models/person';
+import { IDetailedPerson } from 'src/app/shared/models/interfaces/detailed-person';
+import { ISmallCardConfig } from 'src/app/shared/models/interfaces/small-card-config';
 
 @Component({
   selector: 'app-person',
@@ -12,7 +13,7 @@ import { Person } from 'src/app/shared/models/person';
 })
 export class PersonComponent implements OnInit {
 
-  person$: Observable<Person> = new Observable();
+  person$: Observable<IDetailedPerson> = new Observable();
   buttonText: string = "Back";
 
   constructor(
@@ -30,5 +31,22 @@ export class PersonComponent implements OnInit {
     event.preventDefault()
     this.navigationService.back();
   }
+
+  createStarredInCardConfig(starredIn: any): ISmallCardConfig {
+    return {
+      imageUrl: starredIn.posterPath,
+      href: `${starredIn.mediaType}/${starredIn.id}`,
+      title: starredIn.title,
+      subtitle: `as ${starredIn.character}`,
+  }
+}
+  createOtherCardConfig(workedOn: any): ISmallCardConfig {
+    return {
+      imageUrl: workedOn.posterPath,
+      href: `${workedOn.mediaType}/${workedOn.id}`,
+      title: workedOn.title,
+      subtitle: workedOn.job
+  }
+}
 
 }

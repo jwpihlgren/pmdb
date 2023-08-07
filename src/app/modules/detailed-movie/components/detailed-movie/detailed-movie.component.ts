@@ -1,9 +1,9 @@
 import { NavigationService } from 'src/app/shared/services/navigation.service';
-import { DetailedMediaService } from 'src/app/shared/services/detailed-media.service';
-import { DetailedMovie } from 'src/app/shared/models/detailed-movie';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IDetailedMovie } from 'src/app/shared/models/interfaces/detailed-movie';
+import { MovieService } from 'src/app/shared/services/movie.service';
 
 @Component({
   selector: 'app-detailed-movie',
@@ -13,18 +13,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DetailedMovieComponent implements OnInit {
 
   constructor(
-    private detailedMediaService: DetailedMediaService, 
+    private movieService: MovieService, 
     private route: ActivatedRoute,
     private router: Router,
     private navigationService: NavigationService
     ) { }
 
-  movie$?: Observable<DetailedMovie>;
+  movie$?: Observable<IDetailedMovie>;
   buttonText: string = "Back"
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    if(id) {this.movie$ = this.detailedMediaService.getMovie(+id);}
+    if(id) {this.movie$ = this.movieService.getMovieDetails(+id);}
   }
 
   goBack(event: any): void {

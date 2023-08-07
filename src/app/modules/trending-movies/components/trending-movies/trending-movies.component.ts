@@ -1,7 +1,7 @@
-import { TrendingMediaService } from 'src/app/shared/services/trending-Media.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ITrendingMovieResponseObject } from 'src/app/shared/models/trending-movie-response-object.interface';
+import { ITrendingMovieResult } from 'src/app/shared/models/interfaces/trending-movie';
+import { MovieService } from 'src/app/shared/services/movie.service';
 
 @Component({
   selector: 'app-trending-movies',
@@ -10,16 +10,16 @@ import { ITrendingMovieResponseObject } from 'src/app/shared/models/trending-mov
 })
 export class TrendingMoviesComponent implements OnInit {
 
-  constructor(private trendingMoviesService: TrendingMediaService) { }
+  constructor(private movieService: MovieService) { }
 
-  trendingMovies$: Observable<ITrendingMovieResponseObject> = new Observable();
+  trendingMovies$: Observable<ITrendingMovieResult> = new Observable();
 
   ngOnInit(): void {
-    this.trendingMovies$ = this.trendingMoviesService.getTrendingMovies();
+    this.trendingMovies$ = this.movieService.getTrendingMovies();
   }
 
 
   requestPage(page: number):void {
-    this.trendingMovies$  = this.trendingMoviesService.getTrendingMovies(page);
+    this.trendingMovies$  = this.movieService.getTrendingMovies(page);
   }
 }

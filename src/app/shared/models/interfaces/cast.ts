@@ -1,4 +1,4 @@
-export interface Cast {
+export interface ICast {
     name:string,
     profilePath:string,
     character:string,

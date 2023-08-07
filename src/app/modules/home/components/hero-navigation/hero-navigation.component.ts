@@ -1,9 +1,11 @@
 import { Router } from '@angular/router';
-import { TrendingMediaService } from './../../../../shared/services/trending-Media.service';
+import { MovieService } from '../../../../shared/services/movie.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { ITrendingMovie } from 'src/app/shared/models/trending-movie-response-object.interface';
-import { ITrendingTv } from 'src/app/shared/models/trending-tv-response-object.interface';
+import { ITrendingTvShowItem } from 'src/app/shared/models/interfaces/trending-tv-show';
+import { TvShowService } from 'src/app/shared/services/tv-show.service';
+import { ITrendingMovieItem} from 'src/app/shared/models/interfaces/trending-movie';
+
 
 @Component({
   selector: 'app-hero-navigation',
@@ -13,12 +15,13 @@ import { ITrendingTv } from 'src/app/shared/models/trending-tv-response-object.i
 export class HeroNavigationComponent implements OnInit {
 
   constructor(
-    private trendingMediaService: TrendingMediaService,
+    private movieServie: MovieService,
+    private tvShowService: TvShowService,
     private router: Router
     ) { }
 
-  trendiestMovie$!: Observable<ITrendingMovie>
-  trendiestTv$!: Observable<ITrendingTv>
+  trendiestMovie$!: Observable<ITrendingMovieItem>
+  trendiestTv$!: Observable<ITrendingTvShowItem>
 
   config: IHeroNavigationConfig = {
     movieButtonTitle: 'More movies',
@@ -30,10 +33,10 @@ export class HeroNavigationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.trendiestMovie$ = this.trendingMediaService.getTrendingMovies().pipe(
+    this.trendiestMovie$ = this.movieServie.getTrendingMovies().pipe(
       map((response) => response.results[0])
     )
-    this.trendiestTv$ = this.trendingMediaService.getTrendingSeries().pipe(
+    this.trendiestTv$ = this.tvShowService.getTrendingTvShows().pipe(
       map((response) => response.results[0])
     )
   }

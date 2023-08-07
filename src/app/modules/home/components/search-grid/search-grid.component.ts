@@ -1,6 +1,5 @@
-import { SearchResult } from 'src/app/shared/models/search-result';
 import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
-import { ResultObject } from 'src/app/shared/models/result-object';
+import { ISearchResult, ISearchResultItem } from 'src/app/shared/models/interfaces/search-result';
 
 @Component({
   selector: 'app-search-grid',
@@ -9,13 +8,13 @@ import { ResultObject } from 'src/app/shared/models/result-object';
 })
 export class SearchGridComponent implements OnInit {
 
-  @Input() resultsObject?: ResultObject;
+  @Input() resultsObject?: ISearchResult;
   @Output() clickRequest: EventEmitter<any> = new EventEmitter();
 
   ngOnInit(): void {
   }
 
-  onClickRequest(result: SearchResult) {
+  onClickRequest(result: ISearchResultItem) {
     this.clickRequest.emit(result)
   }
 

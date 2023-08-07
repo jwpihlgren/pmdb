@@ -2,18 +2,18 @@
     <app-grid>
         <app-card *ngFor="let movie of trendingMovies.results" [content]="{
             title: movie.title,
-            posterPath: movie.poster_path,
-            voteAverage: movie.vote_average,
-            year: movie.release_date,
+            posterPath: movie.posterPath,
+            voteAverage: movie.voteAverage,
+            year: movie.releaseDate,
             description: movie.overview,
             id: movie.id,
             stub: 'movie'
         }"></app-card>
     </app-grid>
     <app-paginator
-        [numberOfPages]="trendingMovies.total_pages"
+        [numberOfPages]="trendingMovies.totalPages"
         [currentPage]="trendingMovies.page"
-        [numberOfResults]="trendingMovies.total_results"
+        [numberOfResults]="trendingMovies.totalResults"
         (onPageRequest)=requestPage($event)>
     </app-paginator>
 </ng-container>
