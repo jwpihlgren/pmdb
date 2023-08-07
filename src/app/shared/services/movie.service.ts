@@ -15,6 +15,7 @@ import { ITrendingMovieResult } from '../models/interfaces/trending-movie';
 import { IRoTrendingMovieItem, IRoTrendingMovieResult } from '../models/interfaces/response-objects/ro-trending-movie';
 import { IRoProductionCompany } from '../models/interfaces/response-objects/ro-producing-company';
 import { IRoProductionCountry } from '../models/interfaces/response-objects/ro-production-country';
+import { IProductionCountry } from '../models/interfaces/production-country';
 
 
 @Injectable({
@@ -130,9 +131,12 @@ MovieService {
     })
   }
 
-  setProductionCountries(countries: IRoProductionCountry[]): string[] {
+  setProductionCountries(countries: IRoProductionCountry[]): IProductionCountry[] {
     return countries.map((country: IRoProductionCountry) => {
-      return country.name
+      return {
+        short: country.iso_3166_1,
+        name: country.name
+      }
     })
   }
 }

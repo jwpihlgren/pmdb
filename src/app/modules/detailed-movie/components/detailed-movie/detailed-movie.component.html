@@ -26,22 +26,23 @@
                     <span>{{movie.releaseDate}}</span>
                     <span>&#8226;</span>
                     <span>{{movie.runtime | minutesToHours}}</span>
+                    <span>&#8226;</span>
+                    <div>
+                        <span class="horizontal-list" *ngFor="let country of movie.productionCountries" title="{{country.name}}" >
+                            {{country.short}}
+                        </span>
+                    </div>
                 </div>
-                <div class="flex col gap-md">
+                <div class="flex row a-center space-between gap-md">
                     <div class="flex wrap row gap-sm" >
                         <app-pill *ngFor="let genre of movie.genres">
                             {{genre.name}}
                         </app-pill>
                     </div>
-                    <div class="flex wrap row gap-md" >
-                        <h5  *ngFor="let company of movie.productionCompanies" >
+                    <div class="flex wrap row gap-xs" >
+                        <span class="horizontal-list"  *ngFor="let company of movie.productionCompanies" >
                             {{company}}
-                        </h5>
-                    </div>
-                    <div class="flex wrap row gap-md" >
-                        <h5  *ngFor="let country of movie.productionCountries" >
-                            {{country}}
-                        </h5>
+                        </span>
                     </div>
                 </div>
         </div>

@@ -16,6 +16,10 @@
 
 }
 
+.horizontal-list:not(:last-of-type):after {
+    content: ", ";
+}
+
 .data-item{
     display: flex;
     flex-direction: column;

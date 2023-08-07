@@ -92,6 +92,10 @@ body {
     justify-content: center;
 }
 
+.a-center {
+    align-items: center;
+}
+
 .row {
     flex-direction: row;
 }
@@ -100,6 +104,9 @@ body {
     flex-direction: column;
 }
 
+.gap-xs{
+    gap: 0.33rem;
+}
 .gap-sm{
     gap: 0.5rem;
 }

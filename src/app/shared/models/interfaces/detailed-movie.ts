@@ -1,6 +1,7 @@
 import { ICast } from "./cast"
 import { ICrew } from "./crew"
 import { IGenre } from "./genre"
+import { IProductionCountry } from "./production-country"
 import { IVideo } from "./video"
 
 export interface IDetailedMovie {
@@ -11,7 +12,7 @@ export interface IDetailedMovie {
     posterPath: string
     popularity: number
     productionCompanies: string[]
-    productionCountries: string[]
+    productionCountries: IProductionCountry[]
     releaseDate: string
     runtime: number
     synopsis: string
