@@ -15,6 +15,12 @@
     --white: rgb(255, 255, 255);
     --light-gray: rgb(204, 204, 204);
     --round-corners: 30px;
+
+    --spacing-xs: 0.33rem;
+    --spacing-xs: 0.33rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1.0rem;
+    --spacing-lg: 2.0rem;
 }
 /* CSS RESET */
 * {
@@ -117,6 +123,17 @@ body {
 
 .gap-lg {
     gap: 2.0rem;
+}
+
+/* Add comma to all items in text list except the first one */
+.horizontal-list:not(:last-of-type):after {
+    content: ", ";
+}
+
+/* Add bullet before each item except the first one */
+.trailing-bullet > :not(:first-child)::before {
+    margin: auto var(--spacing-sm);
+    content: "\002022";
 }
 
 

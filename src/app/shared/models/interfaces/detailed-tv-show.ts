@@ -1,6 +1,7 @@
 import { ICast } from "./cast"
 import { ICrew } from "./crew"
 import { IGenre } from "./genre"
+import { IProductionCountry } from "./production-country"
 import { ISeason } from "./season"
 
 export interface IDetailedTvShow {
@@ -21,4 +22,6 @@ export interface IDetailedTvShow {
     numberOfSeasons: number,
     numberOfEpisodes:number,
     seasons: ISeason[],
+    productionCompanies: string[]
+    productionCountries: IProductionCountry[]
 }

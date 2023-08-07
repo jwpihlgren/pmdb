@@ -22,11 +22,9 @@
         <div class="details flex col gap-md">
                     
 
-                <div class="data-points flex row">
+                <div class="flex row trailing-bullet">
                     <span>{{movie.releaseDate}}</span>
-                    <span>&#8226;</span>
                     <span>{{movie.runtime | minutesToHours}}</span>
-                    <span>&#8226;</span>
                     <div>
                         <span class="horizontal-list" *ngFor="let country of movie.productionCountries" title="{{country.name}}" >
                             {{country.short}}

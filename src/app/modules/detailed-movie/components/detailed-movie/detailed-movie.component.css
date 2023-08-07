@@ -1,24 +1,18 @@
 :host {
-        margin: 0 auto;
-        max-width: 1280px;
-        padding: 2rem;
-        gap: 4rem;
-        display: flex;
-        flex-direction: column;
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: 2rem;
+    gap: 4rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.data-points {
-    gap: 0.5rem;
-}
 
 .misc {
     gap: 2rem;
 
 }
 
-.horizontal-list:not(:last-of-type):after {
-    content: ", ";
-}
 
 .data-item{
     display: flex;

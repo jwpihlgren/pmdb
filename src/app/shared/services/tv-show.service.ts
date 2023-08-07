@@ -1,3 +1,4 @@
+import { ProductionService } from './production.service';
 import { Injectable } from '@angular/core';
 import { Observable, of, map, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -29,7 +30,9 @@ export class TvShowService {
     private errorService: ErrorService, 
     private localStorageService: LocalStorageService,
     private crewService: CrewService,
-    private imageService: PosterService,) { }
+    private imageService: PosterService,
+    private productionService: ProductionService
+    ) { }
 
   getTrendingTvShows(page: number = 1): Observable<ITrendingTvShowResult> {
     const storedSeries: ITrendingTvShowResult = this.localStorageService.get(`trendingSeries_Page${page}`);
@@ -82,6 +85,7 @@ export class TvShowService {
       return this.http.get<IRoDetailedTvShow>(`${environment.TMDB_BASE_URL}${this.SERIE}${id}?api_key=${environment.TMDB_API_KEY}${this.APPEND_URL}`, {headers: this.headers})
       .pipe(
         map(response => {
+          console.log(response);
           const tvShow: IDetailedTvShow = {
             posterPath: this.imageService.setPosterPath(response.poster_path),
             name: response.name,
@@ -100,6 +104,8 @@ export class TvShowService {
             numberOfEpisodes: response.number_of_episodes,
             numberOfSeasons: response.number_of_seasons,
             seasons: this.setSeasons(response.seasons),
+            productionCompanies: this.productionService.setProductionCompanies(response.production_companies),
+            productionCountries: this.productionService.setProductionCountries(response.production_countries),
           }
 
           tvShow.cast = tvShow.cast.sort((a: any, b: any) => a.order > b.order ? 1 : -1)

@@ -1,3 +1,4 @@
+import { ProductionService } from './production.service';
 import { ErrorService } from './error.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -38,6 +39,7 @@ MovieService {
     private tmdbConfigService:TmdbConfigService,
     private crewService: CrewService,
     private imageService: PosterService,
+    private productionService: ProductionService
     ) { }
     
   getTrendingMovies(page: number = 1): Observable<ITrendingMovieResult> {
@@ -92,8 +94,8 @@ MovieService {
           console.log(response);
           const movie:IDetailedMovie = {
             posterPath: this.imageService.setPosterPath(response.poster_path),
-            productionCompanies: this.setProductionCompanies(response.production_companies),
-            productionCountries: this.setProductionCountries(response.production_countries),
+            productionCompanies: this.productionService.setProductionCompanies(response.production_companies),
+            productionCountries: this.productionService.setProductionCountries(response.production_countries),
             title: response.title,
             synopsis: response.overview,
             id: response.id,
@@ -123,20 +125,5 @@ MovieService {
       url: videos.results[0].key
     }
     return video
-  }
-
-  setProductionCompanies(companies: IRoProductionCompany[]): string[] {
-    return companies.map((company: IRoProductionCompany) => {
-      return company.name
-    })
-  }
-
-  setProductionCountries(countries: IRoProductionCountry[]): IProductionCountry[] {
-    return countries.map((country: IRoProductionCountry) => {
-      return {
-        short: country.iso_3166_1,
-        name: country.name
-      }
-    })
   }
 }
