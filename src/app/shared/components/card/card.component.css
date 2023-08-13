@@ -39,11 +39,3 @@ p {
 abbr {
     all: unset;
 }
-
-a {
-    all:unset;
-}
-
-a:hover {
-    cursor: pointer;
-}
