@@ -1,6 +1,6 @@
 
 <article>
-    <a (click)="showContent($event)">
+    <a [routerLink]="['/',content.stub, content.id]">
         <img src={{content.posterPath}}>
     </a>
     <div class="content"> 
@@ -12,7 +12,7 @@
         </div>
 
         <p>{{content.description | clampText:120}}</p>
-        <app-button (onClickRequest)="showContent($event)">{{buttonText}}</app-button>
+        <a [routerLink]="['/',content.stub, content.id]" class="button">Show more</a>
     </div>
     
 </article>

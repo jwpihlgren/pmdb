@@ -136,6 +136,33 @@ body {
     content: "\002022";
 }
 
+.button {
+    all:unset;
+    padding-block: 1rem;
+    border: 2px solid var(--secondary-alt);
+    color: var(--text-color);
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+    user-select: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.button:hover {
+    transition: var(--medium-fade);
+    background-color: var(--primary);
+}
+
+.button:active {
+    background-color: var(--primary-alt)
+}
+
+.button:focus-visible {
+    outline: 2px solid var(--secondary-alt);
+    outline-offset: 2px;
+}
+
 
 
 
