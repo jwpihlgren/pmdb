@@ -2,7 +2,7 @@
     <app-button (onClickRequest)="goBack($event)" ><span class="flex row gap-sm"><i icon class="fas fa-chevron-left fa-lg"></i>{{buttonText}}</span></app-button>
     <section class="subheader flex col space-between">
         <div class="flex row space-between">
-            <h1>{{serie.name}}</h1>
+            <app-copy-to-clipboard><h1>{{serie.name}}</h1></app-copy-to-clipboard>
             <div class="misc flex row">
                 <app-data-item>
                     <ng-container caption>Average rating</ng-container>

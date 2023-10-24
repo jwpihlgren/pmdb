@@ -4,7 +4,7 @@
     <app-button (onClickRequest)="goBack($event)" ><span class="flex row gap-sm"><i icon class="fas fa-chevron-left fa-lg"></i>{{buttonText}}</span></app-button>
     <section class="subheader flex row space-between">
         <div class="details flex col gap-md">
-            <h1>{{person.name}}</h1>
+            <app-copy-to-clipboard><h1>{{person.name}}</h1></app-copy-to-clipboard>
             <div class="data-points flex row gap-sm">
                 <span>{{person.birthday}}</span>
                 <span *ngIf="person.deathday"> <span>&#8212;</span> {{person.deathday}}</span>

@@ -1,11 +1,5 @@
 <div class="wrapper">
     <ng-content #content></ng-content>
-<!--     <button 
-        *ngIf="copyToClipboardIsSupported"
-        (click)="copy()"
-        [ngClass]="{'copied': isCopied}">
-        Copy
-    </button> -->
 
     <app-button 
     *ngIf="copyToClipboardIsSupported"
