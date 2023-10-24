@@ -14,6 +14,7 @@ export class ButtonComponent implements OnInit {
   }
   
   @Output() onClickRequest = new EventEmitter<Event>();
+  @Input() disabled: boolean = false;
 
   onClick(event: Event) {
     this.onClickRequest.emit(event)

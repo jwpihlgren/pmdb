@@ -26,6 +26,7 @@ export class CopyToClipboardComponent implements OnInit, AfterViewInit {
 
   copy(): void {
     if (!this.copyToClipboardIsSupported) return;
+    if (this.isCopied) return;
     this.copyToClipboardService.copy(this.content);
     this.isCopied = true;
     setTimeout(() => this.isCopied = false, 2000)
