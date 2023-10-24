@@ -1,0 +1,39 @@
+
+:host {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.wrapper {
+    display: contents;
+}
+
+:host:hover app-button {
+    visibility: visible;
+}
+
+app-button{
+    position: relative;
+    height: 48px;
+    visibility: hidden;
+}
+
+
+app-button.copied::after{
+    position: absolute;
+    transform: translate(20%, -30%);
+    background-color: var(--primary);
+    color: var(--secondary);
+    padding: var( --spacing-sm);
+    content: 'Copied!';
+    border-radius: var(--broken-corners);
+
+}
+
+
+i.far.fa-copy{
+    color: var(--secondary);
+}
+

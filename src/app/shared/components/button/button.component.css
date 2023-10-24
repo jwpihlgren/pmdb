@@ -30,3 +30,9 @@ button:focus-visible {
     outline: 2px solid var(--secondary-alt);
     outline-offset: 2px;
 }
+
+button:disabled {
+    background-color: var(--secondary-alt);
+    color: var(--text-color);
+    cursor: not-allowed;
+}
