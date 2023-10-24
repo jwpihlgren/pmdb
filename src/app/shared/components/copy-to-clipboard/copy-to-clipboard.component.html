@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <ng-content #content></ng-content>
+
+    <app-button 
+    *ngIf="copyToClipboardIsSupported"
+    (onClickRequest)="copy()"
+    [disabled]="isCopied"
+    [ngClass]="{'copied': isCopied}">
+        <span class="flex row gap-sm"><i icon class="far fa-copy fa-lg"></i></span>
+    </app-button>
+</div>
