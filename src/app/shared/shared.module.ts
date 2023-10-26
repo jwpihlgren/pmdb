@@ -19,6 +19,7 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 import { LightboxComponent } from './components/lightbox/lightbox.component';
 import { SlideComponent } from './components/lightbox/components/slide/slide.component';
 import { CopyToClipboardComponent } from './components/copy-to-clipboard/copy-to-clipboard.component';
+import { CopyToClipboardDirective } from './directives/copy-to-clipboard.directive';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CopyToClipboardComponent } from './components/copy-to-clipboard/copy-to
     PaginatorComponent,
     LightboxComponent,
     SlideComponent,
-    CopyToClipboardComponent
+    CopyToClipboardComponent,
+    CopyToClipboardDirective
   ],
   imports: [
     CommonModule,
@@ -61,7 +63,8 @@ import { CopyToClipboardComponent } from './components/copy-to-clipboard/copy-to
     CollapseMenuComponent,
     PaginatorComponent,
     LightboxComponent,
-    CopyToClipboardComponent
+    CopyToClipboardComponent,
+    CopyToClipboardDirective
   ]
 })
 export class SharedModule { }
