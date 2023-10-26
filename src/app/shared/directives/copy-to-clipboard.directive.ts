@@ -11,11 +11,7 @@ export class CopyToClipboardDirective implements AfterViewInit {
     private elementRef: ElementRef,
     private renderer: Renderer2,
     private copyToClipboardService: CopyToClipboardService
-  ) { 
-
-  /*   const button = this.renderer.createElement('span'); */
-
-  }
+  ) {}
 
   ngAfterViewInit(): void {
     const button = this.renderer.createElement('button');
