@@ -24,7 +24,7 @@ export class CopyToClipboardDirective implements AfterViewInit {
     this.renderer.appendChild(button, text);
     this.renderer.appendChild(this.elementRef.nativeElement, button);
 
-    this.renderer.listen(text, 'click', (event) => {
+    this.renderer.listen(button, 'click', (event) => {
       const text = this.elementRef.nativeElement.innerText.replace('Copy', '');;
       console.log(text);
       this.copyToClipboardService.copy(text);
