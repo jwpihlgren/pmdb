@@ -9,6 +9,7 @@ export interface IDetailedMovie {
     crew: ICrew[]
     genres: IGenre[]
     id: number
+    imdbId: string
     posterPath: string
     popularity: number
     productionCompanies: string[]

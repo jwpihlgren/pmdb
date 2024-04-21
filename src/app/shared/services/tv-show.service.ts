@@ -21,13 +21,13 @@ export class TvShowService {
 
   MS_UNTIL_EXPIRE = 1000 *  60 * 60 * 8;   /* Currently 8 hours */
   SERIE = "tv/"
-  APPEND_URL = '&append_to_response=videos,credits';   
+  APPEND_URL = '&append_to_response=videos,credits';
   posterBaseUrl = 'https://image.tmdb.org/t/p/w500/'
   headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(
-    private http: HttpClient, 
-    private errorService: ErrorService, 
+    private http: HttpClient,
+    private errorService: ErrorService,
     private localStorageService: LocalStorageService,
     private crewService: CrewService,
     private imageService: PosterService,
