@@ -2,7 +2,7 @@ import { ProductionService } from './production.service';
 import { ErrorService } from './error.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';  
+import { catchError, map, Observable, of } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 import { environment } from 'src/environments/environment';
 import { IDetailedMovie } from '../models/interfaces/detailed-movie';
@@ -14,15 +14,12 @@ import { IVideo } from '../models/interfaces/video';
 import { IRoDetailedMovie } from '../models/interfaces/response-objects/ro-detailed-movie';
 import { ITrendingMovieResult } from '../models/interfaces/trending-movie';
 import { IRoTrendingMovieItem, IRoTrendingMovieResult } from '../models/interfaces/response-objects/ro-trending-movie';
-import { IRoProductionCompany } from '../models/interfaces/response-objects/ro-producing-company';
-import { IRoProductionCountry } from '../models/interfaces/response-objects/ro-production-country';
-import { IProductionCountry } from '../models/interfaces/production-country';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class 
+export class
 MovieService {
 
   MS_UNTIL_EXPIRE = 1000 *  60 * 60 * 8;   /* Currently 8 hours */
@@ -33,15 +30,15 @@ MovieService {
 
 
   constructor(
-    private http: HttpClient, 
-    private errorService: ErrorService, 
+    private http: HttpClient,
+    private errorService: ErrorService,
     private localStorageService: LocalStorageService,
     private tmdbConfigService:TmdbConfigService,
     private crewService: CrewService,
     private imageService: PosterService,
     private productionService: ProductionService
     ) { }
-    
+
   getTrendingMovies(page: number = 1): Observable<ITrendingMovieResult> {
     const storedMovies: ITrendingMovieResult = this.localStorageService.get(`trendingMovies_Page${page}`);
     if(storedMovies && storedMovies.page === page) {
@@ -50,7 +47,7 @@ MovieService {
     else {
     return this.http.get<IRoTrendingMovieResult>(`${environment.TMDB_BASE_URL}/trending/movie/week?api_key=${environment.TMDB_API_KEY}&page=${page}`, {headers: this.headers})
       .pipe(
-        map((response) => {        
+        map((response) => {
           const trendingMovieResult: ITrendingMovieResult = {
             page: response.page,
             totalPages: response.total_pages,
@@ -84,7 +81,7 @@ MovieService {
     this.tmdbConfigService.getConfig();
     const storedMovie = this.localStorageService.get(`${id}`);
     if(storedMovie) {
-      
+
       return of(storedMovie)
     }
     else {
@@ -99,6 +96,7 @@ MovieService {
             title: response.title,
             synopsis: response.overview,
             id: response.id,
+            imdbId: response.imdb_id,
             releaseDate: response.release_date,
             popularity: response.popularity,
             voteAverage: response.vote_average,
@@ -109,7 +107,7 @@ MovieService {
             crew: this.crewService.setCrew(response.credits.crew),
             video: this.setVideo(response.videos)
           }
-          
+
           this.localStorageService.set(`${id}`, movie, this.MS_UNTIL_EXPIRE)
           console.log(movie);
           return movie;

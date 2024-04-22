@@ -1,90 +1,81 @@
 <ng-container class="" *ngIf="movie$ |async as movie; else placeholder">
-    <app-button (onClickRequest)="goBack($event)" >
-        <span class="flex row gap-sm"><i icon class="fas fa-chevron-left fa-lg"></i>{{buttonText}}</span>
-    </app-button>
-    <section class="subheader flex col space-between">
-        <div class="flex row space-between">
-            <h1 appCopyToClipboard>{{movie.title}}</h1>
-            <div class="misc flex row">
-                <app-data-item>
-                    <ng-container caption>Average rating</ng-container>
-                    <i icon class="fas fa-star fa-lg"></i>
-                    <span text> {{movie.voteAverage.toFixed(1)}} / 10</span>
-                    <span subtext>{{movie.voteCount}} voters</span>
-                </app-data-item>
-                <app-data-item>
-                    <ng-container caption>popularty score</ng-container>
-                    <i icon class="fas fa-chart-line fa-lg"></i>
-                    <span text> {{movie.popularity}}</span>
-                </app-data-item>
-            </div>
+  <app-button (onClickRequest)="goBack($event)">
+    <span class="flex row gap-sm"><i icon class="fas fa-chevron-left fa-lg"></i>{{buttonText}}</span>
+  </app-button>
+  <section class="subheader flex col space-between">
+
+    <div class="flex row space-between">
+      <h1 appCopyToClipboard>{{movie.title}}</h1>
+      <div class="misc flex row">
+        <app-data-item>
+          <ng-container caption>Average rating</ng-container>
+          <i icon class="fas fa-star fa-lg"></i>
+          <span text> {{movie.voteAverage.toFixed(1)}} / 10</span>
+          <span subtext>{{movie.voteCount}} voters</span>
+        </app-data-item>
+        <app-data-item>
+          <ng-container caption>popularty score</ng-container>
+          <i icon class="fas fa-chart-line fa-lg"></i>
+          <span text> {{movie.popularity}}</span>
+        </app-data-item>
+      </div>
+    </div>
+
+    <div class="details flex col gap-md">
+      <div class="flex row trailing-bullet">
+        <span>{{movie.releaseDate}}</span>
+        <span>{{movie.runtime | minutesToHours}}</span>
+        <div>
+          <span class="horizontal-list" *ngFor="let country of movie.productionCountries" title="{{country.name}}">
+            {{country.short}}
+          </span>
         </div>
-
-        <div class="details flex col gap-md">
-                    
-
-                <div class="flex row trailing-bullet">
-                    <span>{{movie.releaseDate}}</span>
-                    <span>{{movie.runtime | minutesToHours}}</span>
-                    <div>
-                        <span class="horizontal-list" *ngFor="let country of movie.productionCountries" title="{{country.name}}" >
-                            {{country.short}}
-                        </span>
-                    </div>
-                </div>
-                <div class="flex row a-center space-between gap-md">
-                    <div class="flex wrap row gap-sm" >
-                        <app-pill *ngFor="let genre of movie.genres">
-                            {{genre.name}}
-                        </app-pill>
-                    </div>
-                    <div class="flex wrap row gap-xs" >
-                        <span class="horizontal-list"  *ngFor="let company of movie.productionCompanies" >
-                            {{company}}
-                        </span>
-                    </div>
-                </div>
+        <span><a class="inline-link" href="{{imdbUrl}}{{movie.imdbId}}" target="_blank"
+            rel="noopener noreferrer">Imdb</a></span>
+      </div>
+      <div class="flex row a-center space-between gap-md">
+        <div class="flex wrap row gap-sm">
+          <app-pill *ngFor="let genre of movie.genres">
+            {{genre.name}}
+          </app-pill>
         </div>
-
-    </section>
-
-
-    <section class="media flex col gap-sm">
-        <p>{{movie.synopsis}}</p>
-        <div class="media flex row">
-            <app-lightbox  [lightBoxOptions]="{images: [{url: movie.posterPath , alt: movie.title}]}"></app-lightbox>
-            <app-video-player-component *ngIf="movie.video" [videoId]=movie.video.url>
-            </app-video-player-component>
+        <div class="flex wrap row gap-xs">
+          <span class="horizontal-list" *ngFor="let company of movie.productionCompanies">
+            {{company}}
+          </span>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <section class="Cast">
-        <h2>Cast</h2>
-        <app-grid class="credits">
-            <app-profile 
-            *ngFor="let castPerson of movie.cast" 
-            [castPerson]=castPerson
-            (click)="onPersonClick(castPerson.id)"
-            
-            ></app-profile>
-        </app-grid>
-    </section>
+  </section>
 
-    <section class="Crew">
-        <h2>Crew</h2>
-        <app-grid class="credits">
-            <app-profile 
-            *ngFor="let crewPerson of movie.crew" 
-            [crewPerson]=crewPerson
-            (click)="onPersonClick(crewPerson.id)"
-            
-            ></app-profile>
-        </app-grid>
-    </section>
+  <section class="media flex col gap-sm">
+    <p>{{movie.synopsis}}</p>
+    <div class="media flex row">
+      <app-lightbox [lightBoxOptions]="{images: [{url: movie.posterPath , alt: movie.title}]}"></app-lightbox>
+      <app-video-player-component *ngIf="movie.video" [videoId]=movie.video.url>
+      </app-video-player-component>
+    </div>
+  </section>
+
+  <section class="Cast">
+    <h2>Cast</h2>
+    <app-grid class="credits">
+      <app-profile *ngFor="let castPerson of movie.cast" [castPerson]=castPerson
+        (click)="onPersonClick(castPerson.id)"></app-profile>
+    </app-grid>
+  </section>
+
+  <section class="Crew">
+    <h2>Crew</h2>
+    <app-grid class="credits">
+      <app-profile *ngFor="let crewPerson of movie.crew" [crewPerson]=crewPerson
+        (click)="onPersonClick(crewPerson.id)"></app-profile>
+    </app-grid>
+  </section>
 
 </ng-container>
 
 <ng-template #placeholder>
-    Loading movie ...
+  Loading movie ...
 </ng-template>
-

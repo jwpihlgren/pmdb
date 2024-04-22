@@ -18,6 +18,7 @@ export interface IRoDetailedTvShow {
     genres: IRoGenre[]
     homepage: string
     id: number
+    external_ids: IRoExternalId
     in_production: boolean
     languages: string[]
     last_air_date: string
@@ -40,4 +41,17 @@ export interface IRoDetailedTvShow {
     vote_count: number
     credits: IRoAppendedCredits,
     videos: IRoAppendedVideos
+}
+
+interface IRoExternalId {
+  id: number
+  imdb_id: string
+  freebase_mid: string
+  freebase_id: string
+  tvdb_id: number
+  tvrage_id: number
+  wikidata_id: string
+  facebook_id: string
+  instagram_id: string
+  twitter_id: string
 }
