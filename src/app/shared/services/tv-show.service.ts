@@ -85,7 +85,6 @@ export class TvShowService {
       return this.http.get<IRoDetailedTvShow>(`${environment.TMDB_BASE_URL}${this.SERIE}${id}?api_key=${environment.TMDB_API_KEY}${APPEND_URL}`, { headers: this.headers })
         .pipe(
           map(response => {
-            console.log(response);
             const tvShow: IDetailedTvShow = {
               posterPath: this.imageService.setPosterPath(response.poster_path),
               name: response.name,

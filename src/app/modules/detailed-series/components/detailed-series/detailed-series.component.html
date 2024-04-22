@@ -27,7 +27,7 @@
           <span class="horizontal-list" *ngFor="let country of serie.productionCountries"
             title="{{country.name}}">{{country.short}}</span>
         </div>
-        <span *ngIf="serie.imdbId"><a href="https://www.imdb.com/title/{{serie.imdbId}}" target="_blank" rel="noopener noreferrer">Imdb</a></span>
+        <span *ngIf="serie.imdbId"><a class="inline-link" href="{{imdbUrl}}{{serie.imdbId}}" target="_blank" rel="noopener noreferrer">Imdb</a></span>
       </div>
       <div class="genres flex row gap-sm">
         <app-pill *ngFor="let genre of serie.genres">

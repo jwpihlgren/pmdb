@@ -13,7 +13,6 @@ export class PaginationService {
   ) { }
 
   getPageFromUrl(): number | undefined {
-    console.log(this.activatedRoute.snapshot.queryParams);
     const page = this.activatedRoute.snapshot.queryParams['page'];
     if (!page) return
     return page
@@ -31,7 +30,6 @@ export class PaginationService {
   }
 
   observeNavigation(): Observable<any> {
-    console.log("hit");
     return this.activatedRoute.queryParams
   }
 }
