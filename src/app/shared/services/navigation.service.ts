@@ -12,7 +12,7 @@ export class NavigationService {
   constructor(
     private router: Router,
     private location: Location,
-  ) { 
+  ) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.history.push(event.urlAfterRedirects)
@@ -28,6 +28,11 @@ export class NavigationService {
     else {
       this.router.navigateByUrl('/')
     }
+  }
+
+  imdbUrl(): string {
+    const imdbUrl = "https://www.imdb.com/title/"
+    return imdbUrl
   }
 }
 

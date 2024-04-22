@@ -34,14 +34,14 @@ export function configProviderFactory(provider: TmdbConfigService) {
     HomeModule,
     DetailedPersonModule,
     TestModule
- 
+
   ],
   providers: [
     TmdbConfigService,
     {
-      provide: APP_INITIALIZER, 
-      useFactory: configProviderFactory, 
-      deps: [TmdbConfigService], 
+      provide: APP_INITIALIZER,
+      useFactory: configProviderFactory,
+      deps: [TmdbConfigService],
       multi: true}
   ],
   bootstrap: [AppComponent]

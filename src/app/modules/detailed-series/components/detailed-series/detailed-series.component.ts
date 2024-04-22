@@ -20,14 +20,16 @@ export class DetailedSeriesComponent implements OnInit {
     private router: Router,
     private navigationService: NavigationService
     ) { }
-  
+
   serie$?: Observable<IDetailedTvShow>;
   buttonText: string = "Back";
-  
+  imdbUrl!: string
+
   ngOnInit(): void {
+    this.imdbUrl = this.navigationService.imdbUrl()
     const id = this.route.snapshot.paramMap.get('id');
     if(id) this.serie$ = this.TvShowService.getTvShowDetails(+id)
-    
+
   }
 
   goBack(event: any): void {

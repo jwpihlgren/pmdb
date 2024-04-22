@@ -9,6 +9,7 @@ export interface IDetailedTvShow {
     name: string,
     synopsis: string,
     id: number,
+    imdbId: string
     firstAirDate:string,
     lastAirDate:string,
     popularity: number,
@@ -25,3 +26,5 @@ export interface IDetailedTvShow {
     productionCompanies: string[]
     productionCountries: IProductionCountry[]
 }
+
+

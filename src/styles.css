@@ -42,6 +42,7 @@ html, span, i {
     font-family: 'Montserrat', sans-serif;
 }
 
+
 p {
     margin-bottom: 1rem;
     line-height: 180%;
@@ -137,6 +138,13 @@ body {
     content: "\002022";
 }
 
+span > .inline-link {
+  color: var(--text-color);
+}
+
+span:hover > .inline-link {
+  color: var(--light-gray);
+}
 .button {
     all:unset;
     padding-block: 1rem;
@@ -189,12 +197,12 @@ body {
     transform: translate(40%, -15%);
     padding: var( --spacing-sm);
     border-radius: var(--broken-corners);
-    
+
     background-color: var(--primary);
     color: var(--secondary);
     content: attr(data-text);
-    
-    
+
+
 }
 *[appcopytoclipboard] > button > i.far.fa-copy {
     color: var(--secondary);

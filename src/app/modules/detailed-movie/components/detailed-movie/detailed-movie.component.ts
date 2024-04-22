@@ -13,7 +13,7 @@ import { MovieService } from 'src/app/shared/services/movie.service';
 export class DetailedMovieComponent implements OnInit {
 
   constructor(
-    private movieService: MovieService, 
+    private movieService: MovieService,
     private route: ActivatedRoute,
     private router: Router,
     private navigationService: NavigationService
@@ -21,8 +21,10 @@ export class DetailedMovieComponent implements OnInit {
 
   movie$?: Observable<IDetailedMovie>;
   buttonText: string = "Back"
+  imdbUrl!: string
 
   ngOnInit(): void {
+    this.imdbUrl = this.navigationService.imdbUrl()
     const id = this.route.snapshot.paramMap.get('id');
     if(id) {this.movie$ = this.movieService.getMovieDetails(+id);}
   }
@@ -36,5 +38,5 @@ export class DetailedMovieComponent implements OnInit {
     this.router.navigateByUrl(`person/${id}`);
   }
 
-  
+
 }
