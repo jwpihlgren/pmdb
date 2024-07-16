@@ -201,16 +201,8 @@ span:hover > .inline-link {
     background-color: var(--primary);
     color: var(--secondary);
     content: attr(data-text);
-
-
 }
+
 *[appcopytoclipboard] > button > i.far.fa-copy {
     color: var(--secondary);
 }
-
-
-
-
-
-
-

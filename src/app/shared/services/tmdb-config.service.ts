@@ -12,7 +12,7 @@ import { Size } from 'src/app/shared/models/enums/tmdb/size';
 export class TmdbConfigService {
 
   MS_UNTIL_EXPIRE = 1000 * 60 * 60 * 72; /*Currently 72 hours */
-  API_MEDIA_TYPE = "/configuration" 
+  API_MEDIA_TYPE = "configuration"
 
   constructor(
     private http: HttpClient,
@@ -29,11 +29,11 @@ export class TmdbConfigService {
     loadConfig(){
       const config = this.localStorageService.get("config");
       if (config) {
-        
+
         this.config = config;
         return lastValueFrom(of(config))
       }
-      
+
       else {
         console.log(environment.TMDB_BASE_URL, environment.TMDB_API_KEY)
         return lastValueFrom(this.http.get<any>(`${environment.TMDB_BASE_URL}${this.API_MEDIA_TYPE}?api_key=${environment.TMDB_API_KEY}`).pipe(
