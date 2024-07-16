@@ -45,7 +45,7 @@ MovieService {
       return of(storedMovies)
     }
     else {
-    return this.http.get<IRoTrendingMovieResult>(`${environment.TMDB_BASE_URL}/trending/movie/week?api_key=${environment.TMDB_API_KEY}&page=${page}`, {headers: this.headers})
+    return this.http.get<IRoTrendingMovieResult>(`${environment.TMDB_BASE_URL}trending/movie/week?api_key=${environment.TMDB_API_KEY}&page=${page}`, {headers: this.headers})
       .pipe(
         map((response) => {
           const trendingMovieResult: ITrendingMovieResult = {

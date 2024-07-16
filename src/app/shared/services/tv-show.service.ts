@@ -39,7 +39,7 @@ export class TvShowService {
       return of(storedSeries)
     }
     else {
-      return this.http.get<IRoTrendingTvResult>(`${environment.TMDB_BASE_URL}/trending/tv/week?api_key=${environment.TMDB_API_KEY}&page=${page}`, { headers: this.headers })
+      return this.http.get<IRoTrendingTvResult>(`${environment.TMDB_BASE_URL}trending/tv/week?api_key=${environment.TMDB_API_KEY}&page=${page}`, { headers: this.headers })
         .pipe(
           map((response) => {
             const trendingTvResult: ITrendingTvShowResult = {
