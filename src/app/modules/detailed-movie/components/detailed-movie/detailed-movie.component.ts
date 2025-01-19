@@ -1,6 +1,6 @@
 import { NavigationService } from 'src/app/shared/services/navigation.service';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDetailedMovie } from 'src/app/shared/models/interfaces/detailed-movie';
 import { MovieService } from 'src/app/shared/services/movie.service';
@@ -26,7 +26,7 @@ export class DetailedMovieComponent implements OnInit {
   ngOnInit(): void {
     this.imdbUrl = this.navigationService.imdbUrl()
     const id = this.route.snapshot.paramMap.get('id');
-    if(id) {this.movie$ = this.movieService.getMovieDetails(+id);}
+    if(id) {this.movie$ = this.movieService.getMovieDetails(+id).pipe(tap(data => console.log(data)));}
   }
 
   goBack(event: any): void {
