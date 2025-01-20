@@ -8,6 +8,7 @@ import { IRoProductionCompany } from "./ro-producing-company"
 import { IRoProductionCountry } from "./ro-production-country"
 import { IRoSeason } from "./ro-season"
 import { IRoSpokenLanguage } from "./ro-spoken-language"
+import IroTvRecommendation from "./ro-tv-recommendation"
 
 export interface IRoDetailedTvShow {
     adult: boolean
@@ -41,6 +42,7 @@ export interface IRoDetailedTvShow {
     vote_count: number
     credits: IRoAppendedCredits,
     videos: IRoAppendedVideos
+    recommendations: IroTvRecommendation
 }
 
 interface IRoExternalId {
