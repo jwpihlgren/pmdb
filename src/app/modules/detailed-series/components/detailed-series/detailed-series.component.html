@@ -70,6 +70,15 @@
     </app-grid>
   </section>
 
+  <section>
+    <h2>Recommendations</h2>
+    <app-grid class="recommendations">
+      <app-card *ngFor="let recommendation of serie.recommendations" [content]="recommendation">
+      </app-card>
+    </app-grid>
+  </section>
+
+
 </ng-container>
 
 <ng-template #placeholder>

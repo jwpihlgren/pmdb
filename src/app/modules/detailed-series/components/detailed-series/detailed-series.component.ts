@@ -2,7 +2,7 @@ import { TvShowService } from 'src/app/shared/services/tv-show.service';
 import { NavigationService } from 'src/app/shared/services/navigation.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable, switchMap } from 'rxjs';
 import { IDetailedTvShow } from 'src/app/shared/models/interfaces/detailed-tv-show';
 import { ISmallCardConfig } from 'src/app/shared/models/interfaces/small-card-config';
 import { ISeason } from 'src/app/shared/models/interfaces/season';
@@ -27,8 +27,11 @@ export class DetailedSeriesComponent implements OnInit {
 
   ngOnInit(): void {
     this.imdbUrl = this.navigationService.imdbUrl()
-    const id = this.route.snapshot.paramMap.get('id');
-    if(id) this.serie$ = this.TvShowService.getTvShowDetails(+id)
+    this.serie$ = this.route.params.pipe(switchMap(params => {
+      const id = params['id']
+      if(!id) return EMPTY
+      return this.TvShowService.getTvShowDetails(id)
+    }))
 
   }
 

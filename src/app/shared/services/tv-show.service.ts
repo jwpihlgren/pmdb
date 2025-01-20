@@ -13,6 +13,8 @@ import { IDetailedTvShow } from '../models/interfaces/detailed-tv-show';
 import { IRoDetailedTvShow } from '../models/interfaces/response-objects/ro-detailed-tv-show';
 import { ISeason } from '../models/interfaces/season';
 import { IRoSeason } from '../models/interfaces/response-objects/ro-season';
+import IroTvRecommendation from '../models/interfaces/response-objects/ro-tv-recommendation';
+import { ICardOptions } from '../components/card/card.component';
 
 @Injectable({
   providedIn: 'root'
@@ -76,9 +78,8 @@ export class TvShowService {
 
   getTvShowDetails(id: number): Observable<IDetailedTvShow> {
     const storedSerie = this.localStorageService.get(`${id}`);
-    const APPEND_URL = '&append_to_response=videos,credits,external_ids';
+    const APPEND_URL = '&append_to_response=videos,credits,external_ids,recommendations';
     if (storedSerie) {
-      ;
       return of(storedSerie)
     }
     else {
@@ -106,6 +107,7 @@ export class TvShowService {
               seasons: this.setSeasons(response.seasons),
               productionCompanies: this.productionService.setProductionCompanies(response.production_companies),
               productionCountries: this.productionService.setProductionCountries(response.production_countries),
+              recommendations: this.setRecommendation(response.recommendations)
             }
 
             tvShow.cast = tvShow.cast.sort((a: any, b: any) => a.order > b.order ? 1 : -1)
@@ -130,5 +132,22 @@ export class TvShowService {
         airDate: season.air_date
       }
     })
+  }
+
+  private setRecommendation(recommendations: IroTvRecommendation): ICardOptions[] | undefined {
+    if (!recommendations) return undefined
+    const parsedRecommendations: ICardOptions[] = recommendations.results.map(result => {
+      const parsedRecommendation: ICardOptions = {
+        description: result.overview,
+        id: result.id,
+        posterPath: this.imageService.setPosterPath(result.poster_path),
+        stub: "tv",
+        title: result.name,
+        voteAverage: result.vote_average,
+        year: result.first_air_date
+      }
+      return parsedRecommendation
+    })
+    return parsedRecommendations
   }
 }
