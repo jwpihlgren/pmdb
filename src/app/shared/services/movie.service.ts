@@ -136,7 +136,7 @@ export class
         title: result.title,
         voteAverage: result.vote_average,
         description: result.overview,
-        stub: "",
+        stub: "movie", //<--- this is not good, in trending movie component we even set this in the template...
         year: result.release_date
       }
       return parsed
